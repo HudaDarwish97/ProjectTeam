@@ -1,0 +1,140 @@
+/* general styling*/
+body {
+    font-family: Arial,  sans-serif;
+    background-color: rgb(245,245,220);
+    margin: 0;
+    color: #000;
+    }
+    
+    /*header*/
+    .header {
+    background-color:  rgb(87,81,81);
+    color: white;
+    }
+    
+    .header .logo{
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    
+    .header .nav-link{
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+    
+    .header .nav-link:hover{
+      text-decoration: underline;
+    }
+    /*about us*/
+    #about-us {
+      background-color: rgb(245,245,220);
+    }
+    
+    #about-us h2,
+    #about-us h3 {
+      font-weight: bold;
+      color: #000;
+    }
+    
+    #about-us p{
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #000;
+    }
+    
+    #about-us blockquote {
+      font-style: italic;
+      color: rgb(87,81,81);
+      border-left: 4px solid black;
+      padding-left: 10px;
+    }
+    /*timeline style*/
+    .timeline {
+      margin-top: 3rem;
+    }
+    .timeline-card {
+      transition: transform 0.3s ease-in-out;
+    }
+    
+    .timeline-card:hover {
+      transform: scale(1.05);
+    }
+    /*fun fact*/
+    .fact-card {
+      color: white;
+      background-color: rgb(87,81,81);
+      transition: transform 0.3s ease-in-out;
+    }
+    .fact-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    
+    
+    
+    
+    /*hero section*/
+    .hero {
+      background-color: rgb(245,245,220) ;
+      color: #000;
+    }
+    
+    .hero-title {
+      font-size: 2.5rem;
+      font-weight: bold;
+    }
+    .hero-subtitle {
+      font-size: 1.25rem;
+    }
+    
+    /*features section*/
+    
+    .features-card {
+      font-weight: bold;
+      color: rgb(0, 0, 0);
+      padding: 20px;
+      border-radius: 10px;
+      transition: transform 0.3s ease-in-out;
+    }
+    
+    
+    .features-card:hover{
+      transform: translateY(-10px);
+    }
+    
+    .features-cs{
+      color: #000;
+      background-color: rgb(245,213,53);
+    }
+    
+    .features-is{
+      color: white;
+      background-color: rgb(188,31,31);
+    }
+    .features-ce {
+      color:white;
+      background-color: rgb(8,74,160);
+    }
+    
+    /*contact section*/
+    
+    #contact input,
+    #contact textarea {
+      margin-bottom: 15px;
+    }
+    #contact button {
+      background-color: black;
+      color: white;
+      border: none;
+    }
+    #contact button:hover {
+      background-color: rgb(87,81,81);
+    }
+    
+    /*footer*/
+    
+    .footer {
+      background-color: rgb(87,81,81);
+      color: white;
+    }
