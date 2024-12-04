@@ -135,8 +135,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `user_name`, `user_email`, `user_password`, `user_role`) VALUES
-(1, 'Admin User', 'admin@example.com', 'hashedpassword', 'Admin'),
-(2, 'Regular User', 'user@example.com', 'hashedpassword', 'User');
+(1, 'username1', 'user1@example.com', 'hashedpassword', 'Admin'),
+(2, 'username2', 'user2@example.com', 'hashedpassword', 'User');
 
 --
 -- Indexes for dumped tables
