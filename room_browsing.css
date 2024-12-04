@@ -1,0 +1,40 @@
+#room-map {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+#rooms-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.room {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: lightgray;
+    transition: background-color 0.3s ease;
+}
+
+
+.room.selected {
+    background-color: yellow;
+}
+
+.room.selected.Computer\ Science {
+    background-color: red;
+}
+
+.room.selected.Computer\ Engineering {
+    background-color: blue;
+}
+
+.room.selected.Information\ System {
+    background-color: green;
+}
