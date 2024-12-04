@@ -1,8 +1,42 @@
 <?php
+// Include database connection
 require 'db_connection.php';
 
-$query = "SELECT * FROM rooms";
-$result = $conn->query($query);
+// Fetch filters from GET parameters (sent via AJAX)
+$building = isset($_GET['Building']) ? $_GET['Building'] : '';
+$department = isset($_GET['department']) ? $_GET['department'] : '';
+$floor = isset($_GET['floor']) ? $_GET['floor'] : '';
+
+// Build the query with the filters
+$query = "SELECT * FROM rooms WHERE 1=1";
+$conditions = [];
+$params = [];
+
+if ($building) {
+    $conditions[] = "building = ?";
+    $params[] = $building;
+}
+if ($department) {
+    $conditions[] = "department = ?";
+    $params[] = $department;
+}
+if ($floor) {
+    $conditions[] = "floor = ?";
+    $params[] = $floor;
+}
+
+if (count($conditions) > 0) {
+    $query .= " AND " . implode(" AND ", $conditions);
+}
+
+$stmt = $conn->prepare($query);
+if (count($params) > 0) {
+    // Bind parameters dynamically based on the number of conditions
+    $stmt->bind_param(str_repeat('s', count($params)), ...$params); 
+}
+$stmt->execute();
+
+$result = $stmt->get_result();
 ?>
 
 <!DOCTYPE html>
@@ -20,6 +54,7 @@ $result = $conn->query($query);
     <div class="container mt-5">
         <div class="row justify-content-center">
             <?php
+            // Check if there are rooms available based on the filters
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     echo '
@@ -55,7 +90,7 @@ $result = $conn->query($query);
                     </div>';
                 }
             } else {
-                echo '<p>No rooms available at the moment.</p>';
+                echo '<p>No rooms available at the moment based on the selected filters.</p>';
             }
             ?>
         </div>
@@ -73,5 +108,6 @@ $result = $conn->query($query);
 </html>
 
 <?php
+$stmt->close();
 $conn->close();
 ?>
