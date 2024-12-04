@@ -6,7 +6,6 @@ require 'db_connection.php';
 $building = isset($_GET['Building']) ? $_GET['Building'] : '';
 $department = isset($_GET['department']) ? $_GET['department'] : '';
 $floor = isset($_GET['floor']) ? $_GET['floor'] : '';
-$room_type = isset($_GET['room_type']) ? $_GET['room_type'] : '';
 
 // Build the query with the filters
 $query = "SELECT * FROM rooms WHERE 1=1";
@@ -25,17 +24,13 @@ if ($floor) {
     $conditions[] = "floor = ?";
     $params[] = $floor;
 }
-if ($room_type) {
-    $conditions[] = "room_type = ?";
-    $params[] = $room_type;
-}
 
 if (count($conditions) > 0) {
     $query .= " AND " . implode(" AND ", $conditions);
 }
 
 $stmt = $conn->prepare($query);
-$stmt->bind_param(str_repeat('s', count($params)), ...$params);
+$stmt->bind_param(str_repeat('s', count($params)), ...$params); 
 $stmt->execute();
 
 $result = $stmt->get_result();
@@ -53,32 +48,82 @@ $result = $stmt->get_result();
             const buildingSelect = document.getElementById('Building');
             const departmentSelect = document.getElementById('department');
             const floorSelect = document.getElementById('floor');
-            const roomTypeSelect = document.getElementById('room-type');
             const roomListSection = document.querySelector('.room-list-section');
+            const mapImage = document.getElementById('map-image');
 
             // Event listeners for filter changes
             buildingSelect.addEventListener('change', updateRoomList);
             departmentSelect.addEventListener('change', updateRoomList);
             floorSelect.addEventListener('change', updateRoomList);
-            roomTypeSelect.addEventListener('change', updateRoomList);
 
             function updateRoomList() {
                 const building = buildingSelect.value;
                 const department = departmentSelect.value;
                 const floor = floorSelect.value;
-                const roomType = roomTypeSelect.value;
 
                 // Send an AJAX request to filter rooms
                 const xhr = new XMLHttpRequest();
-                xhr.open('GET', 'room_browsing.php?Building=' + building + '&department=' + department + '&floor=' + floor + '&room_type=' + roomType, true);
+                xhr.open('GET', 'room_browsing.php?Building=' + building + '&department=' + department + '&floor=' + floor, true);
                 xhr.onreadystatechange = function () {
                     if (xhr.readyState == 4 && xhr.status == 200) {
                         roomListSection.innerHTML = xhr.responseText;
                     }
                 };
                 xhr.send();
+
+                if (building === 'IT') {
+            if (department === 'Computer Science') {
+                if (floor === 'First Floor') {
+                    mapImage.src = 'CS_first_floor_map.jpg'; 
+                    mapImage.alt = 'Computer Science First Floor Map';
+                } else if (floor === 'Second Floor') {
+                    mapImage.src = 'CS_second_floor_map.jpg'; 
+                    mapImage.alt = 'Computer Science Second Floor Map';
+                } else if (floor === 'Ground Floor') {
+                    mapImage.src = 'CS_ground_floor_map.jpg'; 
+                    mapImage.alt = 'Computer Science ground Floor Map';
+                } else {
+                    mapImage.src = 'CS_department_map.jpg'; 
+                    mapImage.alt = 'Computer Science Department Map';
+                }
+            } else if (department === 'Computer Engineering') {
+                if (floor === 'First Floor') {
+                    mapImage.src = 'CE_first_floor_map.jpg'; 
+                    mapImage.alt = 'Computer Engineering First Floor Map';
+                } else if (floor === 'Second Floor') {
+                    mapImage.src = 'CE_second_floor_map.jpg'; 
+                    mapImage.alt = 'Computer Engineering Second Floor Map';
+                } else if (floor === 'Ground Floor') {
+                    mapImage.src = 'CE_ground_floor_map.jpg'; 
+                    mapImage.alt = 'Computer Engineer ground Floor Map';
+                } else {
+                    mapImage.src = 'CE_department_map.jpg'; 
+                    mapImage.alt = 'Computer Engineering Department Map';
+                }
+            } else if (department === 'Information System') {
+                if (floor === 'First Floor') {
+                    mapImage.src = 'IS_first_floor_map.jpg'; 
+                    mapImage.alt = 'Information System First Floor Map';
+                } else if (floor === 'Second Floor') {
+                    mapImage.src = 'IS_second_floor_map.jpg';
+                    mapImage.alt = 'Information System Second Floor Map';
+                } else if (floor === 'Ground Floor') {
+                    mapImage.src = 'IS_ground_floor_map.jpg'; 
+                    mapImage.alt = 'Information System ground Floor Map';
+                } else {
+                    mapImage.src = 'IS_department_map.jpg';
+                    mapImage.alt = 'Information System Department Map';
+                }
+            } else {
+                mapImage.src = 'Map.jpeg'; 
+                mapImage.alt = 'IT Building Map';
             }
-        });
+        } else {
+            mapImage.src = ''; // Reset map if no building is selected
+            mapImage.alt = '';
+        }
+    }
+});
     </script>
 </head>
 <body>
@@ -92,6 +137,7 @@ $result = $stmt->get_result();
             <select id="Building" name="Building">
                 <option value="">Select Building</option>
                 <option value="IT">IT - S40</option>
+                <!-- Add more buildings here if needed -->
             </select>
         </div>
 
@@ -102,6 +148,7 @@ $result = $stmt->get_result();
                 <option value="Computer Science">Computer Science: CS</option>
                 <option value="Computer Engineering">Computer Engineering: CE</option>
                 <option value="Information System">Information System: IS</option>
+                <!-- Add more departments here if needed -->
             </select>
         </div>
 
@@ -115,17 +162,12 @@ $result = $stmt->get_result();
             </select>
         </div>
 
-        <div class="filter-group">
-            <label for="room-type">Room Type:</label>
-            <select id="room-type" name="room_type">
-                <option value="">Select Type</option>
-                <option value="Lecture">Lecture Room</option>
-                <option value="Laboratory">Laboratory</option>
-                <option value="Meeting">Meeting Room</option>
-            </select>
-        </div>
-
         <button type="submit" id="filter-btn">Filter</button>
+    </section>
+
+    <!-- Map Image Section -->
+    <section class="map-section">
+        <img id="map-image" src="" alt="Map" class="img-fluid">
     </section>
 
     <!-- Room List Section -->
@@ -147,10 +189,6 @@ $result = $stmt->get_result();
             <p>No rooms available matching the selected criteria.</p>
         <?php endif; ?>
     </section>
-
-    <footer>
-        <p>&copy; 2024 Room Booking System</p>
-    </footer>
 
 </body>
 </html>
