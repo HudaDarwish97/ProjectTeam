@@ -1,0 +1,20 @@
+<script>
+    document.querySelector('form').addEventListener('submit', function (event) {
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+    
+        // Validate name (letters only)
+        const nameRegex = /^[a-zA-Z ]+$/;
+        if (!nameRegex.test(name)) {
+            alert('Name must contain only letters.');
+            event.preventDefault();
+        }
+    
+        // Validate email
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!emailRegex.test(email)) {
+            alert('Invalid email address.');
+            event.preventDefault();
+        }
+    });
+    </script>
