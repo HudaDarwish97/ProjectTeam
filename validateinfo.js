@@ -1,18 +1,16 @@
-function validateForm() {
-    const password = document.getElementById('password').value;
-    const confirmPassword = document.getElementById('confirmPassword').value;
+document.getElementById("register-form").addEventListener("submit", function(event) {
+    const password = document.getElementById("password").value;
+    const username = document.getElementById("username").value;
 
-    if (password !== confirmPassword) {
-        alert("Passwords do not match!");
-        return false;
+    // Validate password
+    if (password.length < 8) {
+        alert("Password must be at least 8 characters long");
+        event.preventDefault();
     }
 
-    // Email validation (e.g., ensure UoB domain for email)
-    const email = document.getElementById('email').value;
-    if (!email.endsWith("@uob.edu")) {
-        alert("Please use a UoB email address.");
-        return false;
+    // Validate username (just an example)
+    if (username.length < 4) {
+        alert("Username must be at least 4 characters long");
+        event.preventDefault();
     }
-
-    return true;
-}
+});
