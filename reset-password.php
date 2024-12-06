@@ -1,7 +1,5 @@
 <?php
-
 include 'db_connection.php';
-
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -38,6 +36,4 @@ if (isset($_GET['token'])) {
         echo "<script>alert('Invalid or expired token.'); window.location.href = 'forgotpass.html';</script>";
     }
 } else {
-    echo "<script>alert('Token is missing.'); window.location.href = 'forgotpass.html';</script>";
-}
-?>
+   
