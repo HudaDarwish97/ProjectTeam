@@ -17,9 +17,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Verify the password
         if (password_verify($password, $user['password'])) {
-            $_SESSION['user_id'] = $user['id']; // Assuming 'id' is the primary key in the users table
+            $_SESSION['user_id'] = $user['id']; 
             $_SESSION['username'] = $user['username'];
-            header("Location: protected-page.php");
+            $_SESSION['role'] = $user['role']; 
+
+            // Redirect based on role
+            if ($user['role'] === 'admin') {
+                header("Location: admin_dashboard.php"); // Redirect admins
+            } else { //fix the name of php if not the same:( 
+                header("Location: user_dashboard.php"); // Redirect regular users
+            }
             exit();
         } else {
             $_SESSION['login_error'] = "Invalid username or password";
@@ -30,8 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     header("Location: login.php");
     exit();
-} else {
-    header("Location: login.php");
-    exit();
 }
+
 ?>
+    
