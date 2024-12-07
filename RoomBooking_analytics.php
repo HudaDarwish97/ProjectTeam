@@ -3,7 +3,7 @@
 $pdo = new PDO('mysql:host=localhost;dbname=room_booking', 'username', 'password');
 
 // Fetch room usage statistics
-$query = "SELECT rooms.room_name, COUNT(bookings.booking_id) AS usage_count 
+$query = "SELECT rooms.room_name, rooms.room_type, rooms.department, COUNT(bookings.booking_id) AS usage_count 
           FROM bookings 
           INNER JOIN rooms ON bookings.room_id = rooms.room_id 
           WHERE bookings.status = 'Confirmed' 
@@ -13,8 +13,8 @@ $stmt->execute();
 $roomUsage = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Fetch user bookings
-$userId = 1; // Replace with logged-in user's ID
-$query = "SELECT rooms.room_name, booking_date, time_slot, status 
+$userId = 2; // we should replace with the logged-in user's ID
+$query = "SELECT rooms.room_name, rooms.room_type, booking_date, time_slot, status 
           FROM bookings 
           INNER JOIN rooms ON bookings.room_id = rooms.room_id 
           WHERE bookings.user_id = :user_id";
@@ -42,6 +42,8 @@ $userBookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <thead>
             <tr>
                 <th>Room Name</th>
+                <th>Room Type</th>
+                <th>Department</th>
                 <th>Usage Count</th>
             </tr>
             </thead>
@@ -49,6 +51,8 @@ $userBookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <?php foreach ($roomUsage as $room): ?>
                 <tr>
                     <td><?= htmlspecialchars($room['room_name']) ?></td>
+                    <td><?= htmlspecialchars($room['room_type']) ?></td>
+                    <td><?= htmlspecialchars($room['department']) ?></td>
                     <td><?= htmlspecialchars($room['usage_count']) ?></td>
                 </tr>
             <?php endforeach; ?>
@@ -63,6 +67,7 @@ $userBookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <thead>
             <tr>
                 <th>Room Name</th>
+                <th>Room Type</th>
                 <th>Booking Date</th>
                 <th>Time Slot</th>
                 <th>Status</th>
@@ -72,6 +77,7 @@ $userBookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <?php foreach ($userBookings as $booking): ?>
                 <tr>
                     <td><?= htmlspecialchars($booking['room_name']) ?></td>
+                    <td><?= htmlspecialchars($booking['room_type']) ?></td>
                     <td><?= htmlspecialchars($booking['booking_date']) ?></td>
                     <td><?= htmlspecialchars($booking['time_slot']) ?></td>
                     <td><?= htmlspecialchars($booking['status']) ?></td>
