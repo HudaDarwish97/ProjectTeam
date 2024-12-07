@@ -1,13 +1,10 @@
 <?php
-// Include database connection
 require 'db_connection.php';
 
-// Fetch filters from GET parameters (sent via AJAX)
 $building = isset($_GET['Building']) ? $_GET['Building'] : '';
 $department = isset($_GET['department']) ? $_GET['department'] : '';
 $floor = isset($_GET['floor']) ? $_GET['floor'] : '';
 
-// Build the query with the filters
 $query = "SELECT * FROM rooms WHERE 1=1";
 $conditions = [];
 $params = [];
@@ -29,10 +26,16 @@ if (count($conditions) > 0) {
     $query .= " AND " . implode(" AND ", $conditions);
 }
 
+$// Prepare the statement
 $stmt = $conn->prepare($query);
-$stmt->bind_param(str_repeat('s', count($params)), ...$params); 
-$stmt->execute();
 
+if (count($params) > 0) {
+    // Dynamically bind the parameters
+    $stmt->bind_param($types, ...$params);  // 's' or 'i' based on the field type
+}
+
+// Execute the query and get the result
+$stmt->execute();
 $result = $stmt->get_result();
 ?>
 
@@ -42,7 +45,7 @@ $result = $stmt->get_result();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Room Browsing</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="room_browsing.css">
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const buildingSelect = document.getElementById('Building');
@@ -51,7 +54,6 @@ $result = $stmt->get_result();
             const roomListSection = document.querySelector('.room-list-section');
             const mapImage = document.getElementById('map-image');
 
-            // Event listeners for filter changes
             buildingSelect.addEventListener('change', updateRoomList);
             departmentSelect.addEventListener('change', updateRoomList);
             floorSelect.addEventListener('change', updateRoomList);
@@ -61,7 +63,6 @@ $result = $stmt->get_result();
                 const department = departmentSelect.value;
                 const floor = floorSelect.value;
 
-                // Send an AJAX request to filter rooms
                 const xhr = new XMLHttpRequest();
                 xhr.open('GET', 'room_browsing.php?Building=' + building + '&department=' + department + '&floor=' + floor, true);
                 xhr.onreadystatechange = function () {
@@ -119,7 +120,7 @@ $result = $stmt->get_result();
                 mapImage.alt = 'IT Building Map';
             }
         } else {
-            mapImage.src = ''; // Reset map if no building is selected
+            mapImage.src = ''; 
             mapImage.alt = '';
         }
     }
@@ -130,14 +131,12 @@ $result = $stmt->get_result();
 
     <a href="index.html" class="back-to-home">Back to Home</a>
 
-    <!-- Filter Section -->
     <section class="filter-section">
         <div class="filter-group">
             <label for="Building">Building:</label>
             <select id="Building" name="Building">
                 <option value="">Select Building</option>
                 <option value="IT">IT - S40</option>
-                <!-- Add more buildings here if needed -->
             </select>
         </div>
 
@@ -148,7 +147,6 @@ $result = $stmt->get_result();
                 <option value="Computer Science">Computer Science: CS</option>
                 <option value="Computer Engineering">Computer Engineering: CE</option>
                 <option value="Information System">Information System: IS</option>
-                <!-- Add more departments here if needed -->
             </select>
         </div>
 
@@ -165,12 +163,6 @@ $result = $stmt->get_result();
         <button type="submit" id="filter-btn">Filter</button>
     </section>
 
-    <!-- Map Image Section -->
-    <section class="map-section">
-        <img id="map-image" src="" alt="Map" class="img-fluid">
-    </section>
-
-    <!-- Room List Section -->
     <section class="room-list-section">
         <h2>Available Rooms</h2>
         <?php if ($result->num_rows > 0): ?>
@@ -195,5 +187,6 @@ $result = $stmt->get_result();
 
 <?php
 $stmt->close();
-$conn->close();
+if (isset($conn) && $conn instanceof mysqli) {
+    $conn->close(); }
 ?>
