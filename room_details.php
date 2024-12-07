@@ -3,11 +3,14 @@ require 'db_connection.php';
 
 $room_id = isset($_GET['room_id']) ? intval($_GET['room_id']) : 0;
 
-$query = "SELECT * FROM rooms WHERE room_id = $room_id";
-$result = $conn->query($query);
+// Use PDO to execute the query
+$query = "SELECT * FROM rooms WHERE room_id = :room_id";
+$stmt = $conn->prepare($query);
+$stmt->bindParam(':room_id', $room_id, PDO::PARAM_INT);
+$stmt->execute();
 
-if ($result->num_rows > 0) {
-    $room = $result->fetch_assoc();
+if ($stmt->rowCount() > 0) {
+    $room = $stmt->fetch(PDO::FETCH_ASSOC);
 } else {
     echo "Room not found.";
     exit;
@@ -36,9 +39,6 @@ if ($result->num_rows > 0) {
                     <img src="room3.jpg" alt="Room Image 3">
                     <img src="room4.jpeg" alt="Room Image 4">
                     <img src="room5.jpg" alt="Room Image 5">
-                </div>
-                <div class="view-360">
-                    <button>View it in 360°</button>
                 </div>
             </div>
 
