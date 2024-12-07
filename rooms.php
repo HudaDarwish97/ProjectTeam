@@ -1,13 +1,10 @@
 <?php
-// Include database connection
 require 'db_connection.php';
 
-// Fetch filters from GET parameters (sent via AJAX)
 $building = isset($_GET['Building']) ? $_GET['Building'] : '';
 $department = isset($_GET['department']) ? $_GET['department'] : '';
 $floor = isset($_GET['floor']) ? $_GET['floor'] : '';
 
-// Build the query with the filters
 $query = "SELECT * FROM rooms WHERE 1=1";
 $conditions = [];
 $params = [];
@@ -29,13 +26,16 @@ if (count($conditions) > 0) {
     $query .= " AND " . implode(" AND ", $conditions);
 }
 
+$// Prepare the statement
 $stmt = $conn->prepare($query);
-if (count($params) > 0) {
-    // Bind parameters dynamically based on the number of conditions
-    $stmt->bind_param(str_repeat('s', count($params)), ...$params); 
-}
-$stmt->execute();
 
+if (count($params) > 0) {
+    // Dynamically bind the parameters
+    $stmt->bind_param($types, ...$params);  // 's' or 'i' based on the field type
+}
+
+// Execute the query and get the result
+$stmt->execute();
 $result = $stmt->get_result();
 ?>
 
@@ -54,7 +54,6 @@ $result = $stmt->get_result();
     <div class="container mt-5">
         <div class="row justify-content-center">
             <?php
-            // Check if there are rooms available based on the filters
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     echo '
@@ -82,8 +81,8 @@ $result = $stmt->get_result();
 
                                 <!-- Back of the Card -->
                                 <div class="card-back">
-                                    <h5>Additional Information</h5>
-                                    <p class="room-details">' . $row['extra_info'] . '</p>
+                                    
+
                                 </div>
                             </div>
                         </div>
@@ -109,5 +108,6 @@ $result = $stmt->get_result();
 
 <?php
 $stmt->close();
-$conn->close();
+if (isset($conn) && $conn instanceof mysqli) {
+$conn->close(); }
 ?>
