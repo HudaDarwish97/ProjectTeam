@@ -241,3 +241,25 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+-- Create the users table
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,                      -- Unique identifier for each user
+    name VARCHAR(100) NOT NULL,                             -- User's full name
+    email VARCHAR(100) NOT NULL UNIQUE,                     -- Unique email address
+    profile_picture VARCHAR(255) DEFAULT 'uploads/default.png', -- Path to profile picture (default value)
+    password_hash VARCHAR(255) NOT NULL,                    -- Secure password hash
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,         -- Timestamp when the user is created
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP -- Timestamp for last update
+);
+
+-- Additional modifications or future changes can be added here using ALTER TABLE
+-- Example:
+-- ALTER TABLE users ADD COLUMN another_column_name DATA_TYPE;
+
+-- Insert sample data (optional for testing)
+INSERT INTO users (name, email, password_hash)
+VALUES
+('Ali Mahdi', '201900000@stu.uob.edu.bh', '$2y$10$examplehashedpassword'),
+('Hala Falah', '202002149@stu.uob.edu.bh', '$2y$10$examplehashedpassword');
