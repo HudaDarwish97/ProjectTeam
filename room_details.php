@@ -80,5 +80,6 @@ if ($result->num_rows > 0) {
 </html>
 
 <?php
-$conn->close();
+if (isset($conn) && $conn instanceof mysqli) {
+    $conn->close(); }
 ?>
