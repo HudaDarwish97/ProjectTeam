@@ -128,9 +128,6 @@ $result = $stmt->get_result();
     </script>
 </head>
 <body>
-
-    <a href="index.html" class="back-to-home">Back to Home</a>
-
     <section class="filter-section">
         <div class="filter-group">
             <label for="Building">Building:</label>
