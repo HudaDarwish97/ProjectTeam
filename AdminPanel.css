@@ -71,7 +71,7 @@ div{
 }
 
 nav {
-    background-color: #33045d;
+    background-color: rgb(72, 46, 27);
     text-align: center;
     font-family: 'Lucida Sans', 'Lucida Grande', sans-serif;
 
@@ -98,36 +98,41 @@ nav a:hover {
     background-color: #9CABB4;
 }
 
+.divs{
+display: inline-block;
+width: 350px; 
+height: 200px; 
+border: 5px solid black;
+margin: 20px;
+padding: 40;
+}
+
 footer {
-    background-color: #33045d;
+    background-color: rgb(72, 46, 27);
     text-align: center;
+    font-size: smaller;
     font-family: 'Lucida Sans', 'Lucida Grande', sans-serif;
-
+    color: white;
 }
 
-footer ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
-
-footer li {
-    display: inline;
-    margin-right: 40px;
-}
-
-footer a {
-    color: whitesmoke;
-    text-decoration: none;
-    padding: 5px 10px;
-}
-
-footer a:hover {
-    background-color: #6e7c84;
+footer :hover{
+    background-color: #9CABB4;
 }
 
 table, th, td{
     border: 2px solid #42485e; 
     column-width: 1000px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; font-size: medium;
+}
+
+.formbar{
+    height: 200px;
+    width: 500px;
+}
+
+@media (max-width: 768px) {
+    nav ul li {
+        display: block;
+        margin-bottom: 10px;
+    }
 }
