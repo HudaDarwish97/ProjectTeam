@@ -179,8 +179,6 @@ if (!$room) {
             <p>&copy; 2024 IT Collage Room Booking System. All rights reserved.</p>
         </div>
     </footer>
-
-    <script src="booking.js"></script>
     
     <div class="modal">
         <span class="modal-close">&times;</span>
