@@ -1,14 +1,21 @@
 <?php
-session_start();
-include 'db_connection.php';
+
+// Include the configuration file
+include_once dirname(__DIR__) . '/php/config.php';
+
+// Start the session if it's not already started
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 // Unset all session variables
-$_SESSION = array();
+session_unset();
 
 // Destroy the session
 session_destroy();
 
 // Redirect to the login page
-header("Location: login.php");
+header('Location: ' . BASE_URL . '/login');
 exit();
+
 ?>
