@@ -1,43 +1,64 @@
 <?php
-session_start();
-include 'db_connection.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+// Start session if not already started
+if(session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
-    // Fetch user data from the database
-    $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
-    $stmt->bind_param("s", $username);
+include_once dirname(__DIR__) . '/php/config.php';
+
+// Collect POST data
+$email = $_POST['email'];
+$password = $_POST['password'];
+
+try {
+    // Create a PDO connection
+    $conn = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASS);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+    // Prepare the SQL query to fetch the user
+    $stmt = $conn->prepare("SELECT * FROM users WHERE email = :email");
+    $stmt->bindParam(':email', $email);
     $stmt->execute();
-    $result = $stmt->get_result();
+    
+    // Fetch user data
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($result->num_rows === 1) {
-        $user = $result->fetch_assoc();
-
-        // Verify the password
-        if (password_verify($password, $user['password'])) {
-            $_SESSION['user_id'] = $user['id']; 
-            $_SESSION['username'] = $user['username'];
-            $_SESSION['role'] = $user['role']; 
-
-            // Redirect based on role
-            if ($user['role'] === 'admin') {
-                header("Location: admin_dashboard.php"); // Redirect admins
-            } else { //fix the name of php if not the same:( 
-                header("Location: user_dashboard.php"); // Redirect regular users
-            }
-            exit();
-        } else {
-            $_SESSION['login_error'] = "Invalid username or password";
-        }
-    } else {
-        $_SESSION['login_error'] = "Invalid username or password";
+    if (!$user) {
+        // If no user found, set error message and redirect
+        $_SESSION['error'] = "Invalid email or password";
+        header("Location: " . BASE_URL . "/login.php");
+        exit();
     }
 
-    header("Location: login.php");
+    // Verify the password (use password_verify for hashed password)
+    if (!password_verify($password, $user['password'])) {
+        // If password does not match, set error message and redirect
+        $_SESSION['error'] = "Invalid email or password";
+        header("Location: " . BASE_URL . "/login.php");
+        exit();
+    }
+
+    // If credentials are valid, set session variables
+    $_SESSION['user_id'] = $user['id'];
+    $_SESSION['email'] = $user['email'];
+    $_SESSION['role'] = $user['role'];
+
+    // Redirect based on user role
+    if ($user['role'] === 'admin') {
+        header("Location: " . BASE_URL . "/admin_dashboard.php"); // Admin dashboard
+    } else {
+        header("Location: " . BASE_URL . "/user_dashboard.php"); // User dashboard
+    }
+    exit();
+
+} catch (PDOException $e) {
+    // Handle any errors by setting error message in session and redirecting
+    $_SESSION['error'] = "Error: " . $e->getMessage();
+    header("Location: " . BASE_URL . "/login.php");
     exit();
 }
 
 ?>
+
     
