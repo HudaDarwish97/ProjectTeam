@@ -40,6 +40,7 @@ if (!$room) {
                         <li class="nav-item"><a class="nav-link" href="homepage.html" >Home </a></li>
                         <li class="nav-item"><a class="nav-link" href="login.html" >Login</a></li>
                         <li class="nav-item"><a class="nav-link" href="register.html" >Register </a></li>
+                        <li class="nav-item"><a class="nav-link" href="room_browsing.php" >Rooms </a></li>
                         <li class="nav-item"><a class="nav-link" href="#features" >Features </a></li>
                         <li class="nav-item"><a class="nav-link" href="#contact" >Contact</a></li>
                         <li class="nav-item"><a class="nav-link" href="#about-us" >About Us</a></li>
