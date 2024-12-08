@@ -35,26 +35,26 @@ if (!$room) {
         <div id="roomImagesCarousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="uploads/<?= htmlspecialchars($room['image1']) ?>" class="d-block w-100" alt="Room Image 1">
+                    <img src="../img/<?= htmlspecialchars($room['image1']) ?>" class="d-block w-100" alt="Room Image 1">
                 </div>
                 <?php if ($room['image2']) : ?>
                     <div class="carousel-item">
-                        <img src="uploads/<?= htmlspecialchars($room['image2']) ?>" class="d-block w-100" alt="Room Image 2">
+                        <img src="../img/<?= htmlspecialchars($room['image1']) ?>" class="d-block w-100" alt="Room Image 2">
                     </div>
                 <?php endif; ?>
                 <?php if ($room['image3']) : ?>
                     <div class="carousel-item">
-                        <img src="uploads/<?= htmlspecialchars($room['image3']) ?>" class="d-block w-100" alt="Room Image 3">
+                        <img src="../img/<?= htmlspecialchars($room['image3']) ?>" class="d-block w-100" alt="Room Image 3">
                     </div>
                 <?php endif; ?>
                 <?php if ($room['image4']) : ?>
                     <div class="carousel-item">
-                        <img src="uploads/<?= htmlspecialchars($room['image4']) ?>" class="d-block w-100" alt="Room Image 4">
+                        <img src="../img/<?= htmlspecialchars($room['image4']) ?>" class="d-block w-100" alt="Room Image 4">
                     </div>
                 <?php endif; ?>
                 <?php if ($room['image5']) : ?>
                     <div class="carousel-item">
-                        <img src="uploads/<?= htmlspecialchars($room['image5']) ?>" class="d-block w-100" alt="Room Image 5">
+                        <img src="../img/<?= htmlspecialchars($room['image5']) ?>" class="d-block w-100" alt="Room Image 5">
                     </div>
                 <?php endif; ?>
             </div>

@@ -77,7 +77,7 @@ try {
                     <?php foreach ($rooms as $room): ?>
                         <div class="col-md-6">
                             <div class="card mb-3">
-                                <img src="uploads/<?= htmlspecialchars($room['image1'] ?? 'default_image.jpg') ?>" class="card-img-top" alt="Room Image">
+                                <img src="../img/<?= htmlspecialchars($room['image1'] ?? 'default_image.jpg') ?>" class="card-img-top" alt="Room Image">
                                 <div class="card-body">
                                     <h5 class="card-title">
                                         <i class="room-icon bi bi-door-closed"></i>
