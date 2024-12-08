@@ -1,42 +1,28 @@
 <?php
-require 'db_connection.php';
+// Include the database connection
+include 'db_connection.php';
 
-$building = isset($_GET['Building']) ? $_GET['Building'] : '';
-$department = isset($_GET['department']) ? $_GET['department'] : '';
-$floor = isset($_GET['floor']) ? $_GET['floor'] : '';
+// Define the departments for filtering
+$departments = ['CS', 'IS', 'CE'];
 
-$query = "SELECT * FROM rooms WHERE 1=1";
-$conditions = [];
-$params = [];
+// Get the selected department from the URL, default to 'CS' if not selected
+$selected_department = $_GET['department'] ?? 'CS';
 
-if ($building) {
-    $conditions[] = "building = ?";
-    $params[] = $building;
+// Prepare and execute the SQL query to fetch rooms based on the selected department
+try {
+    $query = $conn->prepare("SELECT * FROM rooms WHERE department = :department");
+    $query->bindParam(':department', $selected_department, PDO::PARAM_STR);
+    $query->execute();
+    $rooms = $query->fetchAll(PDO::FETCH_ASSOC);
+
+    // If no rooms are found, set rooms to an empty array
+    if (!$rooms) {
+        $rooms = [];
+    }
+} catch (PDOException $e) {
+    // Handle database errors gracefully
+    die("Database error: " . $e->getMessage());
 }
-if ($department) {
-    $conditions[] = "department = ?";
-    $params[] = $department;
-}
-if ($floor) {
-    $conditions[] = "floor = ?";
-    $params[] = $floor;
-}
-
-if (count($conditions) > 0) {
-    $query .= " AND " . implode(" AND ", $conditions);
-}
-
-$// Prepare the statement
-$stmt = $conn->prepare($query);
-
-if (count($params) > 0) {
-    // Dynamically bind the parameters
-    $stmt->bind_param($types, ...$params);  // 's' or 'i' based on the field type
-}
-
-// Execute the query and get the result
-$stmt->execute();
-$result = $stmt->get_result();
 ?>
 
 <!DOCTYPE html>
@@ -45,145 +31,79 @@ $result = $stmt->get_result();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Room Browsing</title>
-    <link rel="stylesheet" href="room_browsing.css">
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const buildingSelect = document.getElementById('Building');
-            const departmentSelect = document.getElementById('department');
-            const floorSelect = document.getElementById('floor');
-            const roomListSection = document.querySelector('.room-list-section');
-            const mapImage = document.getElementById('map-image');
-
-            buildingSelect.addEventListener('change', updateRoomList);
-            departmentSelect.addEventListener('change', updateRoomList);
-            floorSelect.addEventListener('change', updateRoomList);
-
-            function updateRoomList() {
-                const building = buildingSelect.value;
-                const department = departmentSelect.value;
-                const floor = floorSelect.value;
-
-                const xhr = new XMLHttpRequest();
-                xhr.open('GET', 'room_browsing.php?Building=' + building + '&department=' + department + '&floor=' + floor, true);
-                xhr.onreadystatechange = function () {
-                    if (xhr.readyState == 4 && xhr.status == 200) {
-                        roomListSection.innerHTML = xhr.responseText;
-                    }
-                };
-                xhr.send();
-
-                if (building === 'IT') {
-            if (department === 'Computer Science') {
-                if (floor === 'First Floor') {
-                    mapImage.src = 'CS_first_floor_map.jpg'; 
-                    mapImage.alt = 'Computer Science First Floor Map';
-                } else if (floor === 'Second Floor') {
-                    mapImage.src = 'CS_second_floor_map.jpg'; 
-                    mapImage.alt = 'Computer Science Second Floor Map';
-                } else if (floor === 'Ground Floor') {
-                    mapImage.src = 'CS_ground_floor_map.jpg'; 
-                    mapImage.alt = 'Computer Science ground Floor Map';
-                } else {
-                    mapImage.src = 'CS_department_map.jpg'; 
-                    mapImage.alt = 'Computer Science Department Map';
-                }
-            } else if (department === 'Computer Engineering') {
-                if (floor === 'First Floor') {
-                    mapImage.src = 'CE_first_floor_map.jpg'; 
-                    mapImage.alt = 'Computer Engineering First Floor Map';
-                } else if (floor === 'Second Floor') {
-                    mapImage.src = 'CE_second_floor_map.jpg'; 
-                    mapImage.alt = 'Computer Engineering Second Floor Map';
-                } else if (floor === 'Ground Floor') {
-                    mapImage.src = 'CE_ground_floor_map.jpg'; 
-                    mapImage.alt = 'Computer Engineer ground Floor Map';
-                } else {
-                    mapImage.src = 'CE_department_map.jpg'; 
-                    mapImage.alt = 'Computer Engineering Department Map';
-                }
-            } else if (department === 'Information System') {
-                if (floor === 'First Floor') {
-                    mapImage.src = 'IS_first_floor_map.jpg'; 
-                    mapImage.alt = 'Information System First Floor Map';
-                } else if (floor === 'Second Floor') {
-                    mapImage.src = 'IS_second_floor_map.jpg';
-                    mapImage.alt = 'Information System Second Floor Map';
-                } else if (floor === 'Ground Floor') {
-                    mapImage.src = 'IS_ground_floor_map.jpg'; 
-                    mapImage.alt = 'Information System ground Floor Map';
-                } else {
-                    mapImage.src = 'IS_department_map.jpg';
-                    mapImage.alt = 'Information System Department Map';
-                }
-            } else {
-                mapImage.src = 'Map.jpeg'; 
-                mapImage.alt = 'IT Building Map';
-            }
-        } else {
-            mapImage.src = ''; 
-            mapImage.alt = '';
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        .left-section {
+            border-right: 1px solid #ddd;
         }
-    }
-});
-    </script>
+        .building-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        .department-btn {
+            margin-bottom: 0.5rem;
+        }
+        .room-icon {
+            font-size: 1.2rem;
+            margin-right: 0.5rem;
+        }
+    </style>
 </head>
 <body>
-    <section class="filter-section">
-        <div class="filter-group">
-            <label for="Building">Building:</label>
-            <select id="Building" name="Building">
-                <option value="">Select Building</option>
-                <option value="IT">IT - S40</option>
-            </select>
+<div class="container my-5">
+    <h1 class="text-center mb-5">Room Browsing</h1>
+
+    <div class="row">
+        <!-- Left Section: Department Filter -->
+        <div class="col-md-4 left-section">
+            <div class="building-title text-center">IT Building - S40</div>
+            <div>
+                <!-- Display department filter buttons -->
+                <?php foreach ($departments as $department): ?>
+                    <a href="?department=<?= htmlspecialchars($department) ?>" class="btn btn-<?= $department === $selected_department ? 'primary' : 'secondary' ?> w-100 department-btn">
+                        <?= htmlspecialchars($department) ?>
+                    </a>
+                <?php endforeach; ?>
+            </div>
         </div>
 
-        <div class="filter-group">
-            <label for="department">Department:</label>
-            <select id="department" name="department">
-                <option value="">Select Department</option>
-                <option value="Computer Science">Computer Science: CS</option>
-                <option value="Computer Engineering">Computer Engineering: CE</option>
-                <option value="Information System">Information System: IS</option>
-            </select>
+        <!-- Right Section: Rooms -->
+        <div class="col-md-8">
+            <div class="row">
+                <?php if (!empty($rooms)): ?>
+                    <!-- Display each room in a card -->
+                    <?php foreach ($rooms as $room): ?>
+                        <div class="col-md-6">
+                            <div class="card mb-3">
+                                <img src="uploads/<?= htmlspecialchars($room['image1'] ?? 'default_image.jpg') ?>" class="card-img-top" alt="Room Image">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <i class="room-icon bi bi-door-closed"></i>
+                                        <?= htmlspecialchars($room['room_name']) ?>
+                                    </h5>
+                                    <p class="card-text">
+                                        <?= htmlspecialchars($room['description'] ?? 'No description available.') ?>
+                                    </p>
+                                    <p class="card-text">
+                                        <strong>Capacity:</strong> <?= htmlspecialchars($room['capacity']) ?>
+                                    </p>
+                                    <a href="room_details.php?room_id=<?= htmlspecialchars($room['room_id']) ?>" class="btn btn-primary">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <!-- Message when no rooms are available -->
+                    <div class="col-12">
+                        <p class="text-center">No rooms available in this department.</p>
+                    </div>
+                <?php endif; ?>
+            </div>
         </div>
-
-        <div class="filter-group">
-            <label for="floor">Floor:</label>
-            <select id="floor" name="floor">
-                <option value="">Select Floor</option>
-                <option value="Ground Floor">Ground Floor</option>
-                <option value="First Floor">First Floor</option>
-                <option value="Second Floor">Second Floor</option>
-            </select>
-        </div>
-
-        <button type="submit" id="filter-btn">Filter</button>
-    </section>
-
-    <section class="room-list-section">
-        <h2>Available Rooms</h2>
-        <?php if ($result->num_rows > 0): ?>
-            <ul>
-                <?php while($row = $result->fetch_assoc()): ?>
-                    <li>
-                        <h3><?php echo $row['room_name']; ?> (<?php echo $row['room_type']; ?>)</h3>
-                        <p>Capacity: <?php echo $row['capacity']; ?></p>
-                        <p>Department: <?php echo $row['department']; ?></p>
-                        <p>Floor: <?php echo $row['floor']; ?></p>
-                        <a href="room_details.php?room_id=<?php echo $row['room_id']; ?>">View Details</a>
-                    </li>
-                <?php endwhile; ?>
-            </ul>
-        <?php else: ?>
-            <p>No rooms available matching the selected criteria.</p>
-        <?php endif; ?>
-    </section>
+    </div>
+</div>
 
 </body>
 </html>
-
-<?php
-$stmt->close();
-if (isset($conn) && $conn instanceof mysqli) {
-    $conn->close(); }
-?>
