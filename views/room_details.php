@@ -22,12 +22,34 @@ if (!$room) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>Room Details - <?= htmlspecialchars($room['room_name']) ?></title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="StyleSheet" href="../css/style.css">
+    <link  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+        <link rel="stylesheet" href="../css/room_details.css">
 </head>
 <body>
+ <!--header -->
+ <header class="header">
+            <div class="container d-flex justify-content-between align-items-center py-3">
+                <h1 class="logo">IT Collage Room Booking</h1>
+                <nav>
+                    <ul class="nav">
+                        <li class="nav-item"><a class="nav-link" href="homepage.html" >Home </a></li>
+                        <li class="nav-item"><a class="nav-link" href="login.html" >Login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="register.html" >Register </a></li>
+                        <li class="nav-item"><a class="nav-link" href="room_browsing.php" >Rooms </a></li>
+                        <li class="nav-item"><a class="nav-link" href="#features" >Features </a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contact" >Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#about-us" >About Us</a></li>
+
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
 <div class="container my-5">
     <h1 class="text-center">Room Details</h1>
 
@@ -151,5 +173,19 @@ if (!$room) {
 
 </div>
 </div>
+<!--footer-->
+<footer class="footer py-3">
+        <div class="text-center">
+            <p>&copy; 2024 IT Collage Room Booking System. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="booking.js"></script>
+    
+    <div class="modal">
+        <span class="modal-close">&times;</span>
+        <img src="" alt="Modal Image">
+    </div>
+    
 </body>
 </html>
