@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="design.css">
+    <link rel="stylesheet" href="../css/design.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
@@ -21,7 +21,7 @@
 
     <div class="prodiv">
         <div class="profile-image">
-            <img src="profile_pic.jpg" alt="Profile Picture" width="100px" height="100px">
+            <img src="../img/profile_pic.png" alt="Profile Picture" width="100px" height="100px">
         </div>
 
         <form action="/action_page.php">
@@ -34,17 +34,12 @@
             <label for="password">Change your Password:</label><br>
             <input type="text" id="password" name="password" value="Akdj83@834jfmms"><br>
 
-            <label for="toggle">Notifications:</label>
-            <select name="toggle" id="toggle">
-                <option value="on">On</option>
-                <option value="off">Off</option>
-            </select>
-            <br><br>
+            
             <input type="button" onclick="alert('Saved !')" value="Save Changes">
 
         </form>
     </div>
 
-    <p>If you click the "Submit" button, the form data will be sent to a page called "/action_page.php".</p>
+
 </body>
 </html>

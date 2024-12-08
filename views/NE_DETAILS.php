@@ -1,12 +1,9 @@
 <?php
-require 'db_connection.php'; 
+require '../php/db_connection.php'; 
 
 try {
 
-    $pdo = new PDO("mysql:host=" . DBHOST . ";dbname=" . DBNAME, DBUSER, DBPASS);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    $stmt = $pdo->prepare("SELECT booking_id, user_id, room_id, booking_date, time_slot, status FROM bookings");
+    $stmt = $conn->prepare("SELECT booking_id, user_id, room_id, booking_date, time_slot, status FROM bookings");
     $stmt->execute();
     $bookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
@@ -18,7 +15,7 @@ try {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="design.css">
+    <link rel="stylesheet" href="../css/design.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Information System Department</title>

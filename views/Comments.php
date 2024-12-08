@@ -1,13 +1,8 @@
 <?php
-require 'db_connection.php'; 
+require '../php/db_connection.php'; 
 
 try {
-
-    $pdo = new PDO("mysql:host=" . DBHOST . ";dbname=" . DBNAME, DBUSER, DBPASS);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-   
-    $stmt = $pdo->prepare('SELECT * FROM comments'); 
+    $stmt = $conn->prepare('SELECT * FROM comments'); 
     $stmt->execute();
     $comments = $stmt->fetchAll(PDO::FETCH_ASSOC); 
 
@@ -22,7 +17,7 @@ try {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="design.css">
+    <link rel="stylesheet" href="../css/design.css">
 
     <nav>       
         <ul>
