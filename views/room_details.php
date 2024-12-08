@@ -114,19 +114,23 @@ if (!$room) {
                 <?php
                 include "../php/db_connection.php";
                 $stmt = $conn->prepare("SELECT 
-            c.comment_id, 
-            c.comment_text, 
-            c.created_at, 
-            u.user_name, 
-            r.room_name 
-        FROM 
-            comments AS c
-        JOIN 
-            users AS u ON c.user_id = u.user_id
-        JOIN 
-            rooms AS r ON c.room_id = r.room_id
-        ORDER BY 
-            c.created_at DESC");
+                        c.comment_id, 
+                        c.comment_text, 
+                        c.created_at, 
+                        u.user_name, 
+                        r.room_name
+                    FROM 
+                        comments AS c
+                    JOIN 
+                        users AS u ON c.user_id = u.user_id
+                    JOIN 
+                        rooms AS r ON c.room_id = r.room_id
+                    WHERE 
+                        c.room_id = ?
+                    ORDER BY  
+                        c.created_at DESC
+                ");
+                $stmt->bindParam(1, $room_id, PDO::PARAM_INT);
                 $stmt->execute();
                 $comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
                
