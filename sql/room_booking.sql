@@ -1,15 +1,12 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1:4306
--- Generation Time: Dec 08, 2024 at 07:23 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+CREATE DATABASE IF NOT EXISTS `room_booking` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+
+USE `room_booking`;
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
+
+-- Set the correct database to use
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -20,6 +17,7 @@ SET time_zone = "+00:00";
 --
 -- Database: `room_booking`
 --
+
 
 -- --------------------------------------------------------
 
