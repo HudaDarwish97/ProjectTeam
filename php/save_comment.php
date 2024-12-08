@@ -10,13 +10,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($_POST['comment_text'])) {
         throw new Exception("Comment text is required.");
     }
+    $room = $_GET['room_id'];
+    
     // Insert comment
     $stmt = $conn->prepare("
         INSERT INTO comments (user_id, room_id, comment_text, created_at) 
-        VALUES (1, 1, ?, NOW())
+        VALUES (1, $room, ?, NOW())
     ");
     $stmt->execute([$comment_text]);
-    header("Location: ../views/index.php");
+    header("Location: " . $_SERVER['HTTP_REFERER']);
     exit();
 }
 ?>

@@ -25,6 +25,7 @@ if (!$room) {
     <title>Room Details - <?= htmlspecialchars($room['room_name']) ?></title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="StyleSheet" href="../css/style.css">
 </head>
 <body>
 <div class="container my-5">
@@ -35,26 +36,26 @@ if (!$room) {
         <div id="roomImagesCarousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="../img/?= htmlspecialchars($room['image1']) ?>" class="d-block w-100" alt="Room Image 1">
+                    <img src="../img/<?= htmlspecialchars($room['image1']) ?>" class="d-block w-100" alt="Room Image 1">
                 </div>
                 <?php if ($room['image2']) : ?>
                     <div class="carousel-item">
-                        <img src="img/<?= htmlspecialchars($room['image2']) ?>" class="d-block w-100" alt="Room Image 2">
+                        <img src="../img/<?= htmlspecialchars($room['image1']) ?>" class="d-block w-100" alt="Room Image 2">
                     </div>
                 <?php endif; ?>
                 <?php if ($room['image3']) : ?>
                     <div class="carousel-item">
-                        <img src="uploads/<?= htmlspecialchars($room['image3']) ?>" class="d-block w-100" alt="Room Image 3">
+                        <img src="../img/<?= htmlspecialchars($room['image3']) ?>" class="d-block w-100" alt="Room Image 3">
                     </div>
                 <?php endif; ?>
                 <?php if ($room['image4']) : ?>
                     <div class="carousel-item">
-                        <img src="uploads/<?= htmlspecialchars($room['image4']) ?>" class="d-block w-100" alt="Room Image 4">
+                        <img src="../img/<?= htmlspecialchars($room['image4']) ?>" class="d-block w-100" alt="Room Image 4">
                     </div>
                 <?php endif; ?>
                 <?php if ($room['image5']) : ?>
                     <div class="carousel-item">
-                        <img src="uploads/<?= htmlspecialchars($room['image5']) ?>" class="d-block w-100" alt="Room Image 5">
+                        <img src="../img/<?= htmlspecialchars($room['image5']) ?>" class="d-block w-100" alt="Room Image 5">
                     </div>
                 <?php endif; ?>
             </div>
@@ -98,7 +99,53 @@ if (!$room) {
             <a href="room_browsing.php" class="btn btn-secondary">Back to Browse</a>
         </div>
     </div>
-    <div class="card">    <!-- Noor comments saction -->    </div>
+    <div class="card">    <!-- Noor comments saction -->   
+    <div id="comment_section">
+        <h3>Leave a Comment</h3>
+        <form id="set_comment" method="POST" action="../php/save_comment.php?room_id=<?php echo $room_id?>">
+            <textarea id="comment_text" name="comment_text"rows="5" placeholder="Write your comment here..." required></textarea>
+            <button id="submitComment" type="submit" >Post Comment</button>
+        </form>
+        
+        <div id="comments_display">
+            <h4>All Comments:</h4>
+            <ul id="comments_list">
+                <!-- Comments will be dynamically added here -->
+                <?php
+                include "../php/db_connection.php";
+                $stmt = $conn->prepare("SELECT 
+            c.comment_id, 
+            c.comment_text, 
+            c.created_at, 
+            u.user_name, 
+            r.room_name 
+        FROM 
+            comments AS c
+        JOIN 
+            users AS u ON c.user_id = u.user_id
+        JOIN 
+            rooms AS r ON c.room_id = r.room_id
+        ORDER BY 
+            c.created_at DESC");
+                $stmt->execute();
+                $comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
+               
+                foreach ($comments as $comment) {
+                    echo "<li>";
+                    echo "<p><strong>User:</strong> " . htmlspecialchars($comment['user_name']) . "</p>";
+                    echo "<p><strong>Room:</strong> " . htmlspecialchars($comment['room_name']) . "</p>";
+                    echo "<p><strong>Comment:</strong> " . htmlspecialchars($comment['comment_text']) . "</p>";
+                    echo "<p><strong>Posted At:</strong> " . htmlspecialchars($comment['created_at']) . "</p>";
+                    echo "</li><hr>";
+                }
+
+                ?>
+            </ul>
+        </div>
+    </div>
+
+
+</div>
 </div>
 </body>
 </html>
