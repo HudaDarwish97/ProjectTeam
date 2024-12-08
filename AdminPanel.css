@@ -98,14 +98,6 @@ nav a:hover {
     background-color: #9CABB4;
 }
 
-.divs{
-display: inline-block;
-width: 350px; 
-height: 200px; 
-border: 5px solid black;
-margin: 20px;
-padding: 40;
-}
 
 footer {
     background-color: rgb(72, 46, 27);
@@ -130,9 +122,34 @@ table, th, td{
     width: 500px;
 }
 
+
 @media (max-width: 768px) {
     nav ul li {
         display: block;
         margin-bottom: 10px;
     }
+}
+
+.prodiv{
+    border: 5px solid rgb(5, 40, 30);
+    width: 800px;
+    height: 600px;
+    margin: 50px 400px;
+    padding: 7px;
+}
+
+input[type="text"] {
+    width: 200px;
+    padding: 10px;
+    margin: 5px 0;
+}
+
+input[type="save"] {
+    padding: 10px;
+}
+
+select{
+    width: 60px;
+    padding: 5px; 
+    margin: 5px;
 }
