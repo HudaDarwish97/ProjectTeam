@@ -1,6 +1,6 @@
 <?php
 // Database connection
-$pdo = new PDO('mysql:host=localhost;dbname=room_booking', 'username', 'password');
+$pdo = new PDO('mysql:host=localhost;dbname=room_booking', 'root', '');
 
 // Fetch room usage statistics
 $query = "SELECT rooms.room_name, rooms.room_type, rooms.department, COUNT(bookings.booking_id) AS usage_count 
