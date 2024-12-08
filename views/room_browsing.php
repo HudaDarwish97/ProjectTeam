@@ -30,30 +30,31 @@ try {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Room Browsing</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <style>
-        .left-section {
-            border-right: 1px solid #ddd;
-        }
-        .building-title {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-        }
-        .department-btn {
-            margin-bottom: 0.5rem;
-        }
-        .room-icon {
-            font-size: 1.2rem;
-            margin-right: 0.5rem;
-        }
-    </style>
+    <title>IT Collage Room Booking</title>
+    <link  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+        <link rel="stylesheet" href="../css/room_browsing.css">
 </head>
 <body>
-<div class="container my-5">
-    <h1 class="text-center mb-5">Room Browsing</h1>
+     <!--header -->
+     <header class="header">
+            <div class="container d-flex justify-content-between align-items-center py-3">
+                <h1 class="logo">IT Collage Room Booking</h1>
+                <nav>
+                    <ul class="nav">
+                    <li class="nav-item"><a class="nav-link" href="homepage.html" >Home </a></li>
+                        <li class="nav-item"><a class="nav-link" href="login.html" >Login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="register.html" >Register </a></li>
+                        <li class="nav-item"><a class="nav-link" href="room_browsing.php" >Rooms </a></li>
+                        <li class="nav-item"><a class="nav-link" href="#features" >Features </a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contact" >Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#about-us" >About Us</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
 
     <div class="row">
         <!-- Left Section: Department Filter -->
@@ -104,6 +105,19 @@ try {
         </div>
     </div>
 </div>
+<!--footer-->
+<footer class="footer py-3">
+        <div class="text-center">
+            <p>&copy; 2024 IT Collage Room Booking System. All rights reserved.</p>
+        </div>
+    </footer>
 
-</body>
+    <script src="booking.js"></script>
+    
+    <div class="modal">
+        <span class="modal-close">&times;</span>
+        <img src="" alt="Modal Image">
+    </div>
+    
+    </body>
 </html>
