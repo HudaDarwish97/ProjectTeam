@@ -27,94 +27,134 @@ $stmt = $pdo->prepare($query);
 $stmt->execute(['user_id' => $userId]);
 $userBookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <title>Room Booking Analytics</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <title>Reporting & Analytics</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f6f0;
+            color: #333;
+        }
+        header {
+            background-color: #4682B4;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        h1 {
+            margin: 0;
+        }
+        h2 {
+            color: #4682B4;
+            text-align: center;
+        }
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            background-color: white;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #4682B4;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .chart-container {
+            width: 80%;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-<div class="container my-5">
-    <h1>Reporting & Analytics</h1>
+    <header>
+        <h1>Reporting & Analytics</h1>
+    </header>
 
-    <!-- Room Usage Report -->
     <section>
         <h2>Room Usage Report</h2>
-        <table class="table table-striped">
-            <thead>
+        <table>
             <tr>
                 <th>Room Name</th>
                 <th>Usage Count</th>
             </tr>
-            </thead>
-            <tbody>
             <?php foreach ($roomUsage as $room): ?>
                 <tr>
-                    <td><?= htmlspecialchars($room['room_name']) ?></td>
-                    <td><?= htmlspecialchars($room['usage_count']) ?></td>
+                    <td><?php echo htmlspecialchars($room['room_name']); ?></td>
+                    <td><?php echo htmlspecialchars($room['usage_count']); ?></td>
                 </tr>
             <?php endforeach; ?>
-            </tbody>
         </table>
     </section>
 
-    <!-- User Bookings -->
-    <section class="my-5">
+    <section>
         <h2>My Bookings</h2>
-        <table class="table table-bordered">
-            <thead>
+        <table>
             <tr>
                 <th>Room Name</th>
                 <th>Booking Date</th>
                 <th>Time Slot</th>
                 <th>Status</th>
             </tr>
-            </thead>
-            <tbody>
             <?php foreach ($userBookings as $booking): ?>
                 <tr>
-                    <td><?= htmlspecialchars($booking['room_name']) ?></td>
-                    <td><?= htmlspecialchars($booking['booking_date']) ?></td>
-                    <td><?= htmlspecialchars($booking['time_slot']) ?></td>
-                    <td><?= htmlspecialchars($booking['status']) ?></td>
+                    <td><?php echo htmlspecialchars($booking['room_name']); ?></td>
+                    <td><?php echo htmlspecialchars($booking['booking_date']); ?></td>
+                    <td><?php echo htmlspecialchars($booking['time_slot']); ?></td>
+                    <td><?php echo htmlspecialchars($booking['status']); ?></td>
                 </tr>
             <?php endforeach; ?>
-            </tbody>
         </table>
     </section>
 
-    <!-- Room Popularity Chart -->
-    <section class="my-5">
+    <section class="chart-container">
         <h2>Room Popularity</h2>
         <canvas id="popularityChart"></canvas>
     </section>
-</div>
 
-<script>
-    const ctx = document.getElementById('popularityChart').getContext('2d');
-    const chartData = {
-        labels: <?= json_encode(array_column($roomUsage, 'room_name')) ?>,
-        datasets: [{
-            label: 'Bookings',
-            data: <?= json_encode(array_column($roomUsage, 'usage_count')) ?>,
-            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-            borderColor: 'rgba(75, 192, 192, 1)',
-            borderWidth: 1
-        }]
-    };
-    new Chart(ctx, {
-        type: 'bar',
-        data: chartData,
-        options: {
-            responsive: true,
-            plugins: {
-                legend: { position: 'top' }
+    <script>
+        const ctx = document.getElementById('popularityChart').getContext('2d');
+        const chartData = {
+            labels: <?php echo json_encode(array_column($roomUsage, 'room_name')); ?>,
+            datasets: [{
+                label: 'Bookings',
+                data: <?php echo json_encode(array_column($roomUsage, 'usage_count')); ?>,
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        };
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: chartData,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'top' }
+                }
             }
-        }
-    });
-</script>
+        });
+    </script>
 </body>
 </html>
