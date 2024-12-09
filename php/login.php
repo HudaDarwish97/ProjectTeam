@@ -44,6 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['success'] = "Login successful. Welcome back, " . $user['user_name'] . "!";
                 header("Location: ../index.php"); // Redirect to dashboard
                 exit();
+                
             } else {
                 $_SESSION['error'] = "Invalid email or password.";
                 header("Location: <php>login.php"); // Redirect back to login

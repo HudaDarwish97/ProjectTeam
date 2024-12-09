@@ -12,8 +12,6 @@
         
         <?php include_once 'php/navbar.php'; ?>
 
-            </div>
-        </header>
         <main> <!--there is change here -->
             
         <!--section to tell user what system for-->

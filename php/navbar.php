@@ -1,58 +1,51 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
+session_start();
+require_once 'config.php';
+
+// Database connection
+$conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+
+if ($conn->connect_error) {
+    die("Database connection failed: " . $conn->connect_error);
 }
 
-include_once dirname(__DIR__) . '/php/config.php';
+// Check if user is logged in
+$isLoggedIn = isset($_SESSION['user_id']);
+$userName = '';
+$userRole = '';
+
+if ($isLoggedIn) {
+    $userId = $_SESSION['user_id'];
+    $query = "SELECT user_name, user_role FROM users WHERE user_id = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('i', $userId);
+    $stmt->execute();
+    $stmt->bind_result($userName, $userRole);
+    $stmt->fetch();
+    $stmt->close();
+}
+$conn->close();
 ?>
 
-<nav class="navbar">
-    <div class="container">
-        <a class="logo" href="<?php echo BASE_URL; ?>">
-            <img src="<?php echo BASE_URL; ?>/img/logo.png" alt="IT room booking">
-        </a>
+<nav>
+    <ul>
+        <?php if (!$isLoggedIn): ?>
+            <!-- General Header for Visitors -->
+            <li><a href="<?php echo BASE_URL; ?>/index.php">Home</a></li>
+            <li><a href="<?php echo BASE_URL; ?>php/login.php">Login</a></li>
+            <li><a href="<?php echo BASE_URL; ?>php/register.php">Register</a></li>
 
-        <button class="menu-toggle" type="button">
-            <span class="menu-icon"></span>
-        </button>
-
-        <div class="nav-content">
-            <ul class="nav-links">
-                <li class="nav-item">
-                    <a href="<?php echo BASE_URL; ?>">Home</a>
-                </li>
-                <?php if (isset($_SESSION['user'])): ?>
-                    <li class="nav-item">
-                        <a href="<?php echo BASE_URL; ?>/php/RoomBooking_analytics.php">Analytics</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="<?php echo BASE_URL; ?>/php/booking.php">My Bookings</a>
-                    </li>
-                    <?php if ($_SESSION['user']['user_role'] === 'admin'): ?>
-                        <li class="nav-item">
-                            <a href="<?php echo BASE_URL; ?>/admindashboard">Admin Dashboard</a>
-                        </li>
-                    <?php endif; ?>
-                <?php endif; ?>
-            </ul>
-        </div>
-
-        <div class="cta-buttons">
-            <?php
-            if (isset($_SESSION['user'])) {
-                // Display user image and name
-                echo '<div class="user-info">';
-                echo '<span>' . $_SESSION['user']['user_name'] . '</span>';
-                echo '<img src="' . BASE_URL . '/' . (isset($_SESSION['user']['image']) && !empty(trim($_SESSION['user']['image'])) ? $_SESSION['user']['image'] : 'assets/userimages/default-profile.jpg') . '" alt="User Profile Picture" class="user-image">';
-                echo '</div>';
-                echo '<a href="' . BASE_URL . '/views/UserProfile.html" class="btn btn-solid">Profile</a>';
-                echo '<a href="' . BASE_URL . '/php/logout.php" class="btn btn-outline">Logout</a>';
-            } else {
-                echo '<a href="' . BASE_URL . '/php/login.php" class="btn btn-outline">Sign In</a>';
-                echo '<a href="' . BASE_URL . '/php/register.php" class="btn btn-solid">Sign Up</a>';
-            }
-            ?>
-        </div>
-    </div>
+        <?php elseif ($userRole === 'User'): ?>
+            <!-- Header for Regular Users -->
+            <li>Welcome, <?php echo htmlspecialchars($userName); ?>!</li>
+            <li><a href="<?php echo BASE_URL; ?>views/UserProfile.html">My Profile</a></li>
+            <li><a href="<?php echo BASE_URL; ?>php/logout.php">Logout</a></li>
+            
+        <?php elseif ($userRole === 'Admin'): ?>
+            <!-- Header for Admin Users -->
+            <li>Admin Panel</li>
+            <li><a href="<?php echo BASE_URL; ?>php/bookings_report.php">Reports</a></li>
+            <li><a href="<?php echo BASE_URL; ?>php/logout.php">Logout</a></li>
+        <?php endif; ?>
+    </ul>
 </nav>
-
