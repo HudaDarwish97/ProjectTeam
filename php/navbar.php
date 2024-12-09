@@ -55,7 +55,7 @@ include_once dirname(__DIR__) . '/php/config.php';
                         : 'assets/userimages/default-profile.jpg') .
                     '" alt="User Profile Picture" class="user-image">';
                 echo '</div>';
-                echo '<a href="' . BASE_URL . '/profile" class="btn btn-solid">Profile</a>';
+                echo '<a href="' . BASE_URL . '/views/UserProfile.html" class="btn btn-solid">Profile</a>';
                 echo '<a href="' . BASE_URL . '/php/logout.php" class="btn btn-outline">Logout</a>';
             } else {
                 echo '<a href="' . BASE_URL . '/php/login.php" class="btn btn-outline">Sign In</a>';
@@ -65,3 +65,4 @@ include_once dirname(__DIR__) . '/php/config.php';
         </div>
     </div>
 </nav>
+
