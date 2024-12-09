@@ -42,11 +42,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 // Login success
                 $_SESSION['success'] = "Login successful. Welcome back, " . $user['user_name'] . "!";
-                header("Location: index.html"); // Redirect to dashboard
+                header("Location: ../index.php"); // Redirect to dashboard
                 exit();
             } else {
                 $_SESSION['error'] = "Invalid email or password.";
-                header("Location: login.php"); // Redirect back to login
+                header("Location: <php>login.php"); // Redirect back to login
                 exit();
             }
         } catch (PDOException $e) {
@@ -98,7 +98,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <label for="password">Password</label>
                     <input type="password" id="password" name="password" required>
                 </div>
-                <button type="submit" class="signin-btn">Log In</button>
+                <form action="index.php" method="get">
+                   <button type="submit" class="signin-btn">Log In</button>
+                </form>
                 <p class="signup-text">
                     Don't have an account? <a href="register.php">Sign Up</a>
                 </p>
