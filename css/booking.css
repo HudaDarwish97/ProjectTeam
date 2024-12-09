@@ -9,27 +9,6 @@ body {
   display: 100%;
   flex-direction: column;
 }
-    
-    /*header*/
-    .header {
-      background-color:  rgb(87,81,81);
-      color: white;
-      }
-      
-      .header .logo{
-        font-size: 1.5rem;
-        font-weight: bold;
-      }
-      
-      .header .nav-link{
-        color: white;
-        margin: 0 10px;
-        text-decoration: none;
-      }
-      
-      .header .nav-link:hover{
-        text-decoration: underline;
-      }
      
       h4 {
         color: black;
@@ -121,7 +100,7 @@ body {
         color:black;;
       }
    
- /* my style*/
+
 /* Status Section */
 .conflict-status{
     display: flex;
@@ -134,7 +113,6 @@ body {
     border-radius: 10px;
   }
 
-  /* Add these to your existing CSS */
   .alert {
     padding: 15px;
     border-radius: 5px;
