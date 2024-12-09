@@ -1,18 +1,10 @@
 <?php  
-include_once dirname(__DIR__) . '/php/config.php';
-
 // Start Session
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-// Include database connection
-$conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include_once dirname(__DIR__) . '/php/config.php';
 
 // Check if form data is sent via POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -41,6 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->execute();
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
+            // If user is found and password matches
             if ($user && password_verify($password, $user['user_password'])) {
                 // Set session variables
                 $_SESSION['user_id'] = $user['user_id'];
@@ -49,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 // Login success
                 $_SESSION['success'] = "Login successful. Welcome back, " . $user['user_name'] . "!";
-                header("Location: dashboard.php"); // Redirect to dashboard
+                header("Location: index.html"); // Redirect to dashboard
                 exit();
             } else {
                 $_SESSION['error'] = "Invalid email or password.";
@@ -69,9 +62,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 }
-
-// Close the database connection
-$conn->close();
 ?>
 
 <!DOCTYPE html>

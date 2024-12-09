@@ -55,15 +55,23 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    function checkUserLoggedIn() {
+        // This function should return true if the user is logged in, false otherwise
+        // You can implement this based on your authentication logic
+        // For example, check if a session variable or a token exists
+        return !!sessionStorage.getItem('userLoggedIn'); // Example using sessionStorage
+    }
+
     // Add modify button listener
     document.getElementById('modifyBtn').addEventListener('click', function() {
-        window.location.href = 'rooms-view.html';
+        window.location.href = 'room_browsing.php';
     });
 
     // Add cancel button listener
     document.getElementById('cancelBtn').addEventListener('click', function() {
-        window.location.href = 'homepage.html';
+        window.location.href = 'index.html';
     });
+
 
     // Placeholder function - implement actual conflict checking logic
     function checkForConflict() {
