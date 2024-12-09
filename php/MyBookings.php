@@ -1,4 +1,16 @@
 <?php
+// Start the session to access the logged-in user information
+session_start();
+
+// Check if the user is logged in
+if (!isset($_SESSION['user_id'])) {
+    echo "User not logged in. Please log in to view your bookings.";
+    exit;
+}
+
+// Fetch the logged-in user's ID from the session
+$userId = $_SESSION['user_id'];
+
 // Database connection
 try {
     $pdo = new PDO('mysql:host=localhost;dbname=room_booking', 'root', '');
@@ -8,7 +20,6 @@ try {
 }
 
 // Query for the user's bookings
-$userId = 2; // the logged-in user's ID
 $query = "SELECT rooms.room_name, booking_date, time_slot, status 
           FROM bookings 
           INNER JOIN rooms ON bookings.room_id = rooms.room_id 
