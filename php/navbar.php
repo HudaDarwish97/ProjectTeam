@@ -12,7 +12,7 @@ include_once dirname(__DIR__) . '../php/config.php';
 <nav class="navbar">
     <div class="container">
         <a class="logo" href="<?php echo BASE_URL; ?>">
-            <img src="<?php echo BASE_URL; ?>/assets/Logo.png" alt="System Logo">
+            <img src="<?php echo BASE_URL; ?>/assets/logo.png" alt="System Logo">
         </a>
 
         <button class="menu-toggle" type="button">
