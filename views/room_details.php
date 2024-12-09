@@ -129,17 +129,18 @@ if (!$room) {
             <button id="submitComment" type="submit" >Post Comment</button>
         </form>
         
+        
         <div id="comments_display">
             <h4>All Comments:</h4>
             <ul id="comments_list">
                 <!-- Comments will be dynamically added here -->
                 <?php
-                include "../php/db_connection.php";
+                // Modify the query to include replies
                 $stmt = $conn->prepare("SELECT 
                         c.comment_id, 
                         c.comment_text, 
                         c.created_at, 
-                        u.user_name, 
+                        u.user_name,
                         r.room_name
                     FROM 
                         comments AS c
@@ -157,14 +158,56 @@ if (!$room) {
                 $comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
                
                 foreach ($comments as $comment) {
-                    echo "<li>";
+                    echo "<li class='comment-item'>";
+                    echo "<div class='user-comment'>";
                     echo "<p><strong>User:</strong> " . htmlspecialchars($comment['user_name']) . "</p>";
-                    echo "<p><strong>Room:</strong> " . htmlspecialchars($comment['room_name']) . "</p>";
                     echo "<p><strong>Comment:</strong> " . htmlspecialchars($comment['comment_text']) . "</p>";
-                    echo "<p><strong>Posted At:</strong> " . htmlspecialchars($comment['created_at']) . "</p>";
+                    echo "<p><small>Posted At: " . htmlspecialchars($comment['created_at']) . "</small></p>";
+                    echo "</div>";
+                    
+                    // Add reply form for each comment
+                    echo "<div class='reply-form-container'>";
+                    echo "<button class='btn btn-sm btn-primary show-reply-form'>Reply</button>";
+                    echo "<form class='reply-form' style='display:none;' method='POST' action='../php/save_reply.php'>";
+                    echo "<input type='hidden' name='comment_id' value='" . $comment['comment_id'] . "'>";
+                    echo "<input type='hidden' name='room_id' value='" . $room_id . "'>";
+                    echo "<textarea name='reply_text' class='form-control' rows='2' required></textarea>";
+                    echo "<button type='submit' class='btn btn-sm btn-success mt-2'>Submit Reply</button>";
+                    echo "</form>";
+                    echo "</div>";
+                    
+                    // Display existing replies
+                    $reply_stmt = $conn->prepare("SELECT 
+                            r.reply_text,
+                            r.created_at,
+                            u.user_name
+                        FROM 
+                            comment_replies r
+                        JOIN 
+                            users u ON r.user_id = u.user_id
+                        WHERE 
+                            r.comment_id = ?
+                        ORDER BY 
+                            r.created_at ASC
+                    ");
+                    $reply_stmt->bindParam(1, $comment['comment_id']);
+                    $reply_stmt->execute();
+                    $replies = $reply_stmt->fetchAll(PDO::FETCH_ASSOC);
+                    
+                    if (!empty($replies)) {
+                        echo "<div class='replies-container ml-4'>";
+                        foreach ($replies as $reply) {
+                            echo "<div class='reply'>";
+                            echo "<p><strong>" . htmlspecialchars($reply['user_name']) . ":</strong> ";
+                            echo htmlspecialchars($reply['reply_text']) . "</p>";
+                            echo "<small>Replied at: ". htmlspecialchars($reply['created_at']) . "</small>";
+                            echo "</div>";
+                        }
+                        echo "</div>";
+                    }
+                    
                     echo "</li><hr>";
                 }
-
                 ?>
             </ul>
         </div>
@@ -179,5 +222,13 @@ if (!$room) {
             <p>&copy; 2024 IT Collage Room Booking System. All rights reserved.</p>
         </div>
     </footer>
+<script>
+    document.querySelectorAll('.show-reply-form').forEach(button => {
+        button.addEventListener('click', function() {
+            const form = this.nextElementSibling;
+            form.style.display = form.style.display === 'none' ? 'block' : 'none';
+        });
+    });
+    </script>
 </body>
 </html>
