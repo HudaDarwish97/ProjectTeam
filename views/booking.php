@@ -31,7 +31,7 @@ try {
     </head>
     <body>
         
-             <?php include_once 'php/navbar.php'; ?>
+             <?php include_once '../php/navbar.php'; ?>
 
        <!-- Room Booking Section -->
     <main class="container">
