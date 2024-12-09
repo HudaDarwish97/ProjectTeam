@@ -45,26 +45,146 @@ body {
     margin-top: auto;
 }
   
-  .container {
-    padding: 20px;
-    margin-top: 20px;
-  }
+/* Card styling */
+.card {
+  max-width: 800px;
+  margin: 30px auto;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Softer shadow */
+  overflow: hidden;
+  background-color: #f9f9f9; /* Light background for contrast */
+}
+
+/* Card body styling */
+.card-body {
+  padding: 30px; /* Increased padding for a spacious feel */
+  display: flex;
+  flex-direction: column;
+  gap: 25px; /* Larger gap between elements */
+  font-family: 'Arial', sans-serif; /* Clean font */
+  color: #333; /* Neutral text color */
+}
+
+/* Card title */
+.card-title {
+  font-size: 2.2rem; /* Slightly smaller title */
+  color: #34495e; /* Deep, professional title color */
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #1abc9c; /* Accent border */
+  padding-bottom: 10px;
+}
+
+/* Text details */
+.card-text {
+  font-size: 1.1rem;
+  line-height: 1.6; /* Improved readability */
+}
+
+/* Features styling */
+.features {
+  display: grid; /* Grid layout for better responsiveness */
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 20px; /* Uniform spacing between items */
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.features div {
+  text-align: center;
+  font-size: 1.1rem; /* Clean text size */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.features i {
+  font-size: 2.5rem; /* Larger icons for visual appeal */
+  margin-bottom: 8px;
+  color: #16a085; /* Brighter icon color */
+}
+
+/* Button group styling */
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 15px; /* Space between buttons */
+}
+
+.button-group .btn {
+  font-size: 1rem;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.btn-success {
+  background-color: #1abc9c;
+  border: none;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.btn-success:hover {
+  background-color: #16a085; /* Darker hover color */
+}
+
+.btn-secondary {
+  background-color: #7f8c8d;
+  border: none;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background-color: #95a5a6; /* Softer hover color */
+}
+
+
   
-  .card {
-    max-width: 800px;
-    margin: 20px auto;
-    border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    background-color: white;
-  }
-  
-  .carousel-inner img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    border-radius: 8px;
-  }
+ /* Ensure the buttons are inside the card */
+.carousel-inner {
+  position: relative; /* Make sure the inner container is relative for positioning */
+  transition: transform 1s ease-in-out;
+}
+
+/* Style the images */
+.carousel-inner img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.5s ease;
+}
+
+.carousel-inner img:hover {
+  transform: scale(1.05);
+}
+
+/* Button positioning inside the card */
+.carousel-controls {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  padding: 10px;
+}
+
+.carousel-control-prev-icon:hover,
+.carousel-control-next-icon:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
   
   .card-body {
     padding: 20px;

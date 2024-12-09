@@ -27,6 +27,15 @@ if (!$room) {
     <link  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+        <!-- Bootstrap 5 CSS -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0-alpha1/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Popper.js (required by Bootstrap) -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+
+<!-- Bootstrap 5 JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0-alpha1/js/bootstrap.min.js"></script>
+
         
 
         <link rel="stylesheet" href="../css/room_details.css">
@@ -55,73 +64,91 @@ if (!$room) {
     <h1 class="text-center">Room Details</h1>
 
     <div class="card">
-        <!-- Room Images Carousel -->
-        <div id="roomImagesCarousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="../img/<?= htmlspecialchars($room['image1']) ?>" class="d-block w-100" alt="Room Image 1">
-                </div>
-                <?php if ($room['image2']) : ?>
-                    <div class="carousel-item">
-                        <img src="../img/<?= htmlspecialchars($room['image1']) ?>" class="d-block w-100" alt="Room Image 2">
-                    </div>
-                <?php endif; ?>
-                <?php if ($room['image3']) : ?>
-                    <div class="carousel-item">
-                        <img src="../img/<?= htmlspecialchars($room['image3']) ?>" class="d-block w-100" alt="Room Image 3">
-                    </div>
-                <?php endif; ?>
-                <?php if ($room['image4']) : ?>
-                    <div class="carousel-item">
-                        <img src="../img/<?= htmlspecialchars($room['image4']) ?>" class="d-block w-100" alt="Room Image 4">
-                    </div>
-                <?php endif; ?>
-                <?php if ($room['image5']) : ?>
-                    <div class="carousel-item">
-                        <img src="../img/<?= htmlspecialchars($room['image5']) ?>" class="d-block w-100" alt="Room Image 5">
-                    </div>
-                <?php endif; ?>
+    <!-- Room Images Carousel -->
+    <div id="roomImagesCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="../img/<?= htmlspecialchars($room['image1']) ?>" class="d-block w-100" alt="Room Image 1">
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#roomImagesCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#roomImagesCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
+            <?php if ($room['image2']) : ?>
+                <div class="carousel-item">
+                    <img src="../img/<?= htmlspecialchars($room['image2']) ?>" class="d-block w-100" alt="Room Image 2">
+                </div>
+            <?php endif; ?>
+            <?php if ($room['image3']) : ?>
+                <div class="carousel-item">
+                    <img src="../img/<?= htmlspecialchars($room['image3']) ?>" class="d-block w-100" alt="Room Image 3">
+                </div>
+            <?php endif; ?>
+            <?php if ($room['image4']) : ?>
+                <div class="carousel-item">
+                    <img src="../img/<?= htmlspecialchars($room['image4']) ?>" class="d-block w-100" alt="Room Image 4">
+                </div>
+            <?php endif; ?>
+            <?php if ($room['image5']) : ?>
+                <div class="carousel-item">
+                    <img src="../img/<?= htmlspecialchars($room['image5']) ?>" class="d-block w-100" alt="Room Image 5">
+                </div>
+            <?php endif; ?>
         </div>
 
-        <div class="card-body">
-            <h5 class="card-title"><?= htmlspecialchars($room['room_name']) ?></h5>
-            <p class="card-text"><strong>Type:</strong> <?= htmlspecialchars($room['room_type']) ?></p>
-            <p class="card-text"><strong>Department:</strong> <?= htmlspecialchars($room['department']) ?></p>
-            <p class="card-text"><strong>Floor:</strong> <?= htmlspecialchars($room['floor']) ?></p>
-            <p class="card-text"><strong>Capacity:</strong> <?= htmlspecialchars($room['capacity']) ?></p>
-            <p class="card-text"><strong>Description:</strong> <?= htmlspecialchars($room['description']) ?></p>
-            <h5>Features:</h5>
-                    <div class="features">
-                        <div>
-                            <i class="bi bi-wind"></i>
-                            <p>Air Conditioner</p>
-                        </div>
-                        <div>
-                            <i class="bi bi-projector"></i>
-                            <p>Projector</p>
-                        </div>
-                        <div>
-                            <i class="bi bi-wifi"></i>
-                            <p>WiFi</p>
-                        </div>
-                        <div>
-                            <i class="bi bi-easel"></i>
-                            <p>Whiteboard</p>
-                        </div>
-                    </div>
-            <a href="booking.html?room_id=<?= $room['room_id'] ?>" class="btn btn-success">Book it</a>
-            <a href="room_browsing.php" class="btn btn-secondary">Back to Browse</a>
-        </div>
+        <!-- Carousel controls inside the card -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#roomImagesCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#roomImagesCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
+</div>
+
+
+<div class="card">
+  <div class="card-header">
+    <h5 class="card-title"><?= htmlspecialchars($room['room_name']) ?></h5>
+  </div>
+  <div class="card-body">
+    <p class="card-text"><strong>Type:</strong> <?= htmlspecialchars($room['room_type']) ?></p>
+    <p class="card-text"><strong>Department:</strong> <?= htmlspecialchars($room['department']) ?></p>
+    <p class="card-text"><strong>Floor:</strong> <?= htmlspecialchars($room['floor']) ?></p>
+    <p class="card-text"><strong>Capacity:</strong> <?= htmlspecialchars($room['capacity']) ?></p>
+    <p class="card-text"><strong>Description:</strong> <?= htmlspecialchars($room['description']) ?></p>
+    <h5 class="card-title">Features:</h5>
+    <div class="features">
+      <div>
+        <i class="bi bi-wind"></i>
+        <p>Air Conditioner</p>
+      </div>
+      <div>
+        <i class="bi bi-projector"></i>
+        <p>Projector</p>
+      </div>
+      <div>
+        <i class="bi bi-wifi"></i>
+        <p>WiFi</p>
+      </div>
+      <div>
+        <i class="bi bi-easel"></i>
+        <p>Whiteboard</p>
+      </div>
+    </div>
+    <div class="button-group">
+      <a href="booking.html?room_id=<?= $room['room_id'] ?>" class="btn btn-success">Book it</a>
+      <a href="room_browsing.php" class="btn btn-secondary">Back to Browse</a>
+    </div>
+  </div>
+</div>
+
+
+    <script>
+    var myCarousel = document.getElementById('roomImagesCarousel');
+    var carousel = new bootstrap.Carousel(myCarousel);
+</script>
+
+
+
     <div class="card">    <!-- Noor comments saction -->   
     <div id="comment_section">
         <h3>Leave a Comment</h3>
