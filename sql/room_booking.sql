@@ -89,7 +89,20 @@ INSERT INTO `comments` (`comment_id`, `user_id`, `room_id`, `comment_text`, `cre
 
 -- --------------------------------------------------------
 
+----
+-- Table structure for table `comment_replies`
 --
+
+CREATE TABLE `comment_replies` (
+  `reply_id` int(11) NOT NULL,
+  `comment_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `reply_text` text NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
 -- Table structure for table `rooms`
 --
 
@@ -180,6 +193,14 @@ ALTER TABLE `comments`
   ADD KEY `user_id` (`user_id`),
   ADD KEY `room_id` (`room_id`);
 
+-- Indexes for table `comment_replies`
+--
+ALTER TABLE `comment_replies`
+  ADD PRIMARY KEY (`reply_id`),
+  ADD KEY `comment_id` (`comment_id`),
+  ADD KEY `user_id` (`user_id`);
+
+
 --
 -- Indexes for table `rooms`
 --
@@ -216,6 +237,11 @@ ALTER TABLE `bookings`
 ALTER TABLE `comments`
   MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
+-- AUTO_INCREMENT for table `comment_replies`
+--
+ALTER TABLE `comment_replies`
+  MODIFY `reply_id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `rooms`
 --
@@ -251,6 +277,12 @@ ALTER TABLE `bookings`
 ALTER TABLE `comments`
   ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
   ADD CONSTRAINT `comments_ibfk_2` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`room_id`);
+COMMIT;
+-- Constraints for table `comment_replies`
+--
+ALTER TABLE `comment_replies`
+  ADD CONSTRAINT `comment_replies_ibfk_1` FOREIGN KEY (`comment_id`) REFERENCES `comments` (`comment_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `comment_replies_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
