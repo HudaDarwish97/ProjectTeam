@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Add cancel button listener
     document.getElementById('cancelBtn').addEventListener('click', function() {
-        window.location.href = 'index.html';
+        window.location.href = 'index.php';
     });
 
 
