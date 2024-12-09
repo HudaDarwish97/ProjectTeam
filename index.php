@@ -93,7 +93,7 @@
                     <div class="container">
                         <h2 class="hero-title">Book Your Rooms Seamlessly</h2>
                         <p class="hero-subtitle">Efficient and user-friendly room booking for IT collage student and staff.</p>
-                        <a href="views/login.html" class="btn btn-dark btn-lg mt-3">Get Started</a>
+                        <a href="php/login.php" class="btn btn-dark btn-lg mt-3">Get Started</a>
                     </div>
                 </section>
 
