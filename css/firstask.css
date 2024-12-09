@@ -216,15 +216,46 @@ body {
   background-color: #f4f4f4;
 }
 
-
 /* Navigation Bar */
-nav {
-  background-color: #333;
-  padding: 0 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+.navbar {
+  background-color: #333; /* Dark background for contrast */
+  padding: 1rem 20px; /* Padding around navbar */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
 }
 
-nav ul {
+/* Container Styling */
+.navbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Logo Styling */
+.navbar .logo {
+  text-decoration: none; /* Remove underline */
+  display: flex;
+  align-items: center;
+}
+
+.navbar .logo img {
+  max-height: 50px; /* Limit the height of the logo */
+  width: auto; /* Maintain aspect ratio */
+  transition: transform 0.3s ease; /* Logo hover effect */
+}
+
+.navbar .logo:hover img {
+  transform: scale(1.05); /* Slightly enlarge logo on hover */
+}
+
+/* Navigation Links Styling */
+.navbar ul {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -232,19 +263,15 @@ nav ul {
   align-items: center;
 }
 
-nav ul li {
+.navbar li {
   margin: 0 15px;
-  display: inline-block;
-  color: #fff;
 }
 
-nav ul li:first-child {
+.navbar li:first-child {
   margin-right: auto; /* Pushes the other items to the right */
-  font-size: 16px;
-  color: #ddd;
 }
 
-nav ul li a {
+.navbar a {
   color: #fff;
   text-decoration: none;
   font-size: 16px;
@@ -254,46 +281,36 @@ nav ul li a {
   border-radius: 5px;
 }
 
-nav ul li a:hover {
-  background-color: #575757;
-  color: #fff;
+.navbar a:hover {
+  background-color: #575757; /* Background color on hover */
+  color: #fff; /* Text color on hover */
 }
 
-/* Dropdown Styling (Optional for Admin Panel) */
-nav ul li ul {
-  display: none;
-  position: absolute;
-  top: 50px;
-  left: 0;
-  background-color: #444;
-  padding: 10px 0;
-  list-style: none;
-  border-radius: 5px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-}
-
-nav ul li:hover ul {
-  display: block;
-}
-
-nav ul li ul li {
-  margin: 0;
-  padding: 0;
-}
-
-nav ul li ul li a {
-  padding: 10px 20px;
-  white-space: nowrap;
+/* User Greeting Styling */
+.navbar li {
+  color: #ddd;
+  font-size: 16px;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  nav ul {
-      flex-direction: column;
-      align-items: flex-start;
+  .navbar ul {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
-  nav ul li {
-      margin: 10px 0;
+  .navbar li {
+    margin: 10px 0;
   }
+
+  .navbar .logo img {
+    max-height: 40px; /* Adjust logo size for smaller screens */
+  }
+}
+.user-image {
+  width: 30px; /* Adjust width */
+  height: 30px; /* Adjust height */
+  border-radius: 50%; /* Makes it a circle */
+  object-fit: cover; /* Ensures the image doesn't get distorted */
+  margin-left: 10px; /* Space between the text and the image */
 }
