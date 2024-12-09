@@ -122,14 +122,13 @@ if (!$room) {
             <a href="room_browsing.php" class="btn btn-secondary">Back to Browse</a>
         </div>
     </div>
-    <div class="card">    <!-- Noor comments saction -->   
+   <div class="card">    <!-- Noor comments saction -->   
     <div id="comment_section">
         <h3>Leave a Comment</h3>
         <form id="set_comment" method="POST" action="../php/save_comment.php?room_id=<?php echo $room_id?>">
             <textarea id="comment_text" name="comment_text"rows="5" placeholder="Write your comment here..." required></textarea>
             <button id="submitComment" type="submit" >Post Comment</button>
         </form>
-        
         
         <div id="comments_display">
             <h4>All Comments:</h4>
@@ -186,6 +185,8 @@ if (!$room) {
                             comment_replies r
                         JOIN 
                             users u ON r.user_id = u.user_id
+                        JOIN 
+                            comments c ON c.comment_id = r.comment_id    
                         WHERE 
                             r.comment_id = ?
                         ORDER BY 
@@ -201,7 +202,7 @@ if (!$room) {
                             echo "<div class='reply'>";
                             echo "<p><strong>" . htmlspecialchars($reply['user_name']) . ":</strong> ";
                             echo htmlspecialchars($reply['reply_text']) . "</p>";
-                            echo "<small>Replied at: ". htmlspecialchars($reply['created_at']) . "</small>";
+                            echo "<small>Replied at: " . htmlspecialchars($reply['created_at']) . "</small>";
                             echo "</div>";
                         }
                         echo "</div>";
@@ -223,7 +224,15 @@ if (!$room) {
             <p>&copy; 2024 IT Collage Room Booking System. All rights reserved.</p>
         </div>
     </footer>
-<script>
+
+    <script src="booking.js"></script>
+    
+    <div class="modal">
+        <span class="modal-close">&times;</span>
+        <img src="" alt="Modal Image">
+    </div>
+    
+    <script>
     document.querySelectorAll('.show-reply-form').forEach(button => {
         button.addEventListener('click', function() {
             const form = this.nextElementSibling;
@@ -233,3 +242,4 @@ if (!$room) {
     </script>
 </body>
 </html>
+               
