@@ -35,24 +35,10 @@
        <!-- Room Booking Section -->
     <main class="container">
         <h2 class="page-title">Booking</h2>
-        <div class="content">
-            <div class="room-image">
-                <img src="../img/room.jpeg"  data-room-id="1" alt="Room 1">
-            </div>
-
+      <div class="content">
+            <!-- Include room details from room_details.php -->
+            <?php include 'room_details.php'; ?>
         </div>
-            <div class="details">
-                <div class="description">
-                    <h4>Classroom Description:</h4>
-                    <p id="room-description"></p>
-                </div>
-                <div class="room-number">
-                    <h4>Room Number:</h4>
-                    <p id="room-number"> </p>
-
-                </div>
-            </div>
-        
 
         <form id="bookingForm">
             <div class="time">
@@ -60,13 +46,13 @@
                 <input type="hidden" id="room_id" name="room_id">
                 
                 <label for="date">Date:</label>
-                <input type="date" id="date" name="date" required >
+                <input type="date" id="date" name="date" required min="{{ today }}">
 
                 <label for="start_time">Start Time:</label>
-                <input type="time" id="start_time" name="start_time" required>
+                <input type="time" id="start_time" name="start_time" required min="08:00" max="23:00">
 
                 <label for="end_time">End Time:</label>
-                <input type="time" id="end_time" name="end_time" required>
+                <input type="time" id="end_time" name="end_time" required min="08:00" max="23:00">
             </div>
 
             <div class="conflict-status" >
@@ -103,5 +89,11 @@
         <img src="" alt="Modal Image">
     </div>
     
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('date').setAttribute('min', today);
+        });
+    </script>
     </body>
 </html>
