@@ -20,7 +20,7 @@ if (!$room) {
 }
 ?>
 
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -43,23 +43,7 @@ if (!$room) {
     <link rel="stylesheet" href="../css/room_details.css">
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="container d-flex justify-content-between align-items-center py-3">
-            <h1 class="logo">IT Collage Room Booking</h1>
-            <nav>
-                <ul class="nav">
-                    <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
-                    <li class="nav-item"><a class="nav-link" href="register.php">Register</a></li>
-                    <li class="nav-item"><a class="nav-link" href="room_browsing.php">Rooms</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#about-us">About Us</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+   
 
     <div class="container my-5">
         <h1 class="text-center">Room Details</h1>
@@ -147,7 +131,6 @@ if (!$room) {
     var myCarousel = document.getElementById('roomImagesCarousel');
     var carousel = new bootstrap.Carousel(myCarousel);
 </script>
-
 
 <div class="card">    
     <!-- Noor comments section -->   

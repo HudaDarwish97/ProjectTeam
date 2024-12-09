@@ -37,23 +37,6 @@ try {
     <link rel="stylesheet" href="../css/room_browsing.css">
 </head>
 <body>
-    <!--header -->
-    <header class="header">
-        <div class="container d-flex justify-content-between align-items-center py-3">
-            <h1 class="logo">IT Collage Room Booking</h1>
-            <nav>
-                <ul class="nav">
-                    <li class="nav-item"><a class="nav-link" href="../index.html">Home </a></li>
-                    <li class="nav-item"><a class="nav-link" href="/php/login.php">Login</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/php/register.php">Register </a></li>
-                    <li class="nav-item"><a class="nav-link" href="room_browsing.php">Rooms </a></li>
-                    <li class="nav-item"><a class="nav-link" href="#features">Features </a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#about-us">About Us</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
 
     <div class="row">
         <!-- Left Section: Department Filter -->
