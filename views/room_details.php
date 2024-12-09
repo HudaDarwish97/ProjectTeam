@@ -1,12 +1,15 @@
 <?php
+session_start();
+
 include '../php/db_connection.php';
 
+// Retrieve room_id from GET parameters and validate it
 $room_id = $_GET['room_id'] ?? null;
-
 if (!$room_id) {
     die("Room ID is required.");
 }
 
+// Fetch room details
 $query = $conn->prepare("SELECT * FROM rooms WHERE room_id = :room_id");
 $query->bindParam(':room_id', $room_id);
 $query->execute();
@@ -22,12 +25,12 @@ if (!$room) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <title>Room Details - <?= htmlspecialchars($room['room_name']) ?></title>
-    <link  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-        <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-        <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Bootstrap 5 CSS -->
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0-alpha1/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Popper.js (required by Bootstrap) -->
@@ -37,34 +40,32 @@ if (!$room) {
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0-alpha1/js/bootstrap.min.js"></script>
 
         
-
-        <link rel="stylesheet" href="../css/room_details.css">
+    <link rel="stylesheet" href="../css/room_details.css">
 </head>
 <body>
- <!--header -->
- <header class="header">
-            <div class="container d-flex justify-content-between align-items-center py-3">
-                <h1 class="logo">IT Collage Room Booking</h1>
-                <nav>
-                    <ul class="nav">
-                        <li class="nav-item"><a class="nav-link" href="../index.html" >Home </a></li>
-                        <li class="nav-item"><a class="nav-link" href="login.html" >Login</a></li>
-                        <li class="nav-item"><a class="nav-link" href="register.html" >Register </a></li>
-                        <li class="nav-item"><a class="nav-link" href="room_browsing.php" >Rooms </a></li>
-                        <li class="nav-item"><a class="nav-link" href="#features" >Features </a></li>
-                        <li class="nav-item"><a class="nav-link" href="#contact" >Contact</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#about-us" >About Us</a></li>
+    <!-- Header -->
+    <header class="header">
+        <div class="container d-flex justify-content-between align-items-center py-3">
+            <h1 class="logo">IT Collage Room Booking</h1>
+            <nav>
+                <ul class="nav">
+                    <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="register.php">Register</a></li>
+                    <li class="nav-item"><a class="nav-link" href="room_browsing.php">Rooms</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about-us">About Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-                    </ul>
-                </nav>
-            </div>
-        </header>
+    <div class="container my-5">
+        <h1 class="text-center">Room Details</h1>
 
-<div class="container my-5">
-    <h1 class="text-center">Room Details</h1>
-
-    <div class="card">
-    <!-- Room Images Carousel -->
+        <div class="card">
+               <!-- Room Images Carousel -->
     <div id="roomImagesCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
@@ -148,15 +149,14 @@ if (!$room) {
 </script>
 
 
-
-    <div class="card">    <!-- Noor comments saction -->   
+<div class="card">    
+    <!-- Noor comments section -->   
     <div id="comment_section">
         <h3>Leave a Comment</h3>
         <form id="set_comment" method="POST" action="../php/save_comment.php?room_id=<?php echo $room_id?>">
-            <textarea id="comment_text" name="comment_text"rows="5" placeholder="Write your comment here..." required></textarea>
-            <button id="submitComment" type="submit" >Post Comment</button>
+            <textarea id="comment_text" name="comment_text" rows="5" placeholder="Write your comment here..." required></textarea>
+            <button id="submitComment" type="submit">Post Comment</button>
         </form>
-        
         
         <div id="comments_display">
             <h4>All Comments:</h4>
@@ -179,8 +179,7 @@ if (!$room) {
                     WHERE 
                         c.room_id = ?
                     ORDER BY  
-                        c.created_at DESC
-                ");
+                        c.created_at DESC");
                 $stmt->bindParam(1, $room_id, PDO::PARAM_INT);
                 $stmt->execute();
                 $comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -213,11 +212,12 @@ if (!$room) {
                             comment_replies r
                         JOIN 
                             users u ON r.user_id = u.user_id
+                        JOIN 
+                            comments c ON c.comment_id = r.comment_id    
                         WHERE 
                             r.comment_id = ?
                         ORDER BY 
-                            r.created_at ASC
-                    ");
+                            r.created_at ASC");
                     $reply_stmt->bindParam(1, $comment['comment_id']);
                     $reply_stmt->execute();
                     $replies = $reply_stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -228,7 +228,7 @@ if (!$room) {
                             echo "<div class='reply'>";
                             echo "<p><strong>" . htmlspecialchars($reply['user_name']) . ":</strong> ";
                             echo htmlspecialchars($reply['reply_text']) . "</p>";
-                            echo "<small>Replied at: ". htmlspecialchars($reply['created_at']) . "</small>";
+                            echo "<small>Replied at: " . htmlspecialchars($reply['created_at']) . "</small>";
                             echo "</div>";
                         }
                         echo "</div>";
@@ -240,23 +240,23 @@ if (!$room) {
             </ul>
         </div>
     </div>
-
-
 </div>
-</div>
+
 <!--footer-->
 <footer class="footer py-3">
-        <div class="text-center">
-            <p>&copy; 2024 IT Collage Room Booking System. All rights reserved.</p>
-        </div>
-    </footer>
+    <div class="text-center">
+        <p>&copy; 2024 IT College Room Booking System. All rights reserved.</p>
+    </div>
+</footer>
+
+
 <script>
-    document.querySelectorAll('.show-reply-form').forEach(button => {
-        button.addEventListener('click', function() {
-            const form = this.nextElementSibling;
-            form.style.display = form.style.display === 'none' ? 'block' : 'none';
-        });
+document.querySelectorAll('.show-reply-form').forEach(button => {
+    button.addEventListener('click', function() {
+        const form = this.nextElementSibling;
+        form.style.display = form.style.display === 'none' ? 'block' : 'none';
     });
-    </script>
+});
+</script>
 </body>
 </html>

@@ -16,16 +16,6 @@ $query = "SELECT rooms.room_name, COUNT(bookings.booking_id) AS usage_count
 $stmt = $pdo->prepare($query);
 $stmt->execute();
 $roomUsage = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-// Fetch user bookings
-$userId = 2; // Replace with logged-in user's ID
-$query = "SELECT rooms.room_name, booking_date, time_slot, status 
-          FROM bookings 
-          INNER JOIN rooms ON bookings.room_id = rooms.room_id 
-          WHERE bookings.user_id = :user_id";
-$stmt = $pdo->prepare($query);
-$stmt->execute(['user_id' => $userId]);
-$userBookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -102,26 +92,6 @@ $userBookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <tr>
                     <td><?php echo htmlspecialchars($room['room_name']); ?></td>
                     <td><?php echo htmlspecialchars($room['usage_count']); ?></td>
-                </tr>
-            <?php endforeach; ?>
-        </table>
-    </section>
-
-    <section>
-        <h2>My Bookings</h2>
-        <table>
-            <tr>
-                <th>Room Name</th>
-                <th>Booking Date</th>
-                <th>Time Slot</th>
-                <th>Status</th>
-            </tr>
-            <?php foreach ($userBookings as $booking): ?>
-                <tr>
-                    <td><?php echo htmlspecialchars($booking['room_name']); ?></td>
-                    <td><?php echo htmlspecialchars($booking['booking_date']); ?></td>
-                    <td><?php echo htmlspecialchars($booking['time_slot']); ?></td>
-                    <td><?php echo htmlspecialchars($booking['status']); ?></td>
                 </tr>
             <?php endforeach; ?>
         </table>
