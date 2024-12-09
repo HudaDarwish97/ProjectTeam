@@ -36,7 +36,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // Form submission handler
     bookingForm.addEventListener('submit', function(e) {
         e.preventDefault();
-        
+         const isLoggedIn = checkUserLoggedIn(); // Implement this function to check login status
+
+        if (!isLoggedIn) {
+            alert("Please log in to confirm your booking."); // Alert message
+            window.location.href = 'login.html'; // Redirect to login page
+            return;
+        }
         // Check if there's a conflict (you'll need to implement the actual conflict checking logic)
         const hasConflict = checkForConflict(); // This is a placeholder function
         const messageDiv = document.getElementById('booking-message');
