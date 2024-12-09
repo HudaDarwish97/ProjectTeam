@@ -31,30 +31,29 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IT Collage Room Booking</title>
-    <link  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-        <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-
-        <link rel="stylesheet" href="../css/room_browsing.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/room_browsing.css">
 </head>
 <body>
-     <!--header -->
-     <header class="header">
-            <div class="container d-flex justify-content-between align-items-center py-3">
-                <h1 class="logo">IT Collage Room Booking</h1>
-                <nav>
-                    <ul class="nav">
-                    <li class="nav-item"><a class="nav-link" href="../index.html" >Home </a></li>
-                        <li class="nav-item"><a class="nav-link" href="login.html" >Login</a></li>
-                        <li class="nav-item"><a class="nav-link" href="register.html" >Register </a></li>
-                        <li class="nav-item"><a class="nav-link" href="room_browsing.php" >Rooms </a></li>
-                        <li class="nav-item"><a class="nav-link" href="#features" >Features </a></li>
-                        <li class="nav-item"><a class="nav-link" href="#contact" >Contact</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#about-us" >About Us</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
+    <!--header -->
+    <header class="header">
+        <div class="container d-flex justify-content-between align-items-center py-3">
+            <h1 class="logo">IT Collage Room Booking</h1>
+            <nav>
+                <ul class="nav">
+                    <li class="nav-item"><a class="nav-link" href="../index.html">Home </a></li>
+                    <li class="nav-item"><a class="nav-link" href="/php/login.php">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/php/register.php">Register </a></li>
+                    <li class="nav-item"><a class="nav-link" href="room_browsing.php">Rooms </a></li>
+                    <li class="nav-item"><a class="nav-link" href="#features">Features </a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about-us">About Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
     <div class="row">
         <!-- Left Section: Department Filter -->
@@ -77,26 +76,35 @@ try {
                     <!-- Display each room in a card -->
                     <?php foreach ($rooms as $room): ?>
                         <div class="col-md-6">
-                            <div class="card mb-3">
-                                <img src="../img/<?= htmlspecialchars($room['image1'] ?? 'default_image.jpg') ?>" class="card-img-top" alt="Room Image">
-                                <div class="card-body">
-                                    <h5 class="card-title">
-                                        <i class="room-icon bi bi-door-closed"></i>
-                                        <?= htmlspecialchars($room['room_name']) ?>
-                                    </h5>
-                                    <p class="card-text">
-                                        <?= htmlspecialchars($room['description'] ?? 'No description available.') ?>
-                                    </p>
-                                    <p class="card-text">
-                                        <strong>Capacity:</strong> <?= htmlspecialchars($room['capacity']) ?>
-                                    </p>
-                                    <a href="room_details.php?room_id=<?= htmlspecialchars($room['room_id']) ?>" class="btn btn-primary">View Details</a>
+                            <div class="room-card-container" onclick="toggleFlip(this)">
+                                <div class="room-card">
+                                    <!-- Front of the card -->
+                                    <div class="card front">
+                                        <img src="../img/<?= htmlspecialchars($room['image1'] ?? 'default_image.jpg') ?>" class="card-img-top" alt="Room Image">
+                                        <div class="card-body">
+                                            <h5 class="card-title">
+                                                <i class="room-icon bi bi-door-closed"></i>
+                                                <?= htmlspecialchars($room['room_name']) ?>
+                                            </h5>
+                                            <p class="card-text">
+                                                <?= htmlspecialchars($room['description'] ?? 'No description available.') ?>
+                                            </p>
+                                            <p class="card-text"><strong>Type:</strong> <?= htmlspecialchars($room['room_type']) ?></p>
+                                            <p class="card-text">
+                                                <strong>Capacity:</strong> <?= htmlspecialchars($room['capacity']) ?>
+                                            </p>
+                                            <a href="room_details.php?room_id=<?= htmlspecialchars($room['room_id']) ?>" class="btn btn-primary">View Details</a>
+                                        </div>
+                                    </div>
+                                    <!-- Back of the card -->
+                                    <div class="card back">
+                                        <h1>hello</h1>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     <?php endforeach; ?>
                 <?php else: ?>
-                    <!-- Message when no rooms are available -->
                     <div class="col-12">
                         <p class="text-center">No rooms available in this department.</p>
                     </div>
@@ -104,13 +112,20 @@ try {
             </div>
         </div>
     </div>
-</div>
-<!--footer-->
-<footer class="footer py-3">
+
+    <!--footer-->
+    <footer class="footer py-3">
         <div class="text-center">
             <p>&copy; 2024 IT Collage Room Booking System. All rights reserved.</p>
         </div>
     </footer>
     
-    </body>
+    <script>
+        function toggleFlip(cardContainer) {
+            const card = cardContainer.querySelector('.room-card');
+            card.classList.toggle('flipped');
+        }
+    </script>
+
+</body>
 </html>
