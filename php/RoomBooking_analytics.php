@@ -18,7 +18,7 @@ $stmt->execute();
 $roomUsage = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Fetch user bookings
-$userId = 2; // Replace with logged-in user's ID
+$userId = 2; // logged-in user's ID
 $query = "SELECT rooms.room_name, booking_date, time_slot, status 
           FROM bookings 
           INNER JOIN rooms ON bookings.room_id = rooms.room_id 
