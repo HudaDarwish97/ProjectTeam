@@ -18,7 +18,7 @@ $stmt->execute();
 $roomUsage = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Fetch user bookings
-$userId = 2; // logged-in user's ID
+$userId = 2; // Replace with logged-in user's ID
 $query = "SELECT rooms.room_name, booking_date, time_slot, status 
           FROM bookings 
           INNER JOIN rooms ON bookings.room_id = rooms.room_id 
@@ -40,11 +40,11 @@ $userBookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f9f6f0;
+            background-color: rgb(245, 245, 220);
             color: #333;
         }
         header {
-            background-color: #4682B4;
+            background-color: rgb(87, 81, 81);
             color: white;
             padding: 10px 20px;
             text-align: center;
@@ -53,7 +53,7 @@ $userBookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
             margin: 0;
         }
         h2 {
-            color: #4682B4;
+            color: rgb(87, 81, 81);
             text-align: center;
         }
         table {
@@ -69,7 +69,7 @@ $userBookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
             border: 1px solid #ddd;
         }
         th {
-            background-color: #4682B4;
+            background-color: rgb(87, 81, 81);
             color: white;
         }
         tr:nth-child(even) {
