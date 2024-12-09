@@ -35,5 +35,4 @@ if (isset($_GET['token'])) {
     } else {
         echo "<script>alert('Invalid or expired token.'); window.location.href = 'forgotpass.html';</script>";
     }
-} else {
-   
+}
