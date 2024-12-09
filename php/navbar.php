@@ -5,7 +5,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-include_once dirname(__DIR__) . '../php/config.php';
+include_once dirname(__DIR__) . '/php/config.php';
 
 ?>
 

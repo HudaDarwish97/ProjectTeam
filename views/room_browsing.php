@@ -44,7 +44,7 @@ try {
                 <h1 class="logo">IT Collage Room Booking</h1>
                 <nav>
                     <ul class="nav">
-                    <li class="nav-item"><a class="nav-link" href="homepage.html" >Home </a></li>
+                    <li class="nav-item"><a class="nav-link" href="../index.html" >Home </a></li>
                         <li class="nav-item"><a class="nav-link" href="login.html" >Login</a></li>
                         <li class="nav-item"><a class="nav-link" href="register.html" >Register </a></li>
                         <li class="nav-item"><a class="nav-link" href="room_browsing.php" >Rooms </a></li>
@@ -111,11 +111,6 @@ try {
             <p>&copy; 2024 IT Collage Room Booking System. All rights reserved.</p>
         </div>
     </footer>
-    
-    <div class="modal">
-        <span class="modal-close">&times;</span>
-        <img src="" alt="Modal Image">
-    </div>
     
     </body>
 </html>
