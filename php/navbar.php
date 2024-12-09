@@ -32,20 +32,23 @@ $conn->close();
         <?php if (!$isLoggedIn): ?>
             <!-- General Header for Visitors -->
             <li><a href="<?php echo BASE_URL; ?>/index.php">Home</a></li>
-            <li><a href="<?php echo BASE_URL; ?>php/login.php">Login</a></li>
-            <li><a href="<?php echo BASE_URL; ?>php/register.php">Register</a></li>
+            <li><a href="<?php echo BASE_URL; ?>/php/login.php">Login</a></li>
+            <li><a href="<?php echo BASE_URL; ?>/php/register.php">Register</a></li>
 
         <?php elseif ($userRole === 'User'): ?>
             <!-- Header for Regular Users -->
             <li>Welcome, <?php echo htmlspecialchars($userName); ?>!</li>
-            <li><a href="<?php echo BASE_URL; ?>views/UserProfile.html">My Profile</a></li>
-            <li><a href="<?php echo BASE_URL; ?>php/logout.php">Logout</a></li>
+            <li><a href="<?php echo BASE_URL; ?>/views/UserProfile.html">My Profile</a></li>
+
+            <li><a href="<?php echo BASE_URL; ?>/php/logout.php">Logout</a></li>
+            <li><a href="<?php echo BASE_URL; ?>/php/MyBookings.php">My Booking</a></li>
             
         <?php elseif ($userRole === 'Admin'): ?>
             <!-- Header for Admin Users -->
             <li>Admin Panel</li>
-            <li><a href="<?php echo BASE_URL; ?>php/bookings_report.php">Reports</a></li>
-            <li><a href="<?php echo BASE_URL; ?>php/logout.php">Logout</a></li>
+            <li><a href="<?php echo BASE_URL; ?>/views/structure.html">Dashbored</a></li>
+            <li><a href="<?php echo BASE_URL; ?>/php/bookings_report.php">Reports</a></li>
+            <li><a href="<?php echo BASE_URL; ?>/php/logout.php">Logout</a></li>
         <?php endif; ?>
     </ul>
 </nav>
