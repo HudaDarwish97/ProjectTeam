@@ -10,6 +10,8 @@ if ($conn->connect_error) {
     die("Database connection failed: " . $conn->connect_error);
 }
 
+$unreadCount = 0;
+
 // Check if user is logged in
 $isLoggedIn = isset($_SESSION['user_id']);
 $userName = '';
@@ -39,6 +41,8 @@ $conn->close();
             <li><a href="<?php echo BASE_URL; ?>/index.php">Home</a></li>
             <li><a href="<?php echo BASE_URL; ?>/php/login.php">Login</a></li>
             <li><a href="<?php echo BASE_URL; ?>/php/register.php">Register</a></li>
+            
+
 
         <?php elseif ($userRole === 'User'): ?>
             <!-- Header for Regular Users -->
@@ -55,6 +59,34 @@ $conn->close();
 
             <li><a href="<?php echo BASE_URL; ?>/php/logout.php">Logout</a></li>
             <li><a href="<?php echo BASE_URL; ?>/php/MyBookings.php">My Booking</a></li>
+            <?php
+       include "db_connection.php";
+       $query = "SELECT COUNT(*) AS total_count FROM notifications WHERE user_id = ? AND is_read = TRUE";
+       $stmt = $conn->prepare($query);
+       $stmt->execute([$userId]);
+       $no = $stmt->fetch(PDO::FETCH_DEFAULT);
+       $count = $no['total_count'];
+       
+       
+        ?>
+            <li>
+                <?php
+                if ($count !== 0){
+                    echo "<a style='color:orange;' href="."/ProjectTeam/php/notifications.php>"."Notifications"."</a>";
+
+                }else{
+                    echo "<a href="."/ProjectTeam/php/notifications.php>"."Notifications"."</a>";
+
+                }
+                ?>
+                <!-- Notification -->
+                
+                <?php if ($unreadCount > 0): ?>
+             <span class="badge"><?php echo $unreadCount; ?></span>
+             <?php endif; ?>
+            </a>
+            </li>
+
             
         <?php elseif ($userRole === 'Admin'): ?>
             <!-- Header for Admin Users -->
@@ -63,5 +95,8 @@ $conn->close();
             <li><a href="<?php echo BASE_URL; ?>/php/bookings_report.php">Reports</a></li>
             <li><a href="<?php echo BASE_URL; ?>/php/logout.php">Logout</a></li>
         <?php endif; ?>
+
+       
+
     </ul>
 </nav>
