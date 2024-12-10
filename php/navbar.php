@@ -43,27 +43,28 @@ $conn->close();
 
         <?php elseif ($userRole === 'User'): ?>
             <!-- Header for Regular Users -->
-            <li>Welcome, <?php echo htmlspecialchars($userName); ?>!</li>
-
-             <!-- Profile Image -->
-             <?php
-                // Check if user has a profile image, if not use a default one
-                $profileImage = isset($_SESSION['user']['image']) && !empty($_SESSION['user']['image']) ? $_SESSION['user']['image'] : 'img/profile_pic.png';
-                ?>
-                <img src="<?php echo BASE_URL . '/' . $profileImage; ?>" alt="User Profile Picture" class="user-image">
-
+            <li><a href="<?php echo BASE_URL; ?>/index.php">Home</a></li>    
             <li><a href="<?php echo BASE_URL; ?>/views/UserProfile.html">My Profile</a></li>
             <li><a href="<?php echo BASE_URL; ?>/php/logout.php">Logout</a></li>
             <li><a href="<?php echo BASE_URL; ?>/php/MyBookings.php">My Booking</a></li>
             <li><a href="<?php echo BASE_URL; ?>/views/room_browsing.php">Rooms</a></li>
+            <li>Welcome, <?php echo htmlspecialchars($userName); ?>!</li>
+
+<!-- Profile Image -->
+<?php
+   // Check if user has a profile image, if not use a default one
+   $profileImage = isset($_SESSION['user']['image']) && !empty($_SESSION['user']['image']) ? $_SESSION['user']['image'] : 'img/profile_pic.png';
+   ?>
+   <img src="<?php echo BASE_URL . '/' . $profileImage; ?>" alt="User Profile Picture" class="user-image">
+
             
         <?php elseif ($userRole === 'Admin'): ?>
             <!-- Header for Admin Users -->
-            <li>Admin Panel</li>
+            <li><a href="<?php echo BASE_URL; ?>/index.php">Home</a></li>
             <li><a href="<?php echo BASE_URL; ?>/views/structure.html">Dashbored</a></li>
+            <li><a href="<?php echo BASE_URL; ?>/views/room_browsing.php">Rooms</a></li>
             <li><a href="<?php echo BASE_URL; ?>/php/bookings_report.php">Reports</a></li>
             <li><a href="<?php echo BASE_URL; ?>/php/logout.php">Logout</a></li>
-            <li><a href="<?php echo BASE_URL; ?>/views/room_browsing.php">Rooms</a></li>
         <?php endif; ?>
     </ul>
 </nav>

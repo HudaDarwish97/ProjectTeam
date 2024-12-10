@@ -35,8 +35,14 @@ try {
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/room_browsing.css">
+    <link rel="stylesheet" href="../css/firstask.css">
+
+
 </head>
 <body>
+
+<?php include_once '../php/navbar.php'; ?>
+
 
     <div class="row">
         <!-- Left Section: Department Filter -->
