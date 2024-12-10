@@ -18,7 +18,7 @@
     <main class="container">
         <h2 class="page-title">Booking</h2>
       <div class="content">
-        !-- Modal for Room Details -->
+           <!--Modal for Room Details  -->
 <div class="modal">
     <div class="modal-content">
         <span class="modal-close">&times;</span>
