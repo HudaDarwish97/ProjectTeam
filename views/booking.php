@@ -18,7 +18,7 @@
     <main class="container">
         <h2 class="page-title">Booking</h2>
       <div class="content">
-          <!-- Modal for Room Details -->
+        !-- Modal for Room Details -->
 <div class="modal">
     <div class="modal-content">
         <span class="modal-close">&times;</span>
@@ -27,7 +27,17 @@
         <img src="" alt="Room Image">
     </div>
 </div>
-        </div>
+
+<!-- Room Images -->
+<div class="room-images">
+    <div class="room-image">
+        <img src="room1.jpg" alt="Room 1" data-room-id="1">
+    </div>
+    <div class="room-image">
+        <img src="room2.jpg" alt="Room 2" data-room-id="2">
+    </div>
+</div>
+        
 
         <form id="bookingForm">
             <div class="time">
