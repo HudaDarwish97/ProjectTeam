@@ -26,11 +26,31 @@ try {
     
     $stmt->execute();
     
+  
+} catch (PDOException $e) {
+    die("Error saving reply: " . $e->getMessage());
+}
+
+$te = "SELECT user_id AS id FROM comments WHERE comment_id = ?";
+$ye = $conn->prepare($te);
+$ye->execute([$comment_id]);
+$fe = $ye->fetch(PDO::FETCH_DEFAULT);
+$acc = $fe['id'];
+
+
+$query = "INSERT INTO notifications (user_id, message, is_read, created_at) VALUES (:user_id, :message, :is_read, :created_at)";
+    $ste = $conn->prepare($query);
+   
+    $ste->execute([
+        ':user_id' => $acc ,
+        ':message' => $reply_text,
+        ':created_at' => $date,
+        ':is_read' => False
+    ]);
+
+
     // Redirect back to room details page
     header("Location: ../views/room_details.php?room_id=" . $room_id);
     exit();
     
-} catch (PDOException $e) {
-    die("Error saving reply: " . $e->getMessage());
-}
 ?> 
