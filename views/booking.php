@@ -83,7 +83,7 @@
         </div>
     </footer>
 
-    <script src="booking.js"></script>
+    <script src="js/booking.js"></script>
     
     <div class="modal">
         <span class="modal-close">&times;</span>
