@@ -67,7 +67,6 @@ $conn->close();
        $no = $stmt->fetch(PDO::FETCH_DEFAULT);
        $count = $no['total_count'];
        
-       
         ?>
             <li>
                 <?php
