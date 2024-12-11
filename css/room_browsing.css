@@ -1,126 +1,213 @@
-
-/* Department filter section */
-.left-section {
-    padding: 20px;
+/* Department filter section styles */
+.cs-department {
+    background-color: #fdd835; /* Color for CS department */
+    color: white; /* Text color */
 }
 
+.is-department {
+    background-color: #d32f2f; /* Color for IS department */
+    color: white; /* Text color */
+}
+
+.ce-department {
+    background-color: #1976d2; /* Color for CE department */
+    color: white; /* Text color */
+}
+
+/* Styles for department cards */
+.department-card {
+    display: block; /* Block display */
+    width: 100%; /* Full width */
+    text-align: center; /* Center text */
+    border-radius: 10px; /* Rounded corners */
+    transition: transform 0.3s, box-shadow 0.3s; /* Transition effects */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Shadow effect */
+}
+
+.department-card:hover {
+    transform: translateY(-5px); /* Lift on hover */
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
+}
+
+/* Building title styles */
 .building-title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 20px;
+    font-size: 2rem; /* Font size */
+    font-weight: bold; /* Bold text */
+    padding: 20px; /* Internal padding */
+    background-color: #575757; /* Background color */
+    color: white; /* Text color */
+    border-radius: 10px; /* Rounded corners */
+    margin: 20px; /* Margin around the title */
+    display: inline-block; /* Fit content */
 }
 
-.department-btn {
-    margin-bottom: 10px;
-    font-size: 1.1rem;
-    padding: 10px;
+.row, .room-carousel, .col-md-8 {
+    margin: 0;
+    padding: 0;
+    width: 100%; /* Ensure full-width */
+    }
+
+/* Carousel arrow styles */
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    color: rgb(6, 0, 0); 
+    font-size: 2rem; /* Larger arrow size */
+    padding: 12px; /* Increase padding */
+    cursor: pointer;
+    z-index: 1000;
+    border-radius: 50%; /* Keep arrows circular */
+    transition: background-color 0.3s ease; /* Add hover effect */
 }
 
-/* Container for flipping effect */
+
+/* Left and right arrow positioning */
+.carousel-arrow.left {
+    left: 10px;
+}
+
+.carousel-arrow.right {
+    right: 10px;
+}
+
+
+/* Container for room cards with flipping effect */
 .room-card-container {
-    perspective: 1000px; /* Add 3D effect */
-    width: 100%;
-    height: 400px;
-    margin-top: 20px;
+    perspective: 1000px; /* 3D effect */
+    flex: 0 0 400px; /* Ensure the card width is exactly 400px */
+    width: 400px; /* Increase card width */
+    height: 400px; /* Increase card height */
+    margin: 10px; /* Adjust margin for spacing */
+    scroll-snap-align: start; /* Snap alignment */
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1); /* Stronger shadow */
+    transition: box-shadow 0.3s ease; /* Smooth shadow transition */
+}
+
+/* Container for multiple room cards */
+.rooms-container {
+    display: flex; /* Flex layout */
+    scroll-snap-type: x mandatory; /* Snap type */
+    overflow-x: hidden; /* Hide scrollbar */
+    overflow-y: hidden; /* Hide scrollbar */
+    width: calc(400px * 3 + 20px * 2); /* Adjust container width for three large cards + gaps */
+    gap: 5px; /* Increase space between cards */
     margin-bottom: 20px;
-    margin-right: 20px;
 }
 
+.room-card-container:hover {
+    box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
+}
+
+/* Carousel for room cards */
+.room-carousel {
+    display: flex; /* Flex layout */
+    align-items: center; /* Center items vertically */
+    overflow: hidden; /* Hide overflow */
+    position: relative; /* Relative positioning */
+    scroll-snap-type: x mandatory; /* Snap type */
+    gap: 15px; /* Reduce gap between cards */
+    margin-bottom: 20px;
+}
+
+/* Card styles */
 .room-card {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    transform-style: preserve-3d;
-    transition: transform 0.6s; /* Smooth flip transition */
+    width: 400px; /* Card width */
+    height: 100%; /* Full height */
+    position: relative; /* Relative positioning */
+    transform-style: preserve-3d; /* 3D transform preservation */
+    transition: transform 0.6s; /* Transition for flip */
+    margin-bottom: 20px;
 }
 
-/* When the card is flipped */
 .room-card.flipped {
-    transform: rotateY(180deg); /* Flip the card */
+    transform: rotateY(180deg); /* Flip effect */
 }
 
 /* Front of the card */
 .card.front {
-    backface-visibility: hidden; /* Hide front when flipped */
-    border-radius: 10px;
-    height: 100%;
-
+    backface-visibility: hidden; /* Hide back when flipped */
+    border-radius: 10px; /* Rounded corners */
+    height: 100%; /* Full height */
 }
 
 .card.front img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
+    width: 100%; /* Full width */
+    height: 200px; /* Fixed height */
+    object-fit: cover; /* Cover image */
 }
 
+/* Card body styles */
 .card-body {
-    padding: 20px;
+    padding: 25px; /* Internal padding */
 }
 
 .card-title {
-    font-size: 1.25rem;
-    margin-bottom: 15px;
-    color: #333;
+    font-size: 1.25rem; /* Font size */
+    margin-bottom: 15px; /* Bottom margin */
+    color: #333; /* Text color */
 }
 
 .card-text {
-    margin-bottom: 10px;
+    margin-bottom: 10px; /* Bottom margin */
 }
 
+/* Button styles */
 .btn-primary {
-    background-color: #4CAF50;
-    border: none;
-    padding: 10px 20px;
+    background-color: #4CAF50; /* Button color */
+    border: none; /* Remove border */
+    padding: 10px 20px; /* Internal padding */
+    margin-bottom: 20px;
 }
 
 .btn-primary:hover {
-    background-color: #45a049;
+    background-color: #45a049; /* Hover color */
 }
 
 /* Back of the card */
 .card.back {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    transform: rotateY(180deg); /* Ensure the back is rotated */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-size: 2rem;
-    color: #333;
-    backface-visibility: hidden; /* Hide back when flipped */
+    position: absolute; /* Absolute positioning */
+    top: 0; /* Align to top */
+    left: 0; /* Align to left */
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: #f9f9f9; /* Background color */
+    border-radius: 10px; /* Rounded corners */
+    transform: rotateY(180deg); /* Rotate for back */
+    display: flex; /* Flex layout */
+    justify-content: center; /* Center content */
+    align-items: center; /* Center vertically */
+    text-align: center; /* Center text */
+    font-size: 2rem; /* Font size */
+    color: #333; /* Text color */
+    backface-visibility: hidden; /* Hide front when flipped */
 }
-
 
 /* Responsive Design */
 @media (max-width: 768px) {
     .card-img-top {
-        height: 150px;
+        height: 150px; /* Adjust image height */
     }
 
     .time input[type="date"],
     .time input[type="time"] {
-        padding: 10px;
-        font-size: 1.2rem;
+        padding: 10px; /* Internal padding */
+        font-size: 1.2rem; /* Font size */
     }
 
     button {
-        width: 100%;
-        margin: 0;
+        width: 100%; /* Full width for buttons */
+        margin: 0; /* Remove margin */
     }
 }
 
 @media (max-width: 480px) {
     .header {
-        padding: 10px;
+        padding: 10px; /* Adjust header padding */
     }
 
     .header .logo {
-        font-size: 1.2rem;
+        font-size: 1.2rem; /* Adjust logo size */
     }
 }
