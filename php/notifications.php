@@ -25,7 +25,7 @@ $stmt->bind_result($notificationId, $message, $isRead, $createdAt);
 // Mark notifications as read if they haven't been read yet
 if ($isLoggedIn) {
     include "db_connection.php";
-    $updateQuery = "UPDATE notifications SET is_read = FALSE WHERE user_id = ? AND is_read = TRUE";
+    $updateQuery = "UPDATE notifications SET is_read = TRUE WHERE user_id = ? AND is_read = FALSE";
     $updateStmt = $conn->prepare($updateQuery);
     $updateStmt->execute([$userId]);
     $updateStmt->execute();
@@ -143,7 +143,6 @@ if ($isLoggedIn) {
         ?>
                 <div class="notification">
                     <p><strong>Message:</strong> <?php echo htmlspecialchars($notification['message']); ?></p>
-                    <p><strong>Created At:</strong> <?php echo htmlspecialchars($notification['created_at']); ?></p>
                     <p><strong>Read Status:</strong> <?php echo $notification['is_read'] ? 'Read' : 'Unread'; ?></p>
                 </div>
         <?php
