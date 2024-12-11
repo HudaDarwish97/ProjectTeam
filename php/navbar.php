@@ -51,7 +51,7 @@ $conn->close();
             <li><a href="<?php echo BASE_URL; ?>/php/MyBookings.php">My Booking</a></li>
             <li><a href="<?php echo BASE_URL; ?>/views/room_browsing.php">Rooms</a></li>
             <li><a href="<?php echo BASE_URL; ?>/php/logout.php">Logout</a></li>
-            <li><a href="<?php echo BASE_URL; ?>/views/UserProfile.html">My Profile</a></li>
+            <li><a href="<?php echo BASE_URL; ?>/php/user_profile.php">My Profile</a></li>
             <li>Welcome, <?php echo htmlspecialchars($userName); ?>!</li>
 
 <!-- Profile Image -->
