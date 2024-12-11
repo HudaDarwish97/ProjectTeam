@@ -1,236 +1,187 @@
-/* General page styling */
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f5f5dc;
-    color: #000;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-/* Header styling */
-.header {
-    background-color:  rgb(87,81,81);
-    color: white;
-    }
-    
-    .header .logo{
-      font-size: 1.5rem;
-      font-weight: bold;
-    }
-    
-    .header .nav-link{
-      color: white;
-      margin: 0 10px;
-      text-decoration: none;
-    }
-    
-    .header .nav-link:hover{
-      text-decoration: underline;
-    }
-   
-    h4 {
-      color: black;
-      margin-bottom: 0.5em;
-    }
-
-/* Footer styling */
-.footer {
-    background-color: #575151;
-    color: white;
-    text-align: center;
-    padding: 20px;
-    margin-top: auto;
-}
-  
-/* Card styling */
-.card {
-  max-width: 800px;
-  margin: 30px auto;
-  border-radius: 12px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Softer shadow */
-  overflow: hidden;
-  background-color: #f9f9f9; /* Light background for contrast */
-}
-
-/* Card body styling */
-.card-body {
-  padding: 30px; /* Increased padding for a spacious feel */
-  display: flex;
-  flex-direction: column;
-  gap: 25px; /* Larger gap between elements */
-  font-family: 'Arial', sans-serif; /* Clean font */
-  color: #333; /* Neutral text color */
-}
-
-/* Card title */
-.card-title {
-  font-size: 2.2rem; /* Slightly smaller title */
-  color: #34495e; /* Deep, professional title color */
-  font-weight: 700;
-  text-align: center;
-  margin-bottom: 20px;
-  border-bottom: 2px solid #1abc9c; /* Accent border */
-  padding-bottom: 10px;
-}
-
-/* Text details */
-.card-text {
-  font-size: 1.1rem;
-  line-height: 1.6; /* Improved readability */
-}
-
-/* Features styling */
-.features {
-  display: grid; /* Grid layout for better responsiveness */
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 20px; /* Uniform spacing between items */
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
-}
-
-.features div {
-  text-align: center;
-  font-size: 1.1rem; /* Clean text size */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.features i {
-  font-size: 2.5rem; /* Larger icons for visual appeal */
-  margin-bottom: 8px;
-  color: #16a085; /* Brighter icon color */
-}
-
-/* Button group styling */
-.button-group {
-  display: flex;
-  justify-content: center;
-  gap: 15px; /* Space between buttons */
-}
-
-.button-group .btn {
-  font-size: 1rem;
-  padding: 10px 20px;
-  border-radius: 5px;
-}
-
-.btn-success {
-  background-color: #1abc9c;
-  border: none;
-  color: white;
-  transition: background-color 0.3s ease;
-}
-
-.btn-success:hover {
-  background-color: #16a085; /* Darker hover color */
-}
-
-.btn-secondary {
-  background-color: #7f8c8d;
-  border: none;
-  color: white;
-  transition: background-color 0.3s ease;
-}
-
-.btn-secondary:hover {
-  background-color: #95a5a6; /* Softer hover color */
-}
-
-
-  
- /* Ensure the buttons are inside the card */
-.carousel-inner {
-  position: relative; /* Make sure the inner container is relative for positioning */
-  transition: transform 1s ease-in-out;
-}
-
-/* Style the images */
-.carousel-inner img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  border-radius: 15px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  transition: transform 0.5s ease;
-}
-
-.carousel-inner img:hover {
-  transform: scale(1.05);
-}
-
-/* Button positioning inside the card */
-.carousel-controls {
-  position: absolute;
-  top: 50%;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  transform: translateY(-50%);
-}
-
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-  background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 50%;
-  padding: 10px;
-}
-
-.carousel-control-prev-icon:hover,
-.carousel-control-next-icon:hover {
-  background-color: rgba(0, 0, 0, 0.7);
-}
-
+/* =========================
+   Card Styling
+   ========================= */
+   .card {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 25px; /* Main padding for card */
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Softer shadow */
+    overflow: hidden;
+    background-color: #f9f9f9; /* Light background for contrast */
+  }
   
   .card-body {
-    padding: 20px;
+    padding: 30px; /* Increased padding for spacious feel */
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 25px; /* Larger gap between elements */
+    font-family: 'Arial', sans-serif; /* Clean font */
+    color: #333; /* Neutral text color */
   }
   
   .card-title {
-    font-size: 2rem;
-    color: #2c3e50;
-    font-weight: bold;
+    font-size: 2.2rem; /* Title size */
+    color: #34495e; /* Professional title color */
+    font-weight: 700;
     text-align: center;
-    margin-bottom: 15px;
-    text-transform: capitalize;
-    border-bottom: 2px solid #2ecc71;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #1abc9c; /* Accent border */
     padding-bottom: 10px;
   }
   
+  
   .card-text {
     font-size: 1.1rem;
+    line-height: 1.6; /* Improved readability */
     margin-bottom: 0.5rem;
   }
   
+  /* =========================
+     Features Section
+     ========================= */
   .features {
-    display: flex;
-    gap: 15px;
-    justify-content: space-between;
+    display: grid; /* Grid layout for responsiveness */
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 20px; /* Uniform spacing between items */
+    justify-content: center;
+    align-items: center;
     margin-top: 20px;
   }
   
   .features div {
     text-align: center;
-    font-size: 1rem;
+    font-size: 1.1rem; /* Text size for features */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   
   .features i {
-    font-size: 1.5rem;
-    margin-bottom: 5px;
+    font-size: 2.5rem; /* Larger icons for visual appeal */
+    margin-bottom: 8px;
+    color: #16a085; /* Brighter icon color */
   }
   
-  .btn {
-    margin-right: 10px;
-    padding: 10px 20px;
-  } 
+  /* =========================
+     Button Group Styling
+     ========================= */
+  .button-group {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Space between buttons */
+  }
   
+  .button-group .btn {
+    font-size: 1rem;
+    padding: 10px 20px;
+    border-radius: 5px;
+  }
+  
+  .btn-success {
+    background-color: #1abc9c;
+    border: none;
+    color: white;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-success:hover {
+    background-color: #16a085; /* Darker hover color */
+  }
+  
+  .btn-secondary {
+    background-color: #7f8c8d;
+    border: none;
+    color: white;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-secondary:hover {
+    background-color: #95a5a6; /* Softer hover color */
+  }
+  
+  /* =========================
+     Carousel Styling
+     ========================= */
+     
+ /* Customizing the carousel controls */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    width: 50px;
+    height: 50px;
+    border-radius: 50%; /* Make the controls round */
+    background-size: 100%, 100%; /* Ensure the arrow icon fills the control */
+}
+
+/* Customize hover effect */
+.carousel-control-prev-icon:hover,
+.carousel-control-next-icon:hover {
+    background-color: rgba(0, 0, 0, 0.8); /* Darker background on hover */
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: 60px; /* Width of the entire control area */
+}
+
+/* Adjust arrow positioning to center vertically */
+.carousel-control-prev {
+    left: 15px;
+}
+
+.carousel-control-next {
+    right: 15px;
+}
+
+   /* =========================
+     Comment Section
+     ========================= */
+     #comment-section {
+      margin: 20px 0;
+      padding: 10px;
+      border-top: 1px solid #ccc;
+    }
+    
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    
+        
+    /* =========================
+       Comments Display
+       ========================= */
+    #comments-display {
+      margin-top: 20px;
+    }
+    
+    #comments-list {
+      list-style-type: none;
+      padding: 0;
+    }
+    
+    #comments-list li {
+      margin-bottom: 10px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 5px;
+    }
+  
+  /* =========================
+     Responsive Design
+     ========================= */
   @media screen and (max-width: 768px) {
     .container {
       padding: 10px;
@@ -241,7 +192,7 @@ body {
     }
   
     .carousel-inner img {
-      height: 250px;
+      height: 250px; /* Fixed height for smaller screens */
     }
   
     .header .nav {
@@ -265,65 +216,4 @@ body {
     }
   }
   
-  .btn-success {
-    background-color: #27ae60;
-    border: none;
-  }
-  
-  .btn-success:hover {
-    background-color: #2ecc71;
-  }
-  
-  .btn-secondary {
-    background-color: #95a5a6;
-  }
-  
-  .btn-secondary:hover {
-    background-color: #7f8c8d;
-  }
-  
-
-  #comment-section {
-    margin: 20px 0;
-    padding: 10px;
-    border-top: 1px solid #ccc;
-}
-.card {
-    padding: 25px;
-    margin-top: 25px;
-}
-textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #45a049;
-}
-
-#comments-display {
-    margin-top: 20px;
-}
-
-#comments-list {
-    list-style-type: none;
-    padding: 0;
-}
-
-#comments-list li {
-    margin-bottom: 10px;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 5px;
-}
+ 

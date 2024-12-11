@@ -29,17 +29,11 @@ if (!$room) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
 
-    <!-- Bootstrap 5 CSS -->
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0-alpha1/css/bootstrap.min.css" rel="stylesheet">
-
-<!-- Popper.js (required by Bootstrap) -->
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-
-<!-- Bootstrap 5 JS -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0-alpha1/js/bootstrap.min.js"></script>
-
-        
+    <link rel="stylesheet" href="../css/firstask.css">    
     <link rel="stylesheet" href="../css/room_details.css">
 </head>
 <body>
@@ -129,9 +123,10 @@ if (!$room) {
 
 
     <script>
-    var myCarousel = document.getElementById('roomImagesCarousel');
-    var carousel = new bootstrap.Carousel(myCarousel);
-</script>
+          var myCarousel = document.getElementById('roomImagesCarousel');
+          var carousel = new bootstrap.Carousel(myCarousel);
+    </script>
+
 
 <div class="card">    
     <!-- Noor comments section -->   

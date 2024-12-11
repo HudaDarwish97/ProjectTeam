@@ -81,21 +81,21 @@ CREATE TABLE `rooms` (
 
 
 INSERT INTO `rooms` (`room_id`, `room_name`, `room_type`, `building`, `floor`, `department`, `capacity`, `image1`, `image2`, `image3`, `image4`, `image5`, `availability_status`, `description`) VALUES
-(1, 'Room 021', 'Lab', 'IT', 0, 'IS', 45, 'room.jpeg', 'room1.jpeg', 'room2.jpeg', 'room3.jpeg', 'room4.jpeg', 'Available', 'A spacious lab equipped with the latest technology.'),
-(2, 'Room 1006', 'Lab', 'IT', 1, 'IS', 50, 'room.jpeg', 'room1.jpeg', 'room2.jpeg', 'room3.jpeg', 'room4.jpeg', 'Available', 'A spacious lab equipped with the latest technology.'),
-(3, 'Room 2005', 'Lab', 'IT', 2, 'IS', 50, 'room.jpeg', 'room1.jpeg', 'room2.jpeg', 'room3.jpeg', 'room4.jpeg', 'Available', 'A spacious lab equipped with the latest technology.'),
-(4, 'Room 032', 'Lecture', 'IT', 0, 'IS', 30, 'room.jpeg', 'room1.jpeg', 'room2.jpeg', 'room3.jpeg', 'room4.jpeg', 'Available', 'Ideal for lectures and workshops, large and spacious area for explanation.'),
-(5, 'Room 2008', 'Lecture', 'IT', 2, 'IS', 32, 'room.jpeg', 'room1.jpeg', 'room2.jpeg', 'room3.jpeg', 'room4.jpeg', 'Available', 'Ideal for lectures and workshops, large and spacious area for explanation.'),
-(6, 'Room 051', 'Lab', 'IT', 0, 'CS', 45, 'room1.jpeg', 'room2.jpeg', 'room3.jpeg', 'room4.jpeg', 'room5.jpeg', 'Available', 'A spacious lab equipped with the latest technology.'),
-(7, 'Room 1049', 'Lab', 'IT', 1, 'CS', 50, 'room1.jpeg', 'room2.jpeg', 'room3.jpeg', 'room4.jpeg', 'room5.jpeg', 'Available', 'A spacious lab equipped with the latest technology.'),
-(8, 'Room 2050', 'Lab', 'IT', 2, 'CS', 50, 'room1.jpeg', 'room2.jpeg', 'room3.jpeg', 'room4.jpeg', 'room5.jpeg', 'Available', 'A spacious lab equipped with the latest technology.'),
-(9, 'Room 049', 'Lecture', 'IT', 0, 'CS', 30, 'room1.jpeg', 'room2.jpeg', 'room3.jpeg', 'room4.jpeg', 'room5.jpeg', 'Available', 'Ideal for lectures and workshops, large and spacious area for explanation.'),
-(10, 'Room 1047', 'Lecture', 'IT', 1, 'CS', 55, 'room1.jpeg', 'room2.jpeg', 'room3.jpeg', 'room4.jpeg', 'room5.jpeg', 'Available', 'Ideal for lectures and workshops, large and spacious area for explanation.'),
-(11, 'Room 079', 'Lab', 'IT', 0, 'CE', 45, 'room1.jpeg', 'room2.jpeg', 'room3.jpeg', 'room4.jpeg', 'room5.jpeg', 'Available', 'A spacious lab equipped with the latest technology.'),
-(12, 'Room 1081', 'Lab', 'IT', 1, 'CE', 50, 'room1.jpeg', 'room2.jpeg', 'room3.jpeg', 'room4.jpeg', 'room5.jpeg', 'Available', 'A spacious lab equipped with the latest technology.'),
-(13, 'Room 2091', 'Lab', 'IT', 2, 'CE', 50, 'room1.jpeg', 'room2.jpeg', 'room3.jpeg', 'room4.jpeg', 'room5.jpeg', 'Available', 'A spacious lab equipped with the latest technology.'),
-(14, 'Room 085', 'Lecture', 'IT', 0, 'CE', 30, 'room1.jpeg', 'room2.jpeg', 'room3.jpeg', 'room4.jpeg', 'room5.jpeg', 'Available', 'Ideal for lectures and workshops, large and spacious area for explanation.'),
-(15, 'Room 1086', 'Lecture', 'IT', 1, 'CE', 55, 'room1.jpeg', 'room2.jpeg', 'room3.jpeg', 'room4.jpeg', 'room5.jpeg', 'Available', 'Ideal for lectures and workshops, large and spacious area for explanation.');
+(1, 'Room 021', 'Lab', 'IT', 0, 'IS', 45, 'roomL1.png', 'roomL2.jpg', 'roomL3.jpg', 'roomL4.jpg',  'roomL5.jpeg' 'Available', 'A spacious lab equipped with the latest technology.'),
+(2, 'Room 1006', 'Lab', 'IT', 1, 'IS', 50, 'roomL2.jpg', 'roomL1.png', 'roomL4.jpg', 'roomL5.jpeg', 'roomL3.jpg', 'Available', 'A spacious lab equipped with the latest technology.'),
+(3, 'Room 2005', 'Lab', 'IT', 2, 'IS', 50, 'roomL3.jpg', 'roomL4.jpg', 'roomL2.jpg', 'roomL1.png', 'roomL5.jpeg', 'Available', 'A spacious lab equipped with the latest technology.'),
+(4, 'Room 032', 'Lecture', 'IT', 0, 'IS', 30, 'roomC1.jpeg', 'roomC3.jpg', 'roomC4.jpg', 'roomC2.jpg', 'roomC5.jpeg', 'Available', 'Ideal for lectures and workshops, large and spacious area for explanation.'),
+(5, 'Room 2008', 'Lecture', 'IT', 2, 'IS', 32, 'roomC2.jpg', 'roomC1.jpeg', 'roomC3.jpg', 'roomC4.jpg', 'roomC6.jpeg', 'Available', 'Ideal for lectures and workshops, large and spacious area for explanation.'),
+(6, 'Room 051', 'Lab', 'IT', 0, 'CS', 45, 'roomL4.jpg', 'roomL2.jpg', 'roomL5.jpeg', 'roomL1.png', 'roomL3.jpg', 'Available', 'A spacious lab equipped with the latest technology.'),
+(7, 'Room 1049', 'Lab', 'IT', 1, 'CS', 50, 'roomL5.jpeg', 'roomL1.png', 'roomL2.jpg', 'roomL4.jpg', 'roomL6.jpg', 'Available', 'A spacious lab equipped with the latest technology.'),
+(8, 'Room 2050', 'Lab', 'IT', 2, 'CS', 50, 'roomL6.jpg', 'roomL3.jpg', 'roomL1.png', 'roomL2.jpg', 'roomL5.jpeg', 'Available', 'A spacious lab equipped with the latest technology.'),
+(9, 'Room 049', 'Lecture', 'IT', 0, 'CS', 30, 'roomC3.jpg', 'roomC5.jpeg', 'roomC6.jpeg', 'roomC1.jpeg', 'roomC2.jpg', 'Available', 'Ideal for lectures and workshops, large and spacious area for explanation.'),
+(10, 'Room 1047', 'Lecture', 'IT', 1, 'CS', 55, 'roomC4.jpg', 'roomC3.jpg', 'roomC6.jpeg', 'roomC5.jpeg', 'roomC2.jpg', 'Available', 'Ideal for lectures and workshops, large and spacious area for explanation.'),
+(11, 'Room 079', 'Lab', 'IT', 0, 'CE', 45, 'roomL7.jpeg', 'roomL1.png', 'roomL4.jpg', 'roomL5.jpeg', 'roomL3.jpg', 'Available', 'A spacious lab equipped with the latest technology.'),
+(12, 'Room 1081', 'Lab', 'IT', 1, 'CE', 50, 'roomL8.jpg', 'roomL2.jpg', 'roomL3.jpg', 'roomL4.jpg',  'roomL5.jpeg', 'Available', 'A spacious lab equipped with the latest technology.'),
+(13, 'Room 2091', 'Lab', 'IT', 2, 'CE', 50, 'roomL9.jpg', 'roomL8.jpg', 'roomL4.jpg', 'roomL2.jpg', 'roomL1.png', 'Available', 'A spacious lab equipped with the latest technology.'),
+(14, 'Room 085', 'Lecture', 'IT', 0, 'CE', 30, 'roomC5.jpeg', 'roomC3.jpg', 'roomC4.jpg', 'roomC2.jpg', 'roomC6.jpeg', 'Available', 'Ideal for lectures and workshops, large and spacious area for explanation.'),
+(15, 'Room 1086', 'Lecture', 'IT', 1, 'CE', 55, 'roomC6.jpeg', 'roomC1.jpeg', 'roomC3.jpg', 'roomC4.jpg', 'roomC5.jpeg', 'Available', 'Ideal for lectures and workshops, large and spacious area for explanation.');
 
 
 CREATE TABLE `users` (

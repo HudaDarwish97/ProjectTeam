@@ -86,7 +86,7 @@ try {
                         <div class="room-card">
                             <!-- Front of the card -->
                             <div class="card front">
-                                <img src="../img/<?= htmlspecialchars($room['image1'] ?? 'default_image.jpg') ?>" class="card-img-top" alt="Room Image">
+                                <img src="../img/<?= htmlspecialchars($room['image1']) ?>" class="card-img-top" alt="Room Image">
                                 <div class="card-body">
                                     <h5 class="card-title">
                                         <i class="room-icon bi bi-door-closed"></i>
