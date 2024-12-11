@@ -1,3 +1,26 @@
+<?php
+session_start();
+
+include '../php/db_connection.php';
+
+// Retrieve room_id from GET parameters and validate it
+$room_id = $_GET['room_id'] ?? null;
+if (!$room_id) {
+    die("Room ID is required.");
+}
+
+// Fetch room details
+$query = $conn->prepare("SELECT * FROM rooms WHERE room_id = :room_id");
+$query->bindParam(':room_id', $room_id);
+$query->execute();
+$room = $query->fetch(PDO::FETCH_ASSOC);
+
+if (!$room) {
+    die("Room not found.");
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -68,7 +91,7 @@
             <div class="actions mt-4">
              <button type="submit" class="confirm-btn" id="confirmBtn">Confirm</button>
                <a href="room_browsing.php" class="btn modify-btn">Modify </a>
-               <li><a href="<?php echo BASE_URL; ?>/index.php">Cancel </a></li>
+               <li class="cancel"><a href="<?php echo BASE_URL; ?>/index.php">Cancel</a></li>
               </div>
         </form>
     </main>
