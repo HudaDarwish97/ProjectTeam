@@ -25,11 +25,11 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Information</title>
 
-    <nav>       
+  <nav>       
         <ul>
             <li><a href="structure.html">Admin Dashboard</a></li>
             <li><a href="profile.html">Profile</a></li> 
-            <li><a href="#Switch">Switch Account</a></li>
+            <li><a href="login.php">Switch Account</a></li>
             <li><a href="NotesPage.html">Notes</a></li>
         </ul>
     </nav>
