@@ -21,7 +21,7 @@
         <h2 class="page-title">Booking</h2>
            <!--Modal for Room Details  -->
 
-        <form id="bookingForm">
+        <form id="bookingForm" action="../php/check_conflicts.php" method="POST">
             <div class="time">
                 <h4>Booking Time:</h4>
                 <input type="hidden" id="room_id" name="room_id">
@@ -51,12 +51,28 @@
                 </div>
                 <div id="booking-message" class="alert d-none"></div>
             </div>
-            
+            <script>
+                document.getElementById('bookingForm').addEventListener('submit', function(event) {
+                    event.preventDefault(); // Prevent the default form submission
+                    if (!isLoggedIn()) { // Check if the user is logged in
+                        alert('Please log in to confirm your booking.'); // Alert message
+                        return; // Exit the function
+                    }
+                    // Call a function to check for conflicts
+                    checkForConflicts();
+                });
+
+                function isLoggedIn() {
+                    // Implement your logic to check if the user is logged in
+                    // For example, check a session variable or a cookie
+                    return false; // Change this to your actual login check
+                }
+            </script>
 
             <div class="actions mt-4">
              <button type="submit" class="confirm-btn" id="confirmBtn">Confirm</button>
-               <a href="room_browsing.php" class="btn modify-btn">Modify </a>
-              </div>
+               <a href="room_browsing.php" class="btn modify-btn" id="modifyBtn">Modify </a>
+            </div>
         </form>
     </main>
 
