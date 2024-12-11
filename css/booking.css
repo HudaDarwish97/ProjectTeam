@@ -4,7 +4,7 @@ body {
   background-color: rgb(245,245,220);
   color: #000;
   margin: 0;
-  padding: 0;
+  padding: 10px;
   min-height: 100vh;
   display: 100%;
   flex-direction: column;
@@ -79,18 +79,6 @@ body {
       }
    
  /* my style*/
-/* Status Section */
-.conflict-status{
-    display: flex;
-    justify-content: space-between;
-    gap: 1em;
-    margin: 2em 0;
-    flex: 1;
-    background: whitesmoke;
-    padding: 1em;
-    border-radius: 10px;
-  }
-
   /* Add these to your existing CSS */
   .alert {
     padding: 15px;
@@ -119,6 +107,7 @@ body {
   }
   /* buttons -confirm ,cancel , modify*/
    .confirm-btn {
+    display: inline-block;
     background-color: #4CAF50;
     color: white;
     padding: 0.8em 2em;
@@ -127,9 +116,11 @@ body {
     border-radius: 5px;
     font-size: 1em;
     cursor: pointer;
+    
   }
   
   .modify-btn {
+    display: inline-block;
     background-color: #FFC107;
     color: white;
     padding: 0.8em 2em;
