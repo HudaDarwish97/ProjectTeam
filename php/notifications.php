@@ -45,7 +45,7 @@ if ($isLoggedIn) {
             font-family: Arial, sans-serif;
             background-color: rgb(245, 245, 220);
             margin: 0;
-            padding: 0;
+            padding: 30px 30px 30px 30px;
             display: flex;
             flex-direction: column;
             min-height: 100vh;            color: #333; /* Slightly lighter for readability */
@@ -66,7 +66,7 @@ if ($isLoggedIn) {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            padding: 20px;
+            padding: 0px;
             margin-left: 20px;
         }
 
@@ -74,10 +74,12 @@ if ($isLoggedIn) {
             background-color: #ffffff;
             border: 1px solid #ddd;
             border-radius: 8px;
-            padding: 15px;
+            padding: 5px 15px;
+            display:flex;
+            flex-direction: column;
             margin-bottom: 15px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            width: 100%;
+            width: 50%;
             transition: transform 0.2s ease; /* Smooth hover effect */
         }
 
@@ -129,7 +131,7 @@ if ($isLoggedIn) {
 </head>
 <body>
     <h1>Notifications</h1>
-
+<div>
    <?php if ($isLoggedIn): ?>
         <?php
         $fetch = "Select * from notifications WHERE user_id = ?";
@@ -157,6 +159,6 @@ if ($isLoggedIn) {
 
     <a href="javascript:history.back()">Go back</a> 
 
-    
+    </div>
 </body>
 </html>
