@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 
             } else {
                 $_SESSION['error'] = "Invalid email or password.";
-                header("Location: <php>login.php"); // Redirect back to login
+                header("Location: login.php"); // Redirect back to login
                 exit();
             }
         } catch (PDOException $e) {
