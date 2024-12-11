@@ -20,7 +20,7 @@ try {
 }
 
 // Query for the user's bookings
-$query = "SELECT rooms.room_name, booking_date, time_slot, status 
+$query = "SELECT rooms.room_name, bookings.booking_id, booking_date, time_slot, status 
           FROM bookings 
           INNER JOIN rooms ON bookings.room_id = rooms.room_id 
           WHERE bookings.user_id = :user_id";
