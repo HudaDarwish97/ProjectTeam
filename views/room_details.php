@@ -136,8 +136,8 @@ if (!$room) {
       </div>
     </div>
     <div class="button-group">
-      <a href="booking.html?room_id=<?= $room['room_id'] ?>" class="btn btn-success">Book it</a>
-      <a href="room_browsing.php" class="btn btn-secondary">Back to Browse</a>
+    <a href="booking.php?room_id=<?= $room['room_id'] ?>" class="btn btn-success">Book it</a>
+    <a href="room_browsing.php" class="btn btn-secondary">Back to Browse</a>
     </div>
   </div>
 </div>

@@ -1,21 +1,3 @@
-<?php
-$host = 'localhost';
-$dbname = 'room_booking';
-$username = 'root';
-$password = '';
-
-try {
-    $conn = new mysqli($host, $username, $password, $dbname);
-    if ($conn->connect_error) {
-        throw new Exception("Connection failed: " . $conn->connect_error);
-    }
-} catch (Exception $e) {
-    error_log("Database connection error: " . $e->getMessage());
-    die("Connection failed. Please try again later.");
-}
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -31,15 +13,28 @@ try {
     </head>
     <body>
         
-             <?php include_once '../php/navbar.php'; ?>
 
        <!-- Room Booking Section -->
     <main class="container">
         <h2 class="page-title">Booking</h2>
       <div class="content">
-            <!-- Include room details from room_details.php -->
-            <?php include 'room_details.php'; ?>
-        </div>
+           <!--Modal for Room Details  -->
+<div class="modal">
+    <div class="modal-content">
+        <span class="modal-close">&times;</span>
+        <h2 id="room-number"></h2>
+        <p id="room-description"></p>
+        <img src="" alt="Room Image">
+    </div>
+</div>
+
+<!-- Room Images -->
+<div class="room-images">
+    <div class="room-image">
+        <img src="room1.jpg" alt="Room 1" data-room-id="1">
+    </div>
+</div>
+        
 
         <form id="bookingForm">
             <div class="time">
@@ -48,6 +43,11 @@ try {
                 
                 <label for="date">Date:</label>
                 <input type="date" id="date" name="date" required min="{{ today }}">
+                 <script>
+                   document.addEventListener('DOMContentLoaded', function() {
+                    const today = new Date().toISOString().split('T')[0];
+                  document.getElementById('date').setAttribute('min', today);    });
+                  </script>
 
                 <label for="start_time">Start Time:</label>
                 <input type="time" id="start_time" name="start_time" required min="08:00" max="23:00">
@@ -69,10 +69,10 @@ try {
             
 
             <div class="actions mt-4">
-                <button type="submit" class="confirm-btn" id="confirmBtn">Confirm</button>
-                <button type="button" class="modify-btn" id="modifyBtn">Modify</button>
-                <button type="button" class="cancel-btn" id="cancelBtn">Cancel</button>
-            </div>
+             <button type="submit" class="confirm-btn" id="confirmBtn">Confirm</button>
+               <a href="room_browsing.php" class="btn modify-btn">Modify </a>
+               <a href="index.php" class="btn cancel-btn"> Cancel </a>
+              </div>
         </form>
     </main>
 
@@ -90,11 +90,6 @@ try {
         <img src="" alt="Modal Image">
     </div>
     
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const today = new Date().toISOString().split('T')[0];
-            document.getElementById('date').setAttribute('min', today);
-        });
-    </script>
+   
     </body>
 </html>
