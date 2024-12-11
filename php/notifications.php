@@ -107,7 +107,7 @@ if ($isLoggedIn) {
         a {
             display: block;
             width: fit-content;
-            margin: 20px auto;
+           
             padding: 10px 15px;
             background-color: rgb(87, 81, 81);
             color: #ffffff;
