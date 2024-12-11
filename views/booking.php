@@ -20,7 +20,9 @@
    <main class="container">
         <h2 class="page-title">Booking</h2>
            <!--Modal for Room Details  -->
-
+           
+          <!-- <?php include_once $_SERVER['DOCUMENT_ROOT'] . '/ProjectTeam/php/get_room_details.php'; ?>  -->
+           
         <form id="bookingForm" action="../php/check_conflicts.php" method="POST">
             <div class="time">
                 <h4>Booking Time:</h4>
@@ -67,6 +69,10 @@
                     // For example, check a session variable or a cookie
                     return false; // Change this to your actual login check
                 }
+
+                function checkForConflicts() {
+                    // ... AJAX logic to check for conflicts ...
+                }
             </script>
 
             <div class="actions mt-4">
@@ -90,6 +96,17 @@
         <img src="" alt="Modal Image">
     </div>
     
-   
+    <script>
+    fetch('php/get_room_details.php?room_id=1049')
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                document.getElementById('roomDetailsContainer').innerHTML = data.html;
+            } else {
+                console.error('Room not found');
+            }
+        })
+        .catch(error => console.error('Error fetching room details:', error));
+    </script>
     </body>
 </html>

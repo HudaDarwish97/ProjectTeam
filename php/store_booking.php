@@ -32,6 +32,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ':time_slot' => $timeSlot
     ]);
 
-    echo json_encode(['success' => true]);
+    echo json_encode(['success' => true, 'message' => 'Booking confirmed successfully.']);
 }
 ?> 

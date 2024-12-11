@@ -21,10 +21,17 @@ if (isset($_GET['room_id'])) {
     if ($room) {
         echo json_encode([
             'success' => true,
-            'room_number' => $room['room_name'],
-            'description' => $room['description'],
-            'capacity' => $room['capacity'],
-            'availability' => $room['availability_status']
+            'html' => '<div class="card">
+                          <div class="card-body">
+                            <h2 class="card-title">' . htmlspecialchars($room['room_name']) . '</h2>
+                            <hr style="border-top: 2px solid #1abc9c;"/>
+                            <p><strong>Type:</strong> ' . (isset($room['type']) ? htmlspecialchars($room['type']) : 'N/A') . '</p>
+                            <p><strong>Department:</strong> ' . htmlspecialchars($room['department']) . '</p>
+                            <p><strong>Floor:</strong> ' . htmlspecialchars($room['floor']) . '</p>
+                            <p><strong>Capacity:</strong> ' . htmlspecialchars($room['capacity']) . '</p>
+                            <p><strong>Description:</strong> ' . htmlspecialchars($room['description']) . '</p>
+                          </div>
+                       </div>'
         ]);
     } else {
         echo json_encode(['success' => false]);
