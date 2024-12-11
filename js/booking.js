@@ -49,7 +49,20 @@ document.addEventListener('DOMContentLoaded', function() {
         // Call the checkForConflicts function here
         checkForConflicts(); // Ensure this is called to check for conflicts before confirming
 
-        // The rest of your form submission logic...
+        // After checking for conflicts, proceed to store the booking
+        fetch('../php/store_booking.php', {
+            method: 'POST',
+            body: new FormData(bookingForm)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert("Your booking has been successfully confirmed!");
+            } else {
+                alert("There was an error confirming your booking.");
+            }
+        })
+        .catch(error => console.error('Error:', error));
     });
 
     // Function to check if the user is logged in
@@ -119,11 +132,12 @@ document.addEventListener('DOMContentLoaded', function() {
             if (data.conflict) {
                 document.getElementById('conflict-message').classList.remove('d-none');
                 document.getElementById('no-conflict-message').classList.add('d-none');
+                document.getElementById('booking-message').innerText = "Booking failed due to a conflict.";
             } else {
                 document.getElementById('no-conflict-message').classList.remove('d-none');
                 document.getElementById('conflict-message').classList.add('d-none');
+                document.getElementById('booking-message').innerText = "No conflicts found. You can proceed to confirm your booking.";
             }
-            document.getElementById('booking-message').innerText = data.message;
             document.getElementById('booking-message').classList.remove('d-none');
         })
         .catch(error => console.error('Error:', error));
