@@ -271,3 +271,88 @@ input[type="time"]::-webkit-time-picker-indicator {
     font-size: 16px;
   }
 }
+
+/* Navigation Bar */
+.navbar {
+  background-color: #333; /* Dark background for contrast */
+  padding: 1rem 20px; /* Padding around navbar */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+/* Container Styling */
+.navbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Logo Styling */
+.navbar .logo {
+  text-decoration: none; /* Remove underline */
+  display: flex;
+  align-items: center;
+}
+
+.navbar .logo img {
+  max-height: 50px; /* Limit the height of the logo */
+  width: auto; /* Maintain aspect ratio */
+  transition: transform 0.3s ease; /* Logo hover effect */
+}
+
+.navbar .logo:hover img {
+  transform: scale(1.05); /* Slightly enlarge logo on hover */
+}
+
+/* Navigation Links Styling */
+.navbar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.navbar li {
+  margin: 0 15px;
+}
+
+.navbar li:first-child {
+  margin-right: auto; /* Pushes the other items to the right */
+}
+
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 10px 15px;
+  display: inline-block;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border-radius: 5px;
+}
+
+.navbar a:hover {
+  background-color: #575757; /* Background color on hover */
+  color: #fff; /* Text color on hover */
+}
+
+/* User Greeting Styling */
+.navbar li {
+  color: #ddd;
+  font-size: 16px;
+}
+
+.user-image {
+  width: 30px; /* Adjust width */
+  height: 30px; /* Adjust height */
+  border-radius: 50%; /* Makes it a circle */
+  object-fit: cover; /* Ensures the image doesn't get distorted */
+  margin-left: 10px; /* Space between the text and the image */
+}
+
