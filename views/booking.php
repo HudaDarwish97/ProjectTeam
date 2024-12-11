@@ -73,5 +73,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm'])) {
         <button type="submit" class="confirm-btn" id="confirmBtn" name="confirm" <?php echo !isset($_SESSION['user_id']) ? 'disabled' : ''; ?>>Confirm</button>
         <a href="room_browsing.php" class="btn modify-btn" id="modifyBtn">Modify </a>
         </form>
+    <!--footer-->
+    <footer class="footer py-3">
+        <div class="text-center">
+            <p>&copy; 2024 IT Collage Room Booking System. All rights reserved.</p>
+        </div>
+    </footer>
+
 </body>
 </html>
