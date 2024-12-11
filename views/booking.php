@@ -13,6 +13,8 @@
     </head>
     <body>
         
+    <?php include_once '../php/navbar.php'; ?>
+
 
        <!-- Room Booking Section -->
     <main class="container">
