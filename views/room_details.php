@@ -176,6 +176,10 @@ if (!$room) {
                     echo "<p><small>Posted At: " . htmlspecialchars($comment['created_at']) . "</small></p>";
                     echo "</div>";
                     
+
+
+                    
+                    if (isset($_SESSION['user_role']) && $_SESSION['user_role'] == 'Admin' ){
                     // Add reply form for each comment
                     echo "<div class='reply-form-container'>";
                     echo "<button class='btn btn-sm btn-primary show-reply-form'>Reply</button>";
@@ -186,7 +190,8 @@ if (!$room) {
                     echo "<button type='submit' class='btn btn-sm btn-success mt-2'>Submit Reply</button>";
                     echo "</form>";
                     echo "</div>";
-                    
+                }
+
                     // Display existing replies
                     $reply_stmt = $conn->prepare("SELECT 
                             r.reply_text,

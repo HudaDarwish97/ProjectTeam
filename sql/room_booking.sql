@@ -2,11 +2,18 @@ CREATE DATABASE IF NOT EXISTS `room_booking` DEFAULT CHARACTER SET utf8mb4 COLLA
 
 USE `room_booking`;
 
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Dec 10, 2024 at 09:50 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
-
--- Set the correct database to use
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -17,7 +24,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `room_booking`
 --
-
 
 -- --------------------------------------------------------
 
@@ -84,12 +90,13 @@ CREATE TABLE `comments` (
 --
 
 INSERT INTO `comments` (`comment_id`, `user_id`, `room_id`, `comment_text`, `created_at`) VALUES
+(0, 0, 6, 'fff', '2024-12-10 19:12:14'),
 (1, 1, 1, 'Great room for lectures, everything works fine.', '2024-11-25 00:00:00'),
 (2, 2, 2, 'The projector is a bit outdated, but the room is good.', '2024-11-26 00:00:00');
 
 -- --------------------------------------------------------
 
-----
+--
 -- Table structure for table `comment_replies`
 --
 
@@ -101,8 +108,31 @@ CREATE TABLE `comment_replies` (
   `created_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `comment_replies`
+--
+
+INSERT INTO `comment_replies` (`reply_id`, `comment_id`, `user_id`, `reply_text`, `created_at`) VALUES
+(0, 0, 0, 'hrhhr', '2024-12-10 19:16:44');
+
 -- --------------------------------------------------------
 
+--
+-- Table structure for table `notifications`
+--
+
+CREATE TABLE `notifications` (
+  `notification_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `reply_id` int(11) NOT NULL,
+  `message` text NOT NULL,
+  `is_read` tinyint(1) DEFAULT 0,
+  `created_at` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `rooms`
 --
 
@@ -163,8 +193,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `user_name`, `user_email`, `user_password`, `user_role`) VALUES
-(1, 'Admin User', 'admin@example.com', 'hashedpassword', 'Admin'),
-(2, 'Regular User', 'user@example.com', 'hashedpassword', 'User');
+(0, 'noor', '2555042@stu.uob.edu.bh', '$2y$10$8p1pfWgbdX/eu2/jfpfSWOa.pkWHuUWcEw9rVp6Vo0uw8LEnhZ0Fi', 'User');
 
 --
 -- Indexes for dumped tables
@@ -174,115 +203,66 @@ INSERT INTO `users` (`user_id`, `user_name`, `user_email`, `user_password`, `use
 -- Indexes for table `adminlogs`
 --
 ALTER TABLE `adminlogs`
-  ADD PRIMARY KEY (`log_id`),
-  ADD KEY `admin_id` (`admin_id`);
+  ADD UNIQUE KEY `log_id` (`log_id`);
 
 --
 -- Indexes for table `bookings`
 --
 ALTER TABLE `bookings`
-  ADD PRIMARY KEY (`booking_id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `room_id` (`room_id`);
+  ADD UNIQUE KEY `booking_id` (`booking_id`);
 
 --
 -- Indexes for table `comments`
 --
 ALTER TABLE `comments`
-  ADD PRIMARY KEY (`comment_id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `room_id` (`room_id`);
+  ADD UNIQUE KEY `comment_id` (`comment_id`);
 
+--
 -- Indexes for table `comment_replies`
 --
 ALTER TABLE `comment_replies`
-  ADD PRIMARY KEY (`reply_id`),
-  ADD KEY `comment_id` (`comment_id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD UNIQUE KEY `reply_id` (`reply_id`);
 
+--
+-- Indexes for table `notifications`
+--
+ALTER TABLE `notifications`
+  ADD PRIMARY KEY (`notification_id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `reply_id` (`reply_id`);
 
 --
 -- Indexes for table `rooms`
 --
 ALTER TABLE `rooms`
-  ADD PRIMARY KEY (`room_id`),
-  ADD UNIQUE KEY `room_name` (`room_name`);
+  ADD UNIQUE KEY `room_id` (`room_id`);
 
 --
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`user_id`),
-  ADD UNIQUE KEY `user_email` (`user_email`);
+  ADD UNIQUE KEY `user_id` (`user_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `adminlogs`
+-- AUTO_INCREMENT for table `notifications`
 --
-ALTER TABLE `adminlogs`
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `bookings`
---
-ALTER TABLE `bookings`
-  MODIFY `booking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT for table `comments`
---
-ALTER TABLE `comments`
-  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
-
--- AUTO_INCREMENT for table `comment_replies`
---
-ALTER TABLE `comment_replies`
-  MODIFY `reply_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `rooms`
---
-ALTER TABLE `rooms`
-  MODIFY `room_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `notifications`
+  MODIFY `notification_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `adminlogs`
+-- Constraints for table `notifications`
 --
-ALTER TABLE `adminlogs`
-  ADD CONSTRAINT `adminlogs_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `users` (`user_id`);
-
---
--- Constraints for table `bookings`
---
-ALTER TABLE `bookings`
-  ADD CONSTRAINT `bookings_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
-  ADD CONSTRAINT `bookings_ibfk_2` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`room_id`);
-
---
--- Constraints for table `comments`
---
-ALTER TABLE `comments`
-  ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
-  ADD CONSTRAINT `comments_ibfk_2` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`room_id`);
-COMMIT;
--- Constraints for table `comment_replies`
---
-ALTER TABLE `comment_replies`
-  ADD CONSTRAINT `comment_replies_ibfk_1` FOREIGN KEY (`comment_id`) REFERENCES `comments` (`comment_id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `comment_replies_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE;
+ALTER TABLE `notifications`
+  ADD CONSTRAINT `notifications_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `notifications_ibfk_2` FOREIGN KEY (`reply_id`) REFERENCES `comment_replies` (`reply_id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

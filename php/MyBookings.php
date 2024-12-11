@@ -77,6 +77,7 @@ $userBookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <th>Booking Date</th>
                 <th>Time Slot</th>
                 <th>Status</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -86,6 +87,12 @@ $userBookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <td><?php echo htmlspecialchars($booking['booking_date']); ?></td>
                     <td><?php echo htmlspecialchars($booking['time_slot']); ?></td>
                     <td><?php echo htmlspecialchars($booking['status']); ?></td>
+                    <td>
+                        <form action="cancel_booking.php" method="POST">
+                            <input type="hidden" name="booking_id" value="<?php echo $booking['booking_id']; ?>">
+                            <button type="submit" class="cancel-button">Cancel Booking</button>
+                        </form>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>

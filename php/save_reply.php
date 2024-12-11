@@ -9,10 +9,12 @@ $reply_text = $_POST['reply_text'] ?? null;
 $user_id = $_SESSION['user_id'];
 $room_id = $_POST['room_id'] ?? null;
 
+
+
 // Validate inputs
-if (!$comment_id || !$reply_text || !$room_id) {
-    die("Missing required information");
-}
+// if (!$comment_id || !$reply_text || !$room_id) {
+//     die("Missing required information");
+// }
 
 try {
     // Insert reply into database

@@ -153,3 +153,18 @@ select{
     padding: 5px; 
     margin: 5px;
 }
+
+/* Style for the cancellation button */
+.cancel-button {
+    background-color: rgb(188, 31, 31); /* Red background */
+    color: white; /* White text */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px 15px; /* Padding for the button */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+.cancel-button:hover {
+    background-color: rgb(255, 0, 0); /* Darker red on hover */
+}
