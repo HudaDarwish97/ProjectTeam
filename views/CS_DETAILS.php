@@ -25,10 +25,10 @@ try {
         <ul>
             <li><a href="structure.html">Admin Dashboard</a></li>
             <li><a href="profile.html">Profile</a></li> 
-            <li><a href="#Switch">Switch Account</a></li>
+            <li><a href="login.php">Switch Account</a></li>
             <li><a href="NotesPage.html">Notes</a></li>
         </ul>
-</nav>
+    </nav>
 
     <h1 class="heads">History of Booked Rooms</h1>
     <table>
