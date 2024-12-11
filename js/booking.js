@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const bookingForm = document.getElementById('bookingForm');
     const conflictStatus = document.getElementById('conflict-status');
-
+    
     // Check for conflicts when date or time changes
     ['date', 'start_time', 'end_time'].forEach(fieldId => {
         document.getElementById(fieldId).addEventListener('change', checkConflicts);
@@ -9,14 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function checkConflicts() {
         const formData = new FormData(bookingForm);
-        const date = formData.get('date');
-        const startTime = formData.get('start_time');
-        const endTime = formData.get('end_time');
-
-        if (!date || !startTime || !endTime) {
-            conflictStatus.innerHTML = `<div class="alert alert-warning"><i class="fas fa-exclamation-circle"></i> Please fill in all fields.</div>`;
-            return;
-        }
+        if (!formData.get('date') || !formData.get('start_time') || !formData.get('end_time')) return;
 
         fetch('check_conflicts.php', {
             method: 'POST',
@@ -24,9 +17,19 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(response => response.json())
         .then(data => {
-            conflictStatus.innerHTML = data.hasConflict
-                ? `<div class="alert alert-danger"><i class="fas fa-exclamation-circle"></i> There is a booking conflict at this time.</div>`
-                : `<div class="alert alert-success"><i class="fas fa-check-circle"></i> This time slot is available!</div>`;
+            if (data.hasConflict) {
+                conflictStatus.innerHTML = `
+                    <div class="alert alert-danger">
+                        <i class="fas fa-exclamation-circle"></i> 
+                        There is a booking conflict at this time.
+                    </div>`;
+            } else {
+                conflictStatus.innerHTML = `
+                    <div class="alert alert-success">
+                        <i class="fas fa-check-circle"></i> 
+                        This time slot is available!
+                    </div>`;
+            }
         });
     }
 
@@ -34,67 +37,60 @@ document.addEventListener('DOMContentLoaded', function() {
     bookingForm.addEventListener('submit', function(e) {
         e.preventDefault();
 
-        const isLoggedIn = checkUserLoggedIn();
+        // Check if the user is logged in
+        const isLoggedIn = checkUserLoggedIn(); // Implement this function to check login status
+
         if (!isLoggedIn) {
-            alert("Please log in to confirm your booking.");
-            window.location.href = 'login.html';
+            alert("Please log in to confirm your booking."); // Alert message
+            window.location.href = 'login.html'; // Redirect to login page
             return;
         }
 
+        // Check if there's a conflict (you'll need to implement the actual conflict checking logic)
+        const hasConflict = checkForConflict(); // This is a placeholder function
         const messageDiv = document.getElementById('booking-message');
-        const formData = new FormData(bookingForm);
-        checkForConflict(formData).then(hasConflict => {
+        
+        if (!hasConflict) {
+            messageDiv.className = 'alert alert-success';
+            messageDiv.innerHTML = '<i class="fas fa-check-circle"></i> Booking confirmed successfully!';
             messageDiv.classList.remove('d-none');
-            messageDiv.className = hasConflict ? 'alert alert-danger' : 'alert alert-success';
-            messageDiv.innerHTML = hasConflict
-                ? '<i class="fas fa-exclamation-circle"></i> Cannot confirm booking due to conflict!'
-                : '<i class="fas fa-check-circle"></i> Booking confirmed successfully!';
-
-            if (!hasConflict) {
-                document.getElementById('confirmBtn').disabled = true;
-            }
-        });
+            
+            // Optional: Disable the confirm button after successful booking
+            document.getElementById('confirmBtn').disabled = true;
+        } else {
+            messageDiv.className = 'alert alert-danger';
+            messageDiv.innerHTML = '<i class="fas fa-exclamation-circle"></i> Cannot confirm booking due to conflict!';
+            messageDiv.classList.remove('d-none');
+        }
     });
 
+    // Function to check if the user is logged in
     function checkUserLoggedIn() {
-        return !!sessionStorage.getItem('userLoggedIn');
+        // This function should return true if the user is logged in, false otherwise
+        // You can implement this based on your authentication logic
+        // For example, check if a session variable or a token exists
+        return !!sessionStorage.getItem('userLoggedIn'); // Example using sessionStorage
     }
 
-    // Modify button listener
-    document.getElementById('modifyBtn')?.addEventListener('click', function() {
+    // Add modify button listener
+    document.getElementById('modifyBtn').addEventListener('click', function() {
         window.location.href = 'room_browsing.php';
     });
 
-    // Cancel button listener
-    document.getElementById('cancelBtn')?.addEventListener('click', function() {
-        window.location.href = 'index.php';
-    });
-
-    // Function to check for conflicts via AJAX
-    function checkForConflict(formData) {
-        return new Promise((resolve, reject) => {
-            fetch('check_conflicts.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                resolve(data.hasConflict);
-            })
-            .catch(error => {
-                console.error('Error checking conflict:', error);
-                resolve(false);
-            });
-        });
+    // Placeholder function - implement actual conflict checking logic
+    function checkForConflict() {
+        // This should be replaced with your actual conflict checking logic
+        // For now, it returns a random boolean
+        return Math.random() < 0.5;
     }
 
-    // Modal logic for displaying room details
     document.querySelectorAll('.room-image img').forEach(img => {
         img.addEventListener('click', function() {
             const modal = document.querySelector('.modal');
             const modalImg = modal.querySelector('img');
             const roomId = this.getAttribute('data-room-id');
-
+            
+            // Fetch and display room number and description
             fetch(`get_room_details.php?room_id=${roomId}`)
                 .then(response => response.json())
                 .then(data => {

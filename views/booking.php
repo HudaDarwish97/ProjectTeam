@@ -17,19 +17,9 @@
 
 
        <!-- Room Booking Section -->
-    <main class="container">
+   <main class="container">
         <h2 class="page-title">Booking</h2>
-      <div class="content">
            <!--Modal for Room Details  -->
-<<div class="card-body">
-    <p class="card-text"><strong>Type:</strong> <?= htmlspecialchars($room['room_type']) ?></p>
-    <p class="card-text"><strong>Department:</strong> <?= htmlspecialchars($room['department']) ?></p>
-    <p class="card-text"><strong>Floor:</strong> <?= htmlspecialchars($room['floor']) ?></p>
-    <p class="card-text"><strong>Capacity:</strong> <?= htmlspecialchars($room['capacity']) ?></p>
-    <p class="card-text"><strong>Description:</strong> <?= htmlspecialchars($room['description']) ?></p>
-    <h5 class="card-title">Features:</h5>
-    <div class="features">
-      <div>
 
         <form id="bookingForm">
             <div class="time">
@@ -66,7 +56,6 @@
             <div class="actions mt-4">
              <button type="submit" class="confirm-btn" id="confirmBtn">Confirm</button>
                <a href="room_browsing.php" class="btn modify-btn">Modify </a>
-               <li><a href="<?php echo BASE_URL; ?>/index.php">Cancel </a></li>
               </div>
         </form>
     </main>
@@ -78,7 +67,7 @@
         </div>
     </footer>
 
-    <script src="js\booking.js"></script>
+    <script src="js/booking.js"></script>
     
     <div class="modal">
         <span class="modal-close">&times;</span>
