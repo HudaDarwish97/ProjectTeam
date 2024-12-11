@@ -242,16 +242,26 @@ body {
   text-decoration: none; /* Remove underline */
   display: flex;
   align-items: center;
+ 
 }
 
 .navbar .logo img {
   max-height: 50px; /* Limit the height of the logo */
   width: auto; /* Maintain aspect ratio */
   transition: transform 0.3s ease; /* Logo hover effect */
-}
+ }
 
 .navbar .logo:hover img {
   transform: scale(1.05); /* Slightly enlarge logo on hover */
+}
+
+/* Website Name Styling */
+.website-name {
+  font-size: 20px; /* Adjust font size */
+  font-weight: bold; /* Make the text bold */
+  margin-left: 0;
+  color: #fff; /* Text color */
+  white-space: nowrap; /* Prevent wrapping */
 }
 
 /* Navigation Links Styling */

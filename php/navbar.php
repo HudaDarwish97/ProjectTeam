@@ -31,10 +31,16 @@ $conn->close();
 ?>
 
 <nav class="navbar">
-<div class="container">
-        <a class="logo" href="<?php echo BASE_URL; ?>">
+
+<div class="container" style="display: flex; align-items: center;">
+
+        <a class="logo" href="<?php echo BASE_URL; ?>"style="margin-right: 10px;">
+        
+        <span class="website-name">Roomzy</span>
+
             <img src="<?php echo BASE_URL; ?>/img/img.png" alt="Roomzy">
-        </a>
+         </a>
+
     <ul>
         <?php if (!$isLoggedIn): ?>
             <!-- General Header for Visitors -->
