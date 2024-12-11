@@ -71,7 +71,7 @@
             <div class="actions mt-4">
              <button type="submit" class="confirm-btn" id="confirmBtn">Confirm</button>
                <a href="room_browsing.php" class="btn modify-btn">Modify </a>
-               <a href="index.php" class="btn cancel-btn"> Cancel </a>
+               <a href="new_path/index.php" class="btn cancel-btn"> Cancel </a>
               </div>
         </form>
     </main>
@@ -83,7 +83,7 @@
         </div>
     </footer>
 
-    <script src="booking.js"></script>
+    <script src="js/booking.js"></script>
     
     <div class="modal">
         <span class="modal-close">&times;</span>
