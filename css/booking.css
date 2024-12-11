@@ -165,17 +165,7 @@ body {
     font-size: 1em;
     cursor: pointer;
   }
-  
-  .cancel {
-    background-color: #F44336;
-    color: white;
-    padding: 0.8em 2em;
-    margin: 0 1em;
-    border: none;
-    border-radius: 5px;
-    font-size: 1em;
-    cursor: pointer;
-  }
+
   
   button:hover {
     opacity: 0.9;

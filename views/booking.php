@@ -1,26 +1,3 @@
-<?php
-session_start();
-
-include '../php/db_connection.php';
-
-// Retrieve room_id from GET parameters and validate it
-$room_id = $_GET['room_id'] ?? null;
-if (!$room_id) {
-    die("Room ID is required.");
-}
-
-// Fetch room details
-$query = $conn->prepare("SELECT * FROM rooms WHERE room_id = :room_id");
-$query->bindParam(':room_id', $room_id);
-$query->execute();
-$room = $query->fetch(PDO::FETCH_ASSOC);
-
-if (!$room) {
-    die("Room not found.");
-}
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -43,18 +20,6 @@ if (!$room) {
    <main class="container">
         <h2 class="page-title">Booking</h2>
            <!--Modal for Room Details  -->
-        <div class="card">
-           <div class="card-header">
-              <h5 class="card-title"><?= htmlspecialchars($room['room_name']) ?></h5>
-           </div>
-          <div class="card-body">
-          <p class="card-text"><strong>Type:</strong> <?= htmlspecialchars($room['room_type']) ?></p>
-          <p class="card-text"><strong>Department:</strong> <?= htmlspecialchars($room['department']) ?></p>
-          <p class="card-text"><strong>Floor:</strong> <?= htmlspecialchars($room['floor']) ?></p>
-          <p class="card-text"><strong>Capacity:</strong> <?= htmlspecialchars($room['capacity']) ?></p>
-          <p class="card-text"><strong>Description:</strong> <?= htmlspecialchars($room['description']) ?></p>
-          </div>
-        </div>
 
         <form id="bookingForm">
             <div class="time">
@@ -91,7 +56,6 @@ if (!$room) {
             <div class="actions mt-4">
              <button type="submit" class="confirm-btn" id="confirmBtn">Confirm</button>
                <a href="room_browsing.php" class="btn modify-btn">Modify </a>
-               <li class="cancel"><a href="<?php echo BASE_URL; ?>/index.php">Cancel</a></li>
               </div>
         </form>
     </main>
@@ -103,7 +67,7 @@ if (!$room) {
         </div>
     </footer>
 
-    <script src="js\booking.js"></script>
+    <script src="js/booking.js"></script>
     
     <div class="modal">
         <span class="modal-close">&times;</span>
