@@ -8,7 +8,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=room_booking', 'root', '');
 // Fetch user data from the database
 if (isset($_SESSION['user_id'])) {
     $user_id = $_SESSION['user_id'];
-    $stmt = $pdo->prepare('SELECT name, email, profile_picture FROM users WHERE id = ?');
+    $stmt = $pdo->prepare('SELECT user_name, user_email FROM users WHERE user_id = ?');
     $stmt->execute([$user_id]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 

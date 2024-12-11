@@ -103,8 +103,9 @@ CREATE TABLE `users` (
   `user_name` varchar(100) NOT NULL,
   `user_email` varchar(150) NOT NULL,
   `user_password` varchar(255) NOT NULL,
-  `user_role` enum('Admin','User') NOT NULL DEFAULT 'User'
+  `user_role` enum('Admin','User') NOT NULL DEFAULT 'User',
+  `profile_picture` VARCHAR(255) DEFAULT NULL
 );
 
 INSERT INTO `users` (`user_id`, `user_name`, `user_email`, `user_password`, `user_role`) VALUES
-(0, 'noor', '2555042@stu.uob.edu.bh', '$2y$10$8p1pfWgbdX/eu2/jfpfSWOa.pkWHuUWcEw9rVp6Vo0uw8LEnhZ0Fi', 'User');
+(1, 'noor', '2555042@stu.uob.edu.bh', '$2y$10$8p1pfWgbdX/eu2/jfpfSWOa.pkWHuUWcEw9rVp6Vo0uw8LEnhZ0Fi', 'User');
