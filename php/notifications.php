@@ -40,11 +40,92 @@ if ($isLoggedIn) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notifications</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: rgb(245, 245, 220);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            color: #000;
+        }
+
+        h1 {
+            text-align: left;
+            color: #333;
+            margin: 20px 0;
+            margin-left: 30px;
+        }
+
+        .notification-container {
+            max-width: 800px;
+            margin: 0;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 20px;
+            margin-left: 20px;
+        }
+
+        .notification {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+        }
+
+        .notification p {
+            margin: 5px 0;
+        }
+
+        .notification p strong {
+            color: rgb(87, 81, 81);
+        }
+
+        .unread {
+            background-color: rgb(188, 31, 31);
+            color: white;
+        }
+
+        .read {
+            background-color: rgb(245, 245, 220);
+        }
+
+        a {
+            display: block;
+            width: fit-content;
+            margin: 20px auto;
+            padding: 10px 15px;
+            background-color: rgb(87, 81, 81);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+
+        a:hover {
+            background-color: black;
+        }
+
+        .no-notifications {
+            text-align: left;
+            color: #666;
+            font-size: 18px;
+            margin-left: 30px;
+        }
+    </style>
 </head>
 <body>
     <h1>Notifications</h1>
 
-    <?php if ($isLoggedIn): ?>
+   <?php if ($isLoggedIn): ?>
         <?php
         $fetch = "Select * from notifications WHERE user_id = ?";
         $Stmt = $conn->prepare($fetch);
@@ -70,7 +151,7 @@ if ($isLoggedIn) {
         <p>Please log in to view your notifications.</p>
     <?php endif; ?>
 
-    <a href="javascript:history.back()">Go back</a>
+    <a href="javascript:history.back()">Go back</a> 
 
     
 </body>
