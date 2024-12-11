@@ -48,8 +48,7 @@ if ($isLoggedIn) {
             padding: 0;
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
-            color: #000;
+            min-height: 100vh;            color: #333; /* Slightly lighter for readability */
         }
 
         h1 {
@@ -61,6 +60,7 @@ if ($isLoggedIn) {
 
         .notification-container {
             max-width: 800px;
+            width: 100%; /* Make it responsive */
             margin: 0;
             flex: 1;
             display: flex;
@@ -78,6 +78,11 @@ if ($isLoggedIn) {
             margin-bottom: 15px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             width: 100%;
+            transition: transform 0.2s ease; /* Smooth hover effect */
+        }
+
+        .notification:hover {
+            transform: translateY(-2px); /* Lift the notification on hover */
         }
 
         .notification p {
@@ -113,13 +118,13 @@ if ($isLoggedIn) {
         a:hover {
             background-color: black;
         }
-
         .no-notifications {
             text-align: left;
             color: #666;
             font-size: 18px;
             margin-left: 30px;
         }
+
     </style>
 </head>
 <body>
