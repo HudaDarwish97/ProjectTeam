@@ -10,26 +10,6 @@ body {
   flex-direction: column;
 }
     
-    /*header*/
-    .header {
-      background-color:  rgb(87,81,81);
-      color: white;
-      }
-      
-      .header .logo{
-        font-size: 1.5rem;
-        font-weight: bold;
-      }
-      
-      .header .nav-link{
-        color: white;
-        margin: 0 10px;
-        text-decoration: none;
-      }
-      
-      .header .nav-link:hover{
-        text-decoration: underline;
-      }
      
       h4 {
         color: black;
@@ -161,7 +141,9 @@ body {
     text-align: center;
   }
   /* buttons -confirm ,cancel , modify*/
-  button {
+   .confirm-btn {
+    background-color: #4CAF50;
+    color: white;
     padding: 0.8em 2em;
     margin: 0 1em;
     border: none;
@@ -170,19 +152,26 @@ body {
     cursor: pointer;
   }
   
-  .confirm-btn {
-    background-color: #4CAF50;
-    color: white;
-  }
-  
   .modify-btn {
     background-color: #FFC107;
     color: white;
+    padding: 0.8em 2em;
+    margin: 0 1em;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
   }
   
   .cancel-btn {
     background-color: #F44336;
     color: white;
+    padding: 0.8em 2em;
+    margin: 0 1em;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
   }
   
   button:hover {
