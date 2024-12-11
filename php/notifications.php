@@ -104,7 +104,7 @@ if ($isLoggedIn) {
             padding: 10px 15px;
             background-color: rgb(87, 81, 81);
             color: #ffffff;
-            text-decoration: ;
+            text-decoration: none;
             border-radius: 5px;
             text-align: center;
             transition: background-color 0.3s ease;
