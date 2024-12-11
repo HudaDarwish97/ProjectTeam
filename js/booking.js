@@ -18,13 +18,13 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(response => response.json())
         .then(data => {
             if (data.hasConflict) {
-                conflictStatus.innerHTML = `
+                conflictStatus.innerphp = `
                     <div class="alert alert-danger">
                         <i class="fas fa-exclamation-circle"></i> 
                         There is a booking conflict at this time.
                     </div>`;
             } else {
-                conflictStatus.innerHTML = `
+                conflictStatus.innerphp = `
                     <div class="alert alert-success">
                         <i class="fas fa-check-circle"></i> 
                         This time slot is available!
@@ -46,22 +46,10 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        // Check if there's a conflict (you'll need to implement the actual conflict checking logic)
-        const hasConflict = checkForConflict(); // This is a placeholder function
-        const messageDiv = document.getElementById('booking-message');
-        
-        if (!hasConflict) {
-            messageDiv.className = 'alert alert-success';
-            messageDiv.innerHTML = '<i class="fas fa-check-circle"></i> Booking confirmed successfully!';
-            messageDiv.classList.remove('d-none');
-            
-            // Optional: Disable the confirm button after successful booking
-            document.getElementById('confirmBtn').disabled = true;
-        } else {
-            messageDiv.className = 'alert alert-danger';
-            messageDiv.innerHTML = '<i class="fas fa-exclamation-circle"></i> Cannot confirm booking due to conflict!';
-            messageDiv.classList.remove('d-none');
-        }
+        // Call the checkForConflicts function here
+        checkForConflicts(); // Ensure this is called to check for conflicts before confirming
+
+        // The rest of your form submission logic...
     });
 
     // Function to check if the user is logged in
@@ -77,6 +65,8 @@ document.addEventListener('DOMContentLoaded', function() {
         window.location.href = 'room_browsing.php';
     });
 
+    // Add cancel button listener
+    
     // Placeholder function - implement actual conflict checking logic
     function checkForConflict() {
         // This should be replaced with your actual conflict checking logic
@@ -115,4 +105,27 @@ document.addEventListener('DOMContentLoaded', function() {
             this.classList.remove('active');
         }
     });
+
+    function checkForConflicts() {
+        console.log("Checking for conflicts..."); // Debugging line
+        const formData = new FormData(document.getElementById('bookingForm'));
+        
+        fetch('../php/check_conflicts.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.conflict) {
+                document.getElementById('conflict-message').classList.remove('d-none');
+                document.getElementById('no-conflict-message').classList.add('d-none');
+            } else {
+                document.getElementById('no-conflict-message').classList.remove('d-none');
+                document.getElementById('conflict-message').classList.add('d-none');
+            }
+            document.getElementById('booking-message').innerText = data.message;
+            document.getElementById('booking-message').classList.remove('d-none');
+        })
+        .catch(error => console.error('Error:', error));
+    }
 });
