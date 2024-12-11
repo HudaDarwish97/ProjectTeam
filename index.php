@@ -10,6 +10,7 @@
     </head>
     <body>
         
+    
         <?php include_once 'php/navbar.php'; ?>
 
         <main> <!--there is change here -->
