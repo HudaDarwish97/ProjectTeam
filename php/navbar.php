@@ -74,10 +74,10 @@ $conn->close();
             <li>
                 <?php
                 if ($count !== 0){
-                    echo "<a style='color:orange;' href="."/ProjectTeam/php/notifications.php>"."Notifications"."</a>";
+                    echo "<a style='color:orange;' href="."/ProjectTeam/php/notifications.php>"."🔔"."</a>";
 
                 }else{
-                    echo "<a href="."/ProjectTeam/php/notifications.php>"."Notifications"."</a>";
+                    echo "<a href="."/ProjectTeam/php/notifications.php>"."🔔 "."</a>";
 
                 }
                 ?>
