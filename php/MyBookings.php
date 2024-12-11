@@ -37,30 +37,48 @@ $userBookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="../css/firstask.css">
     <title>My Bookings</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: rgb(245, 245, 220);
-            margin: 0;
-            padding: 0;
-      
-        }
-        table {
-            width: 80%;
-            margin: 20px auto;
-            border-collapse: collapse;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            background-color: white;
-        }
-        th, td {
-            padding: 10px;
-            text-align: left;
-            border: 1px solid #ddd;
-        }
-        th {
-            background-color: rgb(87, 81, 81);
-            color: white;
-        }
-    </style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: rgb(245, 245, 220);
+        margin: 0;
+        padding: 0;
+    }
+
+    table {
+        width: 80%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        background-color: white;
+    }
+
+    th, td {
+        padding: 10px;
+        text-align: left;
+        border: 1px solid #ddd;
+    }
+
+    th {
+        background-color: rgb(87, 81, 81);
+        color: white;
+    }
+
+    /* Style for the cancellation button */
+    .cancel-button {
+        background-color: rgb(188, 31, 31);
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 15px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .cancel-button:hover {
+        background-color: rgb(255, 0, 0);
+    }
+</style>
+
 </head>
 <body>
     <?php include_once '../php/navbar.php'; ?>
