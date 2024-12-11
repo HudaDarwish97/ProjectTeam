@@ -33,9 +33,6 @@
     <div class="room-image">
         <img src="room1.jpg" alt="Room 1" data-room-id="1">
     </div>
-    <div class="room-image">
-        <img src="room2.jpg" alt="Room 2" data-room-id="2">
-    </div>
 </div>
         
 
