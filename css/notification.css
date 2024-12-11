@@ -1,0 +1,24 @@
+.notification {
+    border: 1px solid #ccc; /* Light border for separation */
+    border-radius: 8px; /* Rounded corners */
+    background-color: #f9f9f9; /* Subtle background color */
+    padding: 15px; /* Space inside the box */
+    margin-bottom: 10px; /* Space between notifications */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for a modern look */
+    font-family: Arial, sans-serif; /* Clean font */
+    transition: transform 0.2s ease-in-out; /* Smooth hover effect */
+}
+
+.notification p {
+    margin: 5px 0; /* Reduce spacing between paragraphs */
+    color: #333; /* Text color */
+}
+
+.notification p strong {
+    color: #555; /* Slightly darker color for labels */
+}
+
+.notification:hover {
+    transform: scale(1.02); /* Slight zoom effect on hover */
+    background-color: #eef6ff; /* Light blue background on hover */
+}
