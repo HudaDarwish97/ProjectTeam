@@ -55,7 +55,7 @@ if ($isLoggedIn) {
             text-align: left;
             color: #333;
             margin: 20px 0;
-            margin-left: 30px;
+           
         }
 
         .notification-container {
