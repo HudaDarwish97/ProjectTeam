@@ -41,12 +41,7 @@ $userBookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
             background-color: rgb(245, 245, 220);
             margin: 0;
             padding: 0;
-        }
-        header {
-            background-color: rgb(87, 81, 81);
-            color: white;
-            padding: 10px;
-            text-align: center;
+      
         }
         table {
             width: 80%;
@@ -67,9 +62,8 @@ $userBookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </style>
 </head>
 <body>
-    <header>
-       <h1>My Bookings</h1>
-    </header>
+    <?php include_once '../php/navbar.php'; ?>
+     <h1>My Bookings</h1>
     <table>
         <thead>
             <tr>
@@ -97,5 +91,13 @@ $userBookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <?php endforeach; ?>
         </tbody>
     </table>
+
+    <!--footer-->
+    <footer class="footer py-3">
+        <div class="text-center">
+            <p>&copy; 2024 IT Collage Room Booking System. All rights reserved.</p>
+        </div>
+    </footer>
+
 </body>
 </html>
