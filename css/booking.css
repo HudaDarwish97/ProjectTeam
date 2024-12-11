@@ -15,6 +15,42 @@ body {
         color: black;
         margin-bottom: 0.5em;
       }
+     /* Card styling */
+.card {
+  max-width: 800px;
+  margin: 30px auto;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Softer shadow */
+  overflow: hidden;
+  background-color: #f9f9f9; /* Light background for contrast */
+}
+
+/* Card body styling */
+.card-body {
+  padding: 30px; /* Increased padding for a spacious feel */
+  display: flex;
+  flex-direction: column;
+  gap: 25px; /* Larger gap between elements */
+  font-family: 'Arial', sans-serif; /* Clean font */
+  color: #333; /* Neutral text color */
+}
+
+/* Card title */
+.card-title {
+  font-size: 2.2rem; /* Slightly smaller title */
+  color: #34495e; /* Deep, professional title color */
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #1abc9c; /* Accent border */
+  padding-bottom: 10px;
+}
+
+/* Text details */
+.card-text {
+  font-size: 1.1rem;
+  line-height: 1.6; /* Improved readability */
+}
     
     /* time*/
       .time {

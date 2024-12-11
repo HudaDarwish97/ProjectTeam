@@ -17,19 +17,21 @@
 
 
        <!-- Room Booking Section -->
-    <main class="container">
+   <main class="container">
         <h2 class="page-title">Booking</h2>
-      <div class="content">
            <!--Modal for Room Details  -->
-<<div class="card-body">
-    <p class="card-text"><strong>Type:</strong> <?= htmlspecialchars($room['room_type']) ?></p>
-    <p class="card-text"><strong>Department:</strong> <?= htmlspecialchars($room['department']) ?></p>
-    <p class="card-text"><strong>Floor:</strong> <?= htmlspecialchars($room['floor']) ?></p>
-    <p class="card-text"><strong>Capacity:</strong> <?= htmlspecialchars($room['capacity']) ?></p>
-    <p class="card-text"><strong>Description:</strong> <?= htmlspecialchars($room['description']) ?></p>
-    <h5 class="card-title">Features:</h5>
-    <div class="features">
-      <div>
+        <div class="card">
+           <div class="card-header">
+              <h5 class="card-title"><?= htmlspecialchars($room['room_name']) ?></h5>
+           </div>
+          <div class="card-body">
+          <p class="card-text"><strong>Type:</strong> <?= htmlspecialchars($room['room_type']) ?></p>
+          <p class="card-text"><strong>Department:</strong> <?= htmlspecialchars($room['department']) ?></p>
+          <p class="card-text"><strong>Floor:</strong> <?= htmlspecialchars($room['floor']) ?></p>
+          <p class="card-text"><strong>Capacity:</strong> <?= htmlspecialchars($room['capacity']) ?></p>
+          <p class="card-text"><strong>Description:</strong> <?= htmlspecialchars($room['description']) ?></p>
+          </div>
+        </div>
 
         <form id="bookingForm">
             <div class="time">
