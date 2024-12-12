@@ -2,7 +2,6 @@
 
  include_once "/AdminPanel/navbar.php"; 
 
-// Check if booking ID is provided
 if (!isset($_GET['id'])) {
     header("Location: booking.php");
     exit;
@@ -10,7 +9,6 @@ if (!isset($_GET['id'])) {
 
 $booking_id = $_GET['id'];
 
-// Handle form submission
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -39,7 +37,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Fetch current booking details
 try {
     $stmt = $conn->prepare("SELECT booking_id, user_id, room_id, booking_date, time_slot, status FROM bookings WHERE booking_id = ?");
     $stmt->execute([$booking_id]);
