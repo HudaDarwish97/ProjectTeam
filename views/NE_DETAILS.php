@@ -55,8 +55,8 @@ try {
             echo "<td>" . htmlspecialchars($booking['time_slot']) . "</td>";
             echo "<td>" . htmlspecialchars($booking['status']) . "</td>";
             echo "<td>
-                    <a href='edit_booking.php?id=" . $booking['booking_id'] . "'>Edit</a> | 
-                    <a href='delete_booking.php?id=" . $booking['booking_id'] . "'>Delete</a>
+                    <a href='edit_admin.php?id=" . $booking['booking_id'] . "'>Edit</a> | 
+                    <a href='delete_admin.php?id=" . $booking['booking_id'] . "'>Delete</a>
                   </td>";  
             echo "</tr>";
         }
