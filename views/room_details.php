@@ -32,6 +32,8 @@ if (!$room) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
 
     <link rel="stylesheet" href="../css/firstask.css">    
     <link rel="stylesheet" href="../css/room_details.css">
@@ -90,30 +92,23 @@ if (!$room) {
     <h5 class="card-title"><?= htmlspecialchars($room['room_name']) ?></h5>
   </div>
   <div class="card-body">
-    <p class="card-text"><strong>Type:</strong> <?= htmlspecialchars($room['room_type']) ?></p>
-    <p class="card-text"><strong>Department:</strong> <?= htmlspecialchars($room['department']) ?></p>
-    <p class="card-text"><strong>Floor:</strong> <?= htmlspecialchars($room['floor']) ?></p>
-    <p class="card-text"><strong>Capacity:</strong> <?= htmlspecialchars($room['capacity']) ?></p>
-    <p class="card-text"><strong>Description:</strong> <?= htmlspecialchars($room['description']) ?></p>
+    <p class="card-text"><strong><i class="bi bi-building"></i> Room Type:</strong> <?= htmlspecialchars($room['room_type']) ?></p>
+    <p class="card-text"><strong><i class="bi bi-diagram-3"></i> Department:</strong> <?= htmlspecialchars($room['department']) ?></p>
+    <p class="card-text"><strong><i class="bi bi-door-open"></i> Floor:</strong> <?= htmlspecialchars($room['floor']) ?></p>
+    <p class="card-text"><strong><i class="bi bi-people"></i> Capacity:</strong> <?= htmlspecialchars($room['capacity']) ?></p>
+    <p class="card-text-d"><?= htmlspecialchars($room['description']) ?></p>
     <h5 class="card-title">Features:</h5>
     <div class="features">
-      <div>
-        <i class="bi bi-wind"></i>
-        <p>Air Conditioner</p>
-      </div>
-      <div>
-        <i class="bi bi-projector"></i>
-        <p>Projector</p>
-      </div>
-      <div>
-        <i class="bi bi-wifi"></i>
-        <p>WiFi</p>
-      </div>
-      <div>
-        <i class="bi bi-easel"></i>
-        <p>Whiteboard</p>
-      </div>
+      <div><i class="bi bi-wind"></i><p>Air Conditioner</p></div>
+      <div><i class="bi bi-projector"></i><p>Projector</p></div>
+      <div><i class="bi bi-wifi"></i><p>WiFi</p></div>
+      <div><i class="bi bi-easel"></i><p>Whiteboard</p></div>
+      <div><i class="bi bi-person-square"></i><p>Seating Arrangement</p></div>
+      <div><i class="bi bi-person-lines-fill"></i><p>Collaborative Learning Stations</p></div>
+      <div><i class="bi bi-volume-mute"></i><p>Quiet Zones</p></div>
+
     </div>
+
     <div class="button-group">
       <a href="booking.php?room_id=<?= $room['room_id'] ?>" class="btn btn-success">Book it</a>
       <a href="room_browsing.php" class="btn btn-secondary">Back to Browse</a>
@@ -226,13 +221,6 @@ if (!$room) {
     </div>
 </div>
 
-<!--footer-->
-<footer class="footer py-3">
-    <div class="text-center">
-        <p>&copy; 2024 IT College Room Booking System. All rights reserved.</p>
-    </div>
-</footer>
-
 
 <script>
 document.querySelectorAll('.show-reply-form').forEach(button => {
@@ -242,5 +230,6 @@ document.querySelectorAll('.show-reply-form').forEach(button => {
     });
 });
 </script>
+
 </body>
 </html>

@@ -95,9 +95,9 @@ try {
                                     <p class="card-text">
                                         <?= htmlspecialchars($room['description'] ?? 'No description available.') ?>
                                     </p>
-                                    <p class="card-text"><strong>Type:</strong> <?= htmlspecialchars($room['room_type']) ?></p>
+                                    <p class="card-text"><strong>Room Type:</strong> <?= htmlspecialchars($room['room_type']) ?></p>
                                     <p class="card-text">
-                                        <strong>Capacity:</strong> <?= htmlspecialchars($room['capacity']) ?>
+                                        <strong><i class="bi bi-people"></i> Capacity:</strong> <?= htmlspecialchars($room['capacity']) ?>
                                     </p>
                                     <a href="room_details.php?room_id=<?= htmlspecialchars($room['room_id']) ?>" class="btn btn-primary">View Details</a>
                                 </div>

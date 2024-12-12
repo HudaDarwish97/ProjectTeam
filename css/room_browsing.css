@@ -95,9 +95,10 @@
     display: flex; /* Flex layout */
     scroll-snap-type: x mandatory; /* Snap type */
     overflow-x: hidden; /* Hide scrollbar */
-    overflow-y: hidden; /* Hide scrollbar */
+    overflow-y: hidden;
     width: calc(400px * 3 + 20px * 2); /* Adjust container width for three large cards + gaps */
     gap: 15px; /* Increase space between cards */
+    padding-bottom: 50px; /* Add extra space for visibility */
 }
 
 .room-card-container:hover {
@@ -108,7 +109,6 @@
 .room-carousel {
     display: flex; /* Flex layout */
     align-items: center; /* Center items vertically */
-    overflow: hidden; /* Hide overflow */
     position: relative; /* Relative positioning */
     scroll-snap-type: x mandatory; /* Snap type */
     gap: 15px; /* Reduce gap between cards */
@@ -161,7 +161,6 @@
 /* Button styles */
 .btn-primary {
     position: relative; /* Ensures it follows the document flow */
-    z-index: 200;
     background-color: #000500; /* Button color */
     border: none; /* Remove border */
     padding: 10px 20px; /* Internal padding */
@@ -188,7 +187,7 @@
     font-size: 2rem; /* Font size */
     color: #333; /* Text color */
     backface-visibility: hidden; /* Hide front when flipped */
-}
+} 
 
 /* Responsive Design */
 @media (max-width: 768px) {
