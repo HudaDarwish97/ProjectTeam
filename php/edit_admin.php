@@ -1,19 +1,10 @@
 <?php
 
- include_once "/AdminPanel/navbar.php"; 
-
-if (!isset($_GET['id'])) {
-    header("Location: booking.php");
-    exit;
-}
-
-$booking_id = $_GET['id'];
-
-
+require 'db_connection.php'; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
-        $stmt = $conn->prepare("UPDATE bookings SET 
+        $stmt = $conn->prepare("UPDATE booking SET 
             user_id = ?, 
             room_id = ?, 
             booking_date = ?, 
@@ -37,19 +28,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-try {
-    $stmt = $conn->prepare("SELECT booking_id, user_id, room_id, booking_date, time_slot, status FROM bookings WHERE booking_id = ?");
-    $stmt->execute([$booking_id]);
-    $booking = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if (!$booking) {
-        header("Location: booking.php");
-        exit;
-    }
-} catch (PDOException $e) {
-    echo "Error: " . $e->getMessage();
-    exit;
-}
 ?>
 
 
@@ -159,3 +137,4 @@ try {
 
 </body>
 </html>
+
