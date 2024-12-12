@@ -1,5 +1,8 @@
 <?php
 
+if(isset($_GET['id']))
+{$booking_id=$_GET ["id"];}
+
 require 'db_connection.php'; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -11,7 +14,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             time_slot = ?, 
             status = ? 
             WHERE booking_id = ?");
-        
+           
+
         $stmt->execute([
             $_POST['user_id'],
             $_POST['room_id'],
@@ -27,7 +31,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = "Error: " . $e->getMessage();
     }
 }
-
 ?>
 
 
@@ -104,12 +107,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <form method="POST">
             <div class="form-group">
                 <label for="user_id">User ID:</label>
-                <input type="text" id="user_id" name="user_id" value="<?php echo htmlspecialchars($booking['user_id']); ?>" required>
+                <input type="text" id="user_id" name="user_id" required>
             </div>
 
             <div class="form-group">
                 <label for="room_id">Room ID:</label>
-                <input type="text" id="room_id" name="room_id" value="<?php echo htmlspecialchars($booking['room_id']); ?>" required>
+                <input type="text" id="room_id" name="room_id" required>
             </div>
 
             <div class="form-group">
@@ -119,15 +122,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <div class="form-group">
                 <label for="time_slot">Time Slot:</label>
-                <input type="text" id="time_slot" name="time_slot" value="<?php echo htmlspecialchars($booking['time_slot']); ?>" required>
+                <input type="text" id="time_slot" name="time_slot" required>
             </div>
 
             <div class="form-group">
                 <label for="status">Status:</label>
                 <select id="status" name="status" required>
-                    <option value="pending" <?php echo $booking['status'] === 'pending' ? 'selected' : ''; ?>>Pending</option>
-                    <option value="approved" <?php echo $booking['status'] === 'approved' ? 'selected' : ''; ?>>Approved</option>
-                    <option value="rejected" <?php echo $booking['status'] === 'rejected' ? 'selected' : ''; ?>>Rejected</option>
+                    <option >Pending</option>
+                    <option >Approved</option>
+                    <option >Rejected</option>
                 </select>
             </div>
 
