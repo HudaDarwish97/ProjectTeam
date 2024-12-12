@@ -1,10 +1,12 @@
-
 <?php
-require '../php/db_connection.php'; 
-
+require 'db_connection.php'; 
 
 try {
-    $stmt = $conn->prepare("SELECT booking_id, user_id, room_id, booking_date, time_slot, status FROM bookings");
+
+    $pdo = new PDO("mysql:host=" . DBHOST . ";dbname=" . DBNAME, DBUSER, DBPASS);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $stmt = $pdo->prepare("SELECT booking_id, user_id, room_id, booking_date, time_slot, status FROM bookings");
     $stmt->execute();
     $bookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
@@ -18,7 +20,7 @@ try {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="../css/design.css">
+    <link rel="stylesheet" href="design.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Information System Department</title>
@@ -27,7 +29,7 @@ try {
         <ul>
             <li><a href="structure.html">Admin Dashboard</a></li>
             <li><a href="profile.html">Profile</a></li> 
-            <li><a href="login.php">Switch Account</a></li>
+            <li><a href="#Switch">Switch Account</a></li>
             <li><a href="NotesPage.html">Notes</a></li>
         </ul>
     </nav>
@@ -58,8 +60,8 @@ try {
             echo "<td>" . htmlspecialchars($booking['time_slot']) . "</td>";
             echo "<td>" . htmlspecialchars($booking['status']) . "</td>";
             echo "<td>
-                    <a href='edit_booking.php?id=" . $booking['booking_id'] . "'>Edit</a> | 
-                    <a href='delete_booking.php?id=" . $booking['booking_id'] . "'>Delete</a>
+                    <a href='edit_admin.php?id=" . $booking['booking_id'] . "'>Edit</a> | 
+                    <a href='delete_booking_admin.php?id=" . $booking['booking_id'] . "'>Delete</a>
                   </td>"; 
             echo "</tr>";
         }
@@ -70,4 +72,3 @@ try {
 </body>
 </html>
 <?php
-
